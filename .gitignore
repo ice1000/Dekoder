@@ -1,3 +1,7 @@
 lib
+out/production
 *.wav
 *.mp3
+save.db
+.idea/workspace.xml
+.idea/libraries
