@@ -6,5 +6,5 @@
 fun main(args: Array<String>) {
     var decoder = MainDecoder()
     println(decoder.name)
-    decoder.play()
+//    decoder.play()
 }
