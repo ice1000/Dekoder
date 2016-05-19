@@ -25,43 +25,43 @@ class MainDecoder {
         file = File(fileName)
         reader = DSInputStreamReader(file)
         var metaSize: Int
-        println("检查元数据。")
+        echo("检查元数据。")
         // ======================================================== 0
-        println(
+        echo(
                 if ("RIFF".equals(reader.readToString()))
                     "RIFF字段正常。"
                 else "警告：RIFF字段异常！")
         // ======================================================== 4
         size = reader.readToLong()
-        println("除去元数据总大小 = $size")
+        echo("除去元数据总大小 = $size")
         // ======================================================== 8
-        println(
+        echo(
                 if ("WAVE".equals(reader.readToString()))
                     "WAVE字段正常。"
                 else "警告：WAVE字段异常！")
         // ======================================================== 12
         if ("fmt ".equals(reader.readToString()))
-            println("\n格式数据：")
+            echo("\n格式数据：")
         // ======================================================== 16
         metaSize = reader.readToInt(1, 3)
-        println("元数据大小： $metaSize")
+        echo("元数据大小： $metaSize")
         // ======================================================== 20
-        println("编码方式： ${reader.readToLong(1, 1)}")
+        echo("编码方式： ${reader.readToLong(1, 1)}")
         // ======================================================== 22
         channels = reader.readToInt(1, 1)
-        println(if (channels == 1) "单" else "双" + "声道。")
+        echo(if (channels == 1) "单" else "双" + "声道。")
         // ======================================================== 24
         samplePSec = reader.readToInt()
-        println("采样频率：$samplePSec")
+        echo("采样频率：$samplePSec")
         // ======================================================== 28
         bytePSec = reader.readToInt()
-        println("每秒需要的字节数：$bytePSec")
+        echo("每秒需要的字节数：$bytePSec")
         // ======================================================== 32
         bytePSample = reader.readToInt(2)
-        println("每个采样需要的字节数：$bytePSample")
+        echo("每个采样需要的字节数：$bytePSample")
         // ======================================================== 34
         bitPSample = reader.readToInt(2)
-        println("每秒需要的bit数：$bitPSample")
+        echo("每秒需要的bit数：$bitPSample")
         // ======================================================== 36
         extraData = if(metaSize == 18) reader.readToInt(2) else null
         // ======================================================== 36 or 38
@@ -70,20 +70,24 @@ class MainDecoder {
             var a = reader.readToInt()
             var b = reader.readToString(a)
             fact = Fact(a, b)
-            println("FACT数据存在，值为$b。")
+            echo("FACT数据存在，值为$b。")
             // 把fact之后的data也读取一次
             reader.read()
         } else {
             // data已经读取过了，直接给fact赋值null
             fact = null
-            println("FACT数据不存在。")
+            echo("FACT数据不存在。")
         }
         // ======================================================== end
         // 现在读完了元数据，开始读取声波数据
-        println("开始读取声波数据。")
-        println()
+        echo("开始读取声波数据。")
+        echo()
     }
 
     constructor() : this("./raw.wav")
+    
+    private fun echo(msg: String = "") {
+        println(msg)
+    }
 
 }
