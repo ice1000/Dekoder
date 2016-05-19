@@ -29,12 +29,16 @@ class DSInputStreamReader(r: File) {
         var pow: Long = 1
         for (i in 1..length) {
             var n = ba[length - i] * 1
-            ret += pow * if(n >= 0) n else (0x100 + n)
+            ret += pow * if (n >= 0) n else (0x100 + n)
             pow *= 0x100
-//            println("ba[${length - i}] = ${ba[length - i]}")
-//            println("ret = $ret")
-//            println("pow = $pow")
+            //            println("ba[${length - i}] = ${ba[length - i]}")
+            //            println("ret = $ret")
+            //            println("pow = $pow")
         }
         return ret
+    }
+
+    fun readToInt(length: Int, skip: Int = 0): Int {
+        return readToLong(length, skip).toInt()
     }
 }
