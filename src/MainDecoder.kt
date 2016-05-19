@@ -12,13 +12,13 @@ class MainDecoder {
     private var reader: DSInputStreamReader
     private var channels: Int
     private var size: Long
-    private var name: String
     private var samplePSec: Int
     private var bytePSec: Int
     private var bytePSample: Int
     private var bitPSample: Int
     private var extraData: Int?
     private var fact: Fact?
+    var name: String
 
     constructor(fileName: String) {
         name = fileName
