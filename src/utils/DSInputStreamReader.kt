@@ -4,7 +4,8 @@ import java.io.File
 import java.io.FileInputStream
 
 /**
- * a domain specific reader
+ * a domain specific input stream reader
+ * @author ice1000
  * Created by ice1000 on 2016/5/19.
  */
 
@@ -28,11 +29,11 @@ class DSInputStreamReader(r: File) {
         var ba = read(length, skip)
         var ret: Long = 0
         var pow: Long = 1
-        for (i in 1..length) {
-            var n = ba[length - i] * 1
+        for (i in 0..length - 1) {
+            var n = ba[i] * 1
             ret += pow * if (n >= 0) n else (0x100 + n)
             pow *= 0x100
-            //            println("ba[${length - i}] = ${ba[length - i]}")
+            //            println("ba[$i] = ${ba[i]}")
             //            println("ret = $ret")
             //            println("pow = $pow")
         }

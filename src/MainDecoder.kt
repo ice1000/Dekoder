@@ -70,17 +70,18 @@ class MainDecoder {
             var a = reader.readToInt()
             var b = reader.readToString(a)
             fact = Fact(a, b)
-            println("FACT数据存在，值为$b")
+            println("FACT数据存在，值为$b。")
             // 把fact之后的data也读取一次
             reader.read()
         } else {
             // data已经读取过了，直接给fact赋值null
             fact = null
-            println("FACT数据不存在")
+            println("FACT数据不存在。")
         }
         // ======================================================== end
         // 现在读完了元数据，开始读取声波数据
         println("开始读取声波数据。")
+        println()
     }
 
     constructor() : this("./raw.wav")
