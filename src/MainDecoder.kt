@@ -22,19 +22,19 @@ class MainDecoder {
         println("检查元数据。")
         // ========================================================
         println(
-                if ("RIFF".equals(reader.readString(4)))
+                if ("RIFF".equals(reader.readToString()))
                     "RIFF字段正常。"
                 else "警告：RIFF字段异常！")
         // ========================================================
-        size = reader.readToLong(4)
+        size = reader.readToLong()
         println("除去元数据总大小 = $size")
         // ========================================================
         println(
-                if ("WAVE".equals(reader.readString(4)))
+                if ("WAVE".equals(reader.readToString()))
                     "WAVE字段正常。"
                 else "警告：WAVE字段异常！")
         // ========================================================
-        if ("fmt ".equals(reader.readString(4)))
+        if ("fmt ".equals(reader.readToString()))
             println("\n格式数据：")
         // ========================================================
         metaSize = reader.readToLong(1, 3)
@@ -45,11 +45,13 @@ class MainDecoder {
         channels = reader.readToInt(1, 1)
         println(if (channels == 1) "单" else "双" + "声道。")
         // ========================================================
-        samplePSec = reader.readToInt(4)
+        samplePSec = reader.readToInt()
         println("采样频率：$samplePSec")
         // ========================================================
-        bytePSec = reader.readToInt(4)
+        bytePSec = reader.readToInt()
         println("每秒字节数：$bytePSec")
+        // ========================================================
+
     }
 
     constructor() : this("./raw.wav")

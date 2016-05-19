@@ -1,6 +1,5 @@
 import java.io.File
 import java.io.FileInputStream
-import java.nio.charset.Charset
 
 /**
  * a domain specific reader
@@ -10,7 +9,7 @@ import java.nio.charset.Charset
 class DSInputStreamReader(r: File) {
     private var index = 0
     private var reader = FileInputStream(r)
-    fun read(length: Int, skip: Int = 0): ByteArray {
+    fun read(length: Int = 4, skip: Int = 0): ByteArray {
         var ba = ByteArray(length)
         reader.read(ba, 0, length)
         reader.read(ByteArray(skip), 0, skip)
@@ -19,11 +18,11 @@ class DSInputStreamReader(r: File) {
         return ba ;
     }
 
-    fun readString(length: Int, skip: Int = 0): String {
+    fun readToString(length: Int = 4, skip: Int = 0): String {
         return String(read(length, skip))
     }
 
-    fun readToLong(length: Int, skip: Int = 0): Long {
+    fun readToLong(length: Int = 4, skip: Int = 0): Long {
         var ba = read(length, skip)
         var ret: Long = 0
         var pow: Long = 1
@@ -38,7 +37,7 @@ class DSInputStreamReader(r: File) {
         return ret
     }
 
-    fun readToInt(length: Int, skip: Int = 0): Int {
+    fun readToInt(length: Int = 4, skip: Int = 0): Int {
         return readToLong(length, skip).toInt()
     }
 }
