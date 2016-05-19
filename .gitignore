@@ -1,3 +1,4 @@
 out
 lib
-raw.wav
+*.wav
+*.mp3
