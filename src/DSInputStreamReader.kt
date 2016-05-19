@@ -10,7 +10,7 @@ import java.nio.charset.Charset
 class DSInputStreamReader(r: File) {
     private var index = 0
     private var reader = FileInputStream(r)
-    fun read(length: Int, skip: Int): ByteArray {
+    fun read(length: Int, skip: Int = 0): ByteArray {
         var ba = ByteArray(length)
         reader.read(ba, 0, length)
         reader.read(ByteArray(skip), 0, skip)
@@ -19,11 +19,11 @@ class DSInputStreamReader(r: File) {
         return ba ;
     }
 
-    fun readString(length: Int, skip: Int): String {
+    fun readString(length: Int, skip: Int = 0): String {
         return String(read(length, skip))
     }
 
-    fun readToLong(length: Int, skip: Int): Long {
+    fun readToLong(length: Int, skip: Int = 0): Long {
         var ba = read(length, skip)
         var ret: Long = 0
         var pow: Long = 1
