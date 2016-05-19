@@ -6,4 +6,5 @@
 fun main(args: Array<String>) {
     var decoder = MainDecoder("D:/IJPlugins/WAVDecoder/raw.wav")
     println(decoder.name)
+    decoder.play()
 }

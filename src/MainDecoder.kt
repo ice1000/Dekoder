@@ -63,10 +63,10 @@ class MainDecoder {
         bitPSample = reader.readToInt(2)
         echo("每秒需要的bit数：$bitPSample")
         // ======================================================== 36
-        extraData = if(metaSize == 18) reader.readToInt(2) else null
+        extraData = if (metaSize == 18) reader.readToInt(2) else null
         // ======================================================== 36 or 38
         var s = reader.readToString()
-        if("fact".equals(s)) {
+        if ("fact".equals(s)) {
             var a = reader.readToInt()
             var b = reader.readToString(a)
             fact = Fact(a, b)
@@ -79,15 +79,24 @@ class MainDecoder {
             echo("FACT数据不存在。")
         }
         // ======================================================== end
-        // 现在读完了元数据，开始读取声波数据
-        echo("开始读取声波数据。")
-        echo()
+        // 现在读完了元数据
     }
 
     constructor() : this("./raw.wav")
-    
+
     private fun echo(msg: String = "") {
         println(msg)
+    }
+
+    /**
+     * 开始读取声波数据
+     */
+    fun play() {
+        echo("开始读取声波数据。")
+        // 双声道的话每次读两个数据，所以总的读取数量减半
+        for (i in if (channels == 1) 0..size else 0..size / 2) {
+
+        }
     }
 
 }
