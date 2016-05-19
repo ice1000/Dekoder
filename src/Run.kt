@@ -4,7 +4,7 @@
  */
 
 fun main(args: Array<String>) {
-    var decoder = MainDecoder()
+    var decoder = MainDecoder("./raw.wav")
     println(decoder.name)
 //    decoder.play()
 }

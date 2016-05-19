@@ -64,6 +64,7 @@ class MainDecoder {
         echo("每秒需要的bit数：$bitPSample")
         // ======================================================== 36
         extraData = if (metaSize == 18) reader.readToInt(2) else null
+        echo("附加数据：$extraData")
         // ======================================================== 36 or 38
         var s = reader.readToString()
         if ("fact".equals(s)) {
