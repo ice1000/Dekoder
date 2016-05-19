@@ -95,6 +95,7 @@ class MainDecoder {
         echo("开始读取声波数据。")
         // 双声道的话每次读两个数据，所以总的读取数量减半
         for (i in if (channels == 1) 0..size else 0..size / 2) {
+            var data = reader.read(if(bitPSample == 16) 4 else 2)
 
         }
     }
