@@ -1,7 +1,6 @@
 package utils
 
 import data.Fact
-import utils.DSInputStreamReader
 import java.io.File
 
 /**
@@ -27,12 +26,13 @@ abstract class MainDecoder {
         file = File(fileName)
         reader = DSInputStreamReader(file)
         var metaSize: Int
-        echo("检查元数据。")
         // ======================================================== 0
-        echo(
-                if ("RIFF".equals(reader.readToString()))
-                    "RIFF字段正常。"
-                else "警告：RIFF字段异常！")
+        if("RIFF".equals(reader.readToString()))
+            echo("RIFF字段正常。")
+        else {
+            echo("警告：RIFF字段异常！")
+            return ;
+        }
         // ======================================================== 4
         size = reader.readToLong()
         echo("除去元数据总大小 = $size")

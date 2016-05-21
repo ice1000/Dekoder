@@ -24,5 +24,6 @@
             </AnchorPane>
          </center>
       </JFXToolbar>
+      <Label fx:id="nameLabel" contentDisplay="CENTER" layoutY="43.0" prefHeight="43.0" prefWidth="526.0" text="Music name" textAlignment="CENTER" wrapText="true" />
    </children>
 </AnchorPane>
