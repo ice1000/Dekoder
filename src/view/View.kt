@@ -1,6 +1,5 @@
 package view
 
-import MainDecoder
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
@@ -15,8 +14,8 @@ import javafx.stage.StageStyle
 
 class View: Application() {
     override fun start(primaryStage: Stage?) {
-        val decoder = MainDecoder("./raw.wav")
-        println(decoder.name)
+//        val decoder = utils.MainDecoder("./raw.wav")
+//        println(decoder.name)
 
         val parent = FXMLLoader.load<Parent>(View::class.java.getResource("activity_main.fxml"))
 

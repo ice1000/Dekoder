@@ -1,3 +1,5 @@
+package utils
+
 import data.Fact
 import utils.DSInputStreamReader
 import java.io.File
@@ -7,7 +9,7 @@ import java.io.File
  * Created by ice1000 on 2016/5/18.
  */
 
-class MainDecoder {
+abstract class MainDecoder {
     private var file: File
     private var reader: DSInputStreamReader
     private var channels: Int
@@ -85,23 +87,20 @@ class MainDecoder {
 
     constructor() : this("./raw.wav")
 
-    private fun echo(msg: String = "") {
-        println(msg)
-    }
-
+    abstract fun echo(msg: String = "")
     /**
      * 开始读取声波数据
      */
     fun play() {
         echo("开始读取声波数据。")
         for (i in 0..size) {
-            var data = reader.read(if (bitPSample == 16) 4 else 2)
+            val data = reader.read(if (bitPSample == 16) 4 else 2)
             echo(data.toString())
         }
         // 双声道的话每次读两个数据，所以总的读取数量减半
         for (i in 0..size / 2) {
-            var dataL = reader.read(if (bitPSample == 16) 4 else 2)
-            var dataR = reader.read(if (bitPSample == 16) 4 else 2)
+            val dataL = reader.read(if (bitPSample == 16) 4 else 2)
+            val dataR = reader.read(if (bitPSample == 16) 4 else 2)
             echo("left: $dataL")
             echo("right: $dataR")
         }
