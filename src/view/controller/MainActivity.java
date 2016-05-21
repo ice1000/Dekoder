@@ -31,18 +31,21 @@ public class MainActivity {
 	private JFXButton playButton;
 	@FXML
 	private Label nameLabel;
-
 	private File file;
+	private Dekoder dekoder;
 
 	@FXML
 	void playMusic(ActionEvent event) {
+		if(dekoder != null) {
+			dekoder.play();
+		}
 	}
 
 	@FXML
 	void openFile(ActionEvent event) {
 		FileChooser chooser = new FileChooser();
 		file = chooser.showOpenDialog(window.getScene().getWindow());
-		new Dekoder(file.getPath());
+		dekoder = new Dekoder(file.getPath());
 		nameLabel.setText(file.getName());
 		propertiesList.getItems().removeAll();
 	}

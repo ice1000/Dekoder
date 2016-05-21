@@ -17,6 +17,9 @@ class View: Application() {
 //        val decoder = utils.MainDecoder("./raw.wav")
 //        println(decoder.name)
 
+//        Thread(Runnable {
+//            SVGGlyphLoader.loadGlyphsFont(View::class.java.getResourceAsStream("/src/view/res/kotlin.png"),"kotlin.png");
+//        })
         val parent = FXMLLoader.load<Parent>(View::class.java.getResource("activity_main.fxml"))
 
         val scene = Scene(parent, 800.0, 600.0)
