@@ -8,6 +8,8 @@ import MainDecoder
  */
 
 fun main(args: Array<String>) {
+    val view = View()
+    view.onCreate()
     val decoder = MainDecoder("./raw.wav")
     println(decoder.name)
 //    decoder.play()

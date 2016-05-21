@@ -10,7 +10,7 @@ import javafx.stage.StageStyle
 
 /**
  * @author ice1000
- * Created by asus1 on 2016/5/21.
+ * Created by ice1000 on 2016/5/21.
  */
 
 class View: Application() {
@@ -24,5 +24,11 @@ class View: Application() {
         primaryStage?.initStyle(StageStyle.DECORATED)
         primaryStage?.scene = scene
         primaryStage?.title = "Dekoder by ice1000"
+        primaryStage?.isResizable = false
+        primaryStage?.show()
+    }
+
+    fun onCreate() {
+        launch(this.javaClass)
     }
 }
