@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainActivity">
    <children>
-      <JFXButton buttonType="RAISED" layoutX="250.0" layoutY="346.0" prefHeight="40.0" prefWidth="101.0" ripplerFill="#ff9800" text="Play" />
+      <JFXButton fx:id="playButton" buttonType="RAISED" layoutX="348.0" layoutY="524.0" onAction="#playMusic" prefHeight="59.0" prefWidth="101.0" ripplerFill="#ff9800" text="Play" />
+      <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" disable="true" layoutX="527.0" prefHeight="448.0" prefWidth="269.0">
+         <effect>
+            <Blend />
+         </effect>
+      </JFXListView>
+      <JFXToolbar layoutX="-1.0" prefHeight="43.0" prefWidth="352.0">
+         <center>
+            <AnchorPane prefHeight="43.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="fileButton" layoutY="-6.0" onAction="#openFile" prefHeight="49.0" prefWidth="77.0" text="Open" />
+                  <JFXButton fx:id="helpButton" layoutX="77.0" layoutY="-6.0" onAction="#openHelp" prefHeight="48.0" prefWidth="77.0" text="Help" />
+               </children>
+            </AnchorPane>
+         </center>
+      </JFXToolbar>
    </children>
 </AnchorPane>

@@ -18,17 +18,18 @@ class View: Application() {
         val decoder = MainDecoder("./raw.wav")
         println(decoder.name)
 
-        val parent = FXMLLoader.load<Parent>(this.javaClass.getResource("activity_main.fxml"))
+        val parent = FXMLLoader.load<Parent>(View::class.java.getResource("activity_main.fxml"))
 
-        val scene = Scene(parent, 600.0, 480.0)
+        val scene = Scene(parent, 800.0, 600.0)
         primaryStage?.initStyle(StageStyle.DECORATED)
         primaryStage?.scene = scene
         primaryStage?.title = "Dekoder by ice1000"
         primaryStage?.isResizable = false
         primaryStage?.show()
+
     }
 
     fun onCreate() {
-        launch(this.javaClass)
+        launch(View::class.java)
     }
 }
