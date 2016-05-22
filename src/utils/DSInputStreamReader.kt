@@ -13,7 +13,7 @@ class DSInputStreamReader(r: File) {
     private var index = 0
     private var reader = FileInputStream(r)
     fun read(length: Int = 4, skip: Int = 0): ByteArray {
-        var ba = ByteArray(length)
+        val ba = ByteArray(length)
         reader.read(ba, 0, length)
         reader.read(ByteArray(skip), 0, skip)
         index += length
@@ -26,11 +26,11 @@ class DSInputStreamReader(r: File) {
     }
 
     fun readToLong(length: Int = 4, skip: Int = 0): Long {
-        var ba = read(length, skip)
+        val ba = read(length, skip)
         var ret: Long = 0
         var pow: Long = 1
         for (i in 0..length - 1) {
-            var n = ba[i] * 1
+            val n = ba[i] * 1
             ret += pow * if (n >= 0) n else (0x100 + n)
             pow *= 0x100
             //            println("ba[$i] = ${ba[i]}")

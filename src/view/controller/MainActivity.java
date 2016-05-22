@@ -6,19 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import org.jetbrains.annotations.NotNull;
-import utils.MainDecoder;
+import decoder.WAVDecoder;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * @author ice1000
+ * java interface of javafx
  * Created by asus1 on 2016/5/21.
  */
 
-public class MainActivity {
+public class MainActivity extends MainActivityFramework{
 	@FXML
 	private JFXListView<Object> propertiesList;
 	@FXML
@@ -43,8 +42,7 @@ public class MainActivity {
 
 	@FXML
 	void openFile(ActionEvent event) {
-		FileChooser chooser = new FileChooser();
-		file = chooser.showOpenDialog(window.getScene().getWindow());
+		file = getChooser().showOpenDialog(window.getScene().getWindow());
 		dekoder = new Dekoder(file.getPath());
 		nameLabel.setText(file.getName());
 		propertiesList.getItems().removeAll();
@@ -52,14 +50,11 @@ public class MainActivity {
 
 	@FXML
 	void openHelp(ActionEvent event) {
-		String str=  "rundll32 url.dll,FileProtocolHandler https://github.com/ice1000/Dekoder" ;
-		try {
-			Runtime.getRuntime().exec(str);
-		} catch (IOException ignored) {}
+		openGitHub();
 	}
 
-	private class Dekoder extends MainDecoder {
-		Dekoder(String file) {
+	private class Dekoder extends WAVDecoder {
+		private Dekoder(String file) {
 			super(file);
 		}
 

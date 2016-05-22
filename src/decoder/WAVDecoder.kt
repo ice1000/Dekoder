@@ -1,14 +1,20 @@
-package utils
+package decoder
 
 import data.Fact
+import utils.DSInputStreamReader
 import java.io.File
+
+/**
+ * @author ice1000
+ * Created by asus1 on 2016/5/22.
+ */
 
 /**
  * @author ice1000
  * Created by ice1000 on 2016/5/18.
  */
 
-abstract class MainDecoder {
+abstract class WAVDecoder {
     private var file: File
     private var reader: DSInputStreamReader
     private var channels: Int = 0
@@ -31,7 +37,7 @@ abstract class MainDecoder {
             echo("RIFF字段正常。")
         else {
             echo("警告：RIFF字段异常")
-            return ;
+            return
         }
         // ======================================================== 4
         size = reader.readToLong()
@@ -42,8 +48,10 @@ abstract class MainDecoder {
                     "WAVE字段正常。"
                 else "警告：WAVE字段异常")
         // ======================================================== 12
-        if ("fmt ".equals(reader.readToString()))
-            echo("\n格式数据：")
+        if (!"fmt ".equals(reader.readToString())){
+            echo("格式数据错误")
+            return
+        }
         // ======================================================== 16
         metaSize = reader.readToInt(1, 3)
         echo("元数据大小： $metaSize")
