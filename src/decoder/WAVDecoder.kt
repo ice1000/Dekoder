@@ -2,6 +2,7 @@ package decoder
 
 import data.Fact
 import utils.DSInputStreamReader
+import utils.DecoderInterface
 import java.io.File
 
 /**
@@ -14,7 +15,7 @@ import java.io.File
  * Created by ice1000 on 2016/5/18.
  */
 
-abstract class WAVDecoder {
+abstract class WAVDecoder:DecoderInterface {
     private var file: File
     private var reader: DSInputStreamReader
     private var channels: Int = 0
@@ -99,7 +100,7 @@ abstract class WAVDecoder {
     /**
      * 开始读取声波数据
      */
-    fun play() {
+    override fun play() {
 //        echo("开始读取声波数据。")
 //        for (i in 0..size) {
 //            val data = reader.read(if (bitPSample == 16) 4 else 2)
@@ -114,4 +115,7 @@ abstract class WAVDecoder {
 //        }
     }
 
+    override fun save() {
+        // TODO: save data
+    }
 }

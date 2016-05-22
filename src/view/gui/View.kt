@@ -14,9 +14,6 @@ import javafx.stage.StageStyle
 
 class View: Application() {
     override fun start(primaryStage: Stage?) {
-//        val decoder = utils.MainDecoder("./raw.wav")
-//        println(decoder.name)
-
 //        Thread(Runnable {
 //            SVGGlyphLoader.loadGlyphsFont(View::class.java.getResourceAsStream("/src/view/res/kotlin.png"),"kotlin.png");
 //        })
