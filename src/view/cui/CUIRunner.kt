@@ -1,4 +1,6 @@
-package view
+package view.cui
+
+import decoder.WAVDecoder
 
 /**
  * @author ice1000
@@ -13,7 +15,7 @@ fun main(args: Array<String>) {
     decoder.play()
 }
 
-class CUIDecoder(fileName: String) : decoder.WAVDecoder(fileName) {
+class CUIDecoder(fileName: String) : WAVDecoder(fileName) {
     override fun echo(msg: String) {
         println(msg)
     }

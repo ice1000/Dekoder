@@ -28,7 +28,7 @@
       <Label fx:id="nameLabel" contentDisplay="CENTER" layoutX="140.0" layoutY="51.0" prefHeight="43.0" prefWidth="236.0" wrapText="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="183.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@res/kotlin.png" />
+            <Image url="@../res/kotlin.png" />
          </image>
       </ImageView>
    </children>
