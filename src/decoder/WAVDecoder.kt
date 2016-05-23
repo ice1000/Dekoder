@@ -1,10 +1,12 @@
 package decoder
 
+import com.sun.media.sound.JavaSoundAudioClip
 import data.Fact
 import utils.DSInputStreamReader
 import decoder.DecoderInterface
 import utils.Echoer
 import java.io.File
+import java.io.InputStream
 
 /**
  * @author ice1000
@@ -40,7 +42,7 @@ open class WAVDecoder : DecoderInterface {
         }
         // ======================================================== 4
         size = reader.readToLong()
-        echo("除去元数据总大小 = $size")
+        echo("大小 = $size")
         // ======================================================== 8
         echo(
                 if ("WAVE".equals(reader.readToString()))
@@ -101,17 +103,7 @@ open class WAVDecoder : DecoderInterface {
      * 开始读取声波数据
      */
     override fun play() {
-        //        echo("开始读取声波数据。")
-        //        for (i in 0..size) {
-        //            val data = reader.read(if (bitPSample == 16) 4 else 2)
-        //            echo(data.toString())
-        //        }
-        //        // 双声道的话每次读两个数据，所以总的读取数量减半
-        //        for (i in 0..size / 2) {
-        //            val dataL = reader.read(if (bitPSample == 16) 4 else 2)
-        //            val dataR = reader.read(if (bitPSample == 16) 4 else 2)
-        //            echo("left: $dataL")
-        //            echo("right: $dataR")
-        //        }
+        var sound = JavaSoundAudioClip(file.inputStream())
+        sound.play()
     }
 }

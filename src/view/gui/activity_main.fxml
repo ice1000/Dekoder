@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Blend?>
@@ -7,10 +12,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+
 <AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainActivity">
    <children>
-      <JFXButton fx:id="playButton" buttonType="RAISED" layoutX="348.0" layoutY="524.0" onAction="#playMusic" prefHeight="59.0" prefWidth="101.0" ripplerFill="#ff9800" text="Play" />
-      <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="527.0" prefHeight="493.0" prefWidth="269.0">
+      <JFXButton fx:id="playButton" defaultButton="true" layoutX="350.0" layoutY="524.0" onAction="#playMusic" prefHeight="59.0" prefWidth="101.0" ripplerFill="#ff9800" text="Play" />
+      <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="527.0" layoutY="57.0" prefHeight="436.0" prefWidth="269.0">
          <effect>
             <Blend />
          </effect>
@@ -19,17 +25,18 @@
          <left>
             <AnchorPane prefHeight="43.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="fileButton" layoutY="-6.0" onAction="#openFile" prefHeight="51.0" prefWidth="77.0" text="Open" />
-                  <JFXButton fx:id="helpButton" layoutX="77.0" layoutY="-6.0" onAction="#openHelp" prefHeight="51.0" prefWidth="77.0" text="GitHub" />
+                  <JFXButton fx:id="fileButton" layoutY="-6.0" onAction="#openFile" prefHeight="51.0" prefWidth="77.0" ripplerFill="#4d71e7" text="Open" />
+                  <JFXButton fx:id="helpButton" layoutX="77.0" layoutY="-6.0" onAction="#openHelp" prefHeight="51.0" prefWidth="77.0" ripplerFill="#4d71e7" text="GitHub" />
                </children>
             </AnchorPane>
          </left>
       </JFXToolbar>
       <Label fx:id="nameLabel" contentDisplay="CENTER" layoutX="140.0" layoutY="51.0" prefHeight="43.0" prefWidth="236.0" wrapText="true" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="183.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="182.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/kotlin.png" />
          </image>
       </ImageView>
+      <JFXRadioButton layoutX="516.0" layoutY="23.0" selected="true" text="Data" wrapText="true" />
    </children>
 </AnchorPane>

@@ -46,7 +46,9 @@ public class MainActivity extends MainActivityFramework {
 	void openFile(ActionEvent event) {
 		file = getChooser().showOpenDialog(window.getScene().getWindow());
 		dekoder = choose(file.getPath());
-//		dekoder = new Dekoder(file.getPath());
+		if(dekoder == null) {
+			return;
+		}
 		nameLabel.setText(file.getName());
 		propertiesList.getItems().removeAll();
 	}
@@ -60,9 +62,8 @@ public class MainActivity extends MainActivityFramework {
 		Printer p = new Printer();
 		if(filePath.endsWith("wav"))
 			return new WAVDecoder(filePath, p);
-		else {
+		else
 			return null;
-		}
 	}
 
 	private class Printer extends Echoer {

@@ -11,7 +11,9 @@ import java.io.FileInputStream
 
 class DSInputStreamReader(r: File) {
     private var index = 0
-    private var reader = FileInputStream(r)
+    var reader = FileInputStream(r)
+    private set
+
     fun read(length: Int = 4, skip: Int = 0): ByteArray {
         val ba = ByteArray(length)
         reader.read(ba, 0, length)
