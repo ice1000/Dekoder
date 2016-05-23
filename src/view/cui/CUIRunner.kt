@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     decoder.play()
 }
 
-class CUIDecoder(fileName: String) : WAVDecoder(fileName) {
+class CUIDecoder(fileName: String) : WAVDecoder(fileName, null) {
     override fun echo(msg: String) {
         println(msg)
     }

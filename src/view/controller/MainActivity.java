@@ -8,7 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import org.jetbrains.annotations.NotNull;
 import decoder.WAVDecoder;
-import utils.DecoderInterface;
+import decoder.DecoderInterface;
+import utils.Echoer;
 
 import java.io.File;
 
@@ -44,8 +45,8 @@ public class MainActivity extends MainActivityFramework {
 	@FXML
 	void openFile(ActionEvent event) {
 		file = getChooser().showOpenDialog(window.getScene().getWindow());
-//		dekoder = choose(file.getPath());
-		dekoder = new Dekoder(file.getPath());
+		dekoder = choose(file.getPath());
+//		dekoder = new Dekoder(file.getPath());
 		nameLabel.setText(file.getName());
 		propertiesList.getItems().removeAll();
 	}
@@ -56,21 +57,15 @@ public class MainActivity extends MainActivityFramework {
 	}
 
 	private DecoderInterface choose(String filePath) {
-		String type = filePath.split(".")[filePath.split(".").length - 1];
-		System.out.println(type);
-		switch (type) {
-			case "wav":
-				return new Dekoder(filePath);
-			default:
-				return null;
+		Printer p = new Printer();
+		if(filePath.endsWith("wav"))
+			return new WAVDecoder(filePath, p);
+		else {
+			return null;
 		}
 	}
 
-	private class Dekoder extends WAVDecoder {
-		private Dekoder(String file) {
-			super(file);
-		}
-
+	private class Printer extends Echoer {
 		@Override
 		public void echo(@NotNull String msg) {
 			propertiesList.getItems().add(msg);

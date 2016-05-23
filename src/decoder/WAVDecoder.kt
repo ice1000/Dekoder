@@ -2,7 +2,8 @@ package decoder
 
 import data.Fact
 import utils.DSInputStreamReader
-import utils.DecoderInterface
+import decoder.DecoderInterface
+import utils.Echoer
 import java.io.File
 
 /**
@@ -10,7 +11,7 @@ import java.io.File
  * Created by asus1 on 2016/5/22.
  */
 
-abstract class WAVDecoder : DecoderInterface {
+class WAVDecoder : DecoderInterface {
     private var file: File
     private var reader: DSInputStreamReader
     private var channels: Int = 0
@@ -22,8 +23,10 @@ abstract class WAVDecoder : DecoderInterface {
     private var extraData: Int? = null
     private var fact: Fact? = null
     override var name: String
+    override var echoer: Echoer
 
-    constructor(fileName: String) {
+    constructor(fileName: String, echoer: Echoer) {
+        this.echoer = echoer
         name = fileName
         file = File(fileName)
         reader = DSInputStreamReader(file)
@@ -89,9 +92,11 @@ abstract class WAVDecoder : DecoderInterface {
         // 现在读完了元数据
     }
 
-    constructor() : this("./raw.wav")
+    constructor(echoer: Echoer) : this("./raw.wav", echoer)
 
-    abstract fun echo(msg: String = "")
+    fun echo(msg: String = "") {
+        echoer.echo(msg)
+    }
     /**
      * 开始读取声波数据
      */
@@ -108,9 +113,5 @@ abstract class WAVDecoder : DecoderInterface {
         //            echo("left: $dataL")
         //            echo("right: $dataR")
         //        }
-    }
-
-    override fun save() {
-        // TODO: save data
     }
 }

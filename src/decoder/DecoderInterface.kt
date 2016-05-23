@@ -1,6 +1,7 @@
-package utils
+package decoder
 
 import data.DatabaseManager
+import utils.Echoer
 
 /**
  * @author ice1000
@@ -10,6 +11,7 @@ import data.DatabaseManager
 interface DecoderInterface {
 
     var name: String
+    var echoer: Echoer
 
     fun play()
 
