@@ -41,22 +41,12 @@ public class MainActivity extends MainActivityFramework {
 	private JFXRadioButton dataOption;
 	private File file;
 	private DecoderInterface dekoder;
-	private static final String STOP = "Stop";
-	private static final String PLAY = "Play";
 	private DatabaseManager manager;
 
 	@FXML
-	void playMusic(ActionEvent event) {
-		if (dekoder != null) {
-			if(PLAY.equals(playButton.getText())) {
-				dekoder.play();
-				playButton.setText(STOP);
-			}
-			else {
-				dekoder.stop();
-				playButton.setText(PLAY);
-			}
-		}
+	@Override
+	protected void playMusic(@NotNull ActionEvent event) {
+		super.playMusic(event);
 	}
 
 	@FXML
@@ -86,6 +76,23 @@ public class MainActivity extends MainActivityFramework {
 			return new MP3Decoder(filePath, p);
 		else
 			return null;
+	}
+
+	@NotNull
+	@Override
+	public DecoderInterface getDekoder() {
+		return dekoder;
+	}
+
+	@Override
+	public void setDekoder(DecoderInterface decoderInterface) {
+		dekoder = decoderInterface;
+	}
+
+	@NotNull
+	@Override
+	public JFXButton getPlayButton() {
+		return playButton;
 	}
 
 	private class Printer extends Echoer {
