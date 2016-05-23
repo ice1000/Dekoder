@@ -11,7 +11,7 @@ import java.io.File
  * Created by asus1 on 2016/5/22.
  */
 
-class WAVDecoder : DecoderInterface {
+open class WAVDecoder : DecoderInterface {
     private var file: File
     private var reader: DSInputStreamReader
     private var channels: Int = 0
