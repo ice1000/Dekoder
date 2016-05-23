@@ -1,7 +1,9 @@
 package decoder
 
+import com.sun.media.sound.JavaSoundAudioClip
 import data.DatabaseManager
 import utils.Echoer
+import java.io.File
 
 /**
  * @author ice1000
@@ -10,13 +12,16 @@ import utils.Echoer
 
 interface DecoderInterface {
 
-    var name: String
+    var path: String
     var echoer: Echoer
 
-    fun play()
+    fun play() {
+        var sound = JavaSoundAudioClip(File(path).inputStream())
+        sound.play()
+    }
 
     fun save() {
         val db = DatabaseManager()
-        db.write(name)
+        db.write(path)
     }
 }

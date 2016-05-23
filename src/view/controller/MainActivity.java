@@ -2,6 +2,7 @@ package view.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import decoder.MP3Decoder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -62,6 +63,8 @@ public class MainActivity extends MainActivityFramework {
 		Printer p = new Printer();
 		if(filePath.endsWith("wav"))
 			return new WAVDecoder(filePath, p);
+		else if(filePath.endsWith("mp3"))
+			return new MP3Decoder(filePath, p);
 		else
 			return null;
 	}

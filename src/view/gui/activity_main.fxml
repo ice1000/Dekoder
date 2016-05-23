@@ -16,7 +16,7 @@
 <AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainActivity">
    <children>
       <JFXButton fx:id="playButton" defaultButton="true" layoutX="350.0" layoutY="524.0" onAction="#playMusic" prefHeight="59.0" prefWidth="101.0" ripplerFill="#ff9800" text="Play" />
-      <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="527.0" layoutY="57.0" prefHeight="436.0" prefWidth="269.0">
+      <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="526.0" layoutY="47.0" prefHeight="436.0" prefWidth="269.0">
          <effect>
             <Blend />
          </effect>

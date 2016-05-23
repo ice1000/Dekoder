@@ -24,12 +24,12 @@ open class WAVDecoder : DecoderInterface {
     private var bitPSample: Int = 0
     private var extraData: Int? = null
     private var fact: Fact? = null
-    override var name: String
+    override var path: String
     override var echoer: Echoer
 
     constructor(fileName: String, echoer: Echoer) {
         this.echoer = echoer
-        name = fileName
+        path = fileName
         file = File(fileName)
         reader = DSInputStreamReader(file)
         val metaSize: Int
@@ -99,11 +99,5 @@ open class WAVDecoder : DecoderInterface {
     fun echo(msg: String = "") {
         echoer.echo(msg)
     }
-    /**
-     * 开始读取声波数据
-     */
-    override fun play() {
-        var sound = JavaSoundAudioClip(file.inputStream())
-        sound.play()
-    }
+
 }

@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     println("please input music file path :")
     var s = Scanner(System.`in`).nextLine()
     val decoder = CUIDecoder(s!!)
-    println(decoder.name)
+    println(decoder.path)
     decoder.play()
 }
 
