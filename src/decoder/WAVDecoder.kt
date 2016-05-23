@@ -10,12 +10,7 @@ import java.io.File
  * Created by asus1 on 2016/5/22.
  */
 
-/**
- * @author ice1000
- * Created by ice1000 on 2016/5/18.
- */
-
-abstract class WAVDecoder:DecoderInterface {
+abstract class WAVDecoder : DecoderInterface {
     private var file: File
     private var reader: DSInputStreamReader
     private var channels: Int = 0
@@ -34,7 +29,7 @@ abstract class WAVDecoder:DecoderInterface {
         reader = DSInputStreamReader(file)
         val metaSize: Int
         // ======================================================== 0
-        if("RIFF".equals(reader.readToString()))
+        if ("RIFF".equals(reader.readToString()))
             echo("RIFF字段正常。")
         else {
             echo("警告：RIFF字段异常")
@@ -49,7 +44,7 @@ abstract class WAVDecoder:DecoderInterface {
                     "WAVE字段正常。"
                 else "警告：WAVE字段异常")
         // ======================================================== 12
-        if (!"fmt ".equals(reader.readToString())){
+        if (!"fmt ".equals(reader.readToString())) {
             echo("格式数据错误")
             return
         }
@@ -101,18 +96,18 @@ abstract class WAVDecoder:DecoderInterface {
      * 开始读取声波数据
      */
     override fun play() {
-//        echo("开始读取声波数据。")
-//        for (i in 0..size) {
-//            val data = reader.read(if (bitPSample == 16) 4 else 2)
-//            echo(data.toString())
-//        }
-//        // 双声道的话每次读两个数据，所以总的读取数量减半
-//        for (i in 0..size / 2) {
-//            val dataL = reader.read(if (bitPSample == 16) 4 else 2)
-//            val dataR = reader.read(if (bitPSample == 16) 4 else 2)
-//            echo("left: $dataL")
-//            echo("right: $dataR")
-//        }
+        //        echo("开始读取声波数据。")
+        //        for (i in 0..size) {
+        //            val data = reader.read(if (bitPSample == 16) 4 else 2)
+        //            echo(data.toString())
+        //        }
+        //        // 双声道的话每次读两个数据，所以总的读取数量减半
+        //        for (i in 0..size / 2) {
+        //            val dataL = reader.read(if (bitPSample == 16) 4 else 2)
+        //            val dataR = reader.read(if (bitPSample == 16) 4 else 2)
+        //            echo("left: $dataL")
+        //            echo("right: $dataR")
+        //        }
     }
 
     override fun save() {
