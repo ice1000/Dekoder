@@ -38,5 +38,6 @@
          </image>
       </ImageView>
       <JFXRadioButton layoutX="516.0" layoutY="23.0" selected="true" text="Data" wrapText="true" />
+      <JFXRadioButton layoutX="620.0" layoutY="23.0" text="List" />
    </children>
 </AnchorPane>
