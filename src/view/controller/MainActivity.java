@@ -4,17 +4,18 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXRadioButton;
 import data.DatabaseManager;
+import decoder.DecoderInterface;
 import decoder.MP3Decoder;
+import decoder.WAVDecoder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import org.jetbrains.annotations.NotNull;
-import decoder.WAVDecoder;
-import decoder.DecoderInterface;
 import utils.Echoer;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * @author ice1000
@@ -23,82 +24,89 @@ import java.io.File;
  */
 
 public class MainActivity extends MainActivityFramework {
-	@FXML
-	private JFXListView<Object> propertiesList;
-	@FXML
-	private JFXButton fileButton;
-	@FXML
-	private JFXButton helpButton;
-	@FXML
-	private AnchorPane window;
-	@FXML
-	private JFXButton playButton;
-	@FXML
-	private Label nameLabel;
-	@FXML
-	private JFXRadioButton listOption;
-	@FXML
-	private JFXRadioButton dataOption;
-	private File file;
-	private DecoderInterface dekoder;
-	private DatabaseManager manager;
+    @FXML
+    private JFXListView<Object> propertiesList;
+    @FXML
+    private JFXButton fileButton;
+    @FXML
+    private JFXButton helpButton;
+    @FXML
+    private AnchorPane window;
+    @FXML
+    private JFXButton playButton;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private JFXRadioButton listOption;
+    @FXML
+    private JFXRadioButton dataOption;
+    private File file;
+    private DecoderInterface dekoder;
+    private DatabaseManager manager;
 
-	@FXML
-	@Override
-	protected void playMusic(@NotNull ActionEvent event) {
-		super.playMusic(event);
-	}
+    @FXML
+    protected void playMusic(ActionEvent event) {
+        super.playMusic();
+    }
 
-	@FXML
-	void openFile(ActionEvent event) {
-		file = getChooser().showOpenDialog(window.getScene().getWindow());
-		if(manager == null)
-			manager = new DatabaseManager();
-		manager.write(file.getPath());
-		dekoder = choose(file.getPath());
-		if(dekoder == null)
-			return;
-		dekoder.init();
-		nameLabel.setText(file.getName());
-		propertiesList.getItems().removeAll();
-	}
+    @FXML
+    void openFile(ActionEvent event) {
+        openFile(getChooser().showOpenDialog(window.getScene().getWindow()));
+    }
 
-	@FXML
-	void openHelp(ActionEvent event) {
-		openGitHub();
-	}
+    private void openFile(File file) {
+        manager.write(file.getPath());
+        dekoder = choose(file.getPath());
+        if (dekoder == null) return;
+        dekoder.init();
+        nameLabel.setText(file.getName());
+        propertiesList.getItems().removeAll();
+    }
 
-	private DecoderInterface choose(String filePath) {
-		Printer p = new Printer();
-		if(filePath.endsWith("wav"))
-			return new WAVDecoder(filePath, p);
-		else if(filePath.endsWith("mp3"))
-			return new MP3Decoder(filePath, p);
-		else
-			return null;
-	}
+    @FXML
+    void openHelp(ActionEvent event) {
+        openGitHub();
+    }
 
-	@NotNull
-	@Override
-	public DecoderInterface getDekoder() {
-		return dekoder;
-	}
+    private DecoderInterface choose(String filePath) {
+        Printer p = new Printer();
+        if (filePath.endsWith("wav")) return new WAVDecoder(filePath, p);
+        else if (filePath.endsWith("mp3")) return new MP3Decoder(filePath, p);
+        else return null;
+    }
 
-	@Override
-	public void setDekoder(DecoderInterface decoderInterface) {
-		dekoder = decoderInterface;
-	}
+    @NotNull
+    @Override
+    public DecoderInterface getDekoder() {
+        return dekoder;
+    }
 
-	@NotNull
-	@Override
-	public JFXButton getPlayButton() {
-		return playButton;
-	}
+    @Override
+    public void setDekoder(DecoderInterface decoderInterface) {
+        dekoder = decoderInterface;
+    }
 
-	private class Printer extends Echoer {
-		@Override
-		public void echo(@NotNull String msg) {
-			propertiesList.getItems().add(msg);
-		}
-	}
+    @NotNull
+    @Override
+    public JFXButton getPlayButton() {
+        return playButton;
+    }
+
+    private class Printer extends Echoer {
+        @Override
+        public void echo(@NotNull String msg) {
+            propertiesList.getItems().add(msg);
+        }
+    }
+
+    @FXML
+    void initialize() {
+        manager = new DatabaseManager();
+        ArrayList<String> s = manager.read();
+        try {
+            openFile(new File(s.get(s.size() - 1)));
+            s.clear();
+        } catch (IndexOutOfBoundsException ignored) {
+        }
+    }
 }

@@ -28,7 +28,7 @@ abstract class MainActivityFramework {
         )
     }
 
-    open protected fun playMusic(event: ActionEvent) {
+    open protected fun playMusic() {
         if (PLAY == getPlayButton().text) {
             dekoder?.play()
             getPlayButton().text = STOP

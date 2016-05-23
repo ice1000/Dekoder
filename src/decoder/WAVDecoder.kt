@@ -31,9 +31,7 @@ open class WAVDecoder : DecoderInterface {
         reader = DSInputStreamReader(file)
         val metaSize: Int
         // ======================================================== 0
-        if ("RIFF".equals(reader.readToString()))
-            echo("RIFF字段正常。")
-        else {
+        if (!"RIFF".equals(reader.readToString())) {
             echo("警告：RIFF字段异常")
             return
         }
@@ -41,10 +39,10 @@ open class WAVDecoder : DecoderInterface {
         size = reader.readToLong()
         echo("大小 = $size")
         // ======================================================== 8
-        echo(
-                if ("WAVE".equals(reader.readToString()))
-                    "WAVE字段正常。"
-                else "警告：WAVE字段异常")
+        if (!"WAVE".equals(reader.readToString())) {
+            echo("警告：WAVE字段异常")
+            return
+        }
         // ======================================================== 12
         if (!"fmt ".equals(reader.readToString())) {
             echo("格式数据错误")
@@ -52,7 +50,7 @@ open class WAVDecoder : DecoderInterface {
         }
         // ======================================================== 16
         metaSize = reader.readToInt(1, 3)
-        echo("元数据大小： $metaSize")
+        echo("元数据： $metaSize bytes")
         // ======================================================== 20
         echo("编码方式： ${reader.readToLong(1, 1)}")
         // ======================================================== 22
@@ -63,13 +61,13 @@ open class WAVDecoder : DecoderInterface {
         echo("采样频率：$samplePSec")
         // ======================================================== 28
         bytePSec = reader.readToInt()
-        echo("每秒需要的字节数：$bytePSec")
+        echo("每秒 $bytePSec bytes")
         // ======================================================== 32
         bytePSample = reader.readToInt(2)
-        echo("每个采样需要的字节数：$bytePSample")
+        echo("每个采样 $bytePSample bytes")
         // ======================================================== 34
         bitPSample = reader.readToInt(2)
-        echo("每秒需要的bit数：$bitPSample")
+        echo("每秒 $bitPSample bits")
         // ======================================================== 36
         extraData = if (metaSize == 18) reader.readToInt(2) else null
         echo("附加数据：$extraData")
