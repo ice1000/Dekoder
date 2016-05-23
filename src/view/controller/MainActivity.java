@@ -2,6 +2,8 @@ package view.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXRadioButton;
+import data.DatabaseManager;
 import decoder.MP3Decoder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,23 +35,40 @@ public class MainActivity extends MainActivityFramework {
 	private JFXButton playButton;
 	@FXML
 	private Label nameLabel;
+	@FXML
+	private JFXRadioButton listOption;
+	@FXML
+	private JFXRadioButton dataOption;
 	private File file;
 	private DecoderInterface dekoder;
+	private static final String STOP = "Stop";
+	private static final String PLAY = "Play";
+	private DatabaseManager manager;
 
 	@FXML
 	void playMusic(ActionEvent event) {
 		if (dekoder != null) {
-			dekoder.play();
+			if(PLAY.equals(playButton.getText())) {
+				dekoder.play();
+				playButton.setText(STOP);
+			}
+			else {
+				dekoder.stop();
+				playButton.setText(PLAY);
+			}
 		}
 	}
 
 	@FXML
 	void openFile(ActionEvent event) {
 		file = getChooser().showOpenDialog(window.getScene().getWindow());
+		if(manager == null)
+			manager = new DatabaseManager();
+		manager.write(file.getPath());
 		dekoder = choose(file.getPath());
-		if(dekoder == null) {
+		if(dekoder == null)
 			return;
-		}
+		dekoder.init();
 		nameLabel.setText(file.getName());
 		propertiesList.getItems().removeAll();
 	}

@@ -10,14 +10,22 @@ import java.io.File
  * Created by asus1 on 2016/5/22.
  */
 
-interface DecoderInterface {
+abstract class DecoderInterface {
 
-    var path: String
-    var echoer: Echoer
+    abstract var path: String
+    abstract var echoer: Echoer
+    var sound : JavaSoundAudioClip? = null
+
+    fun init() {
+        sound = JavaSoundAudioClip(File(path).inputStream())
+    }
 
     fun play() {
-        var sound = JavaSoundAudioClip(File(path).inputStream())
-        sound.play()
+        sound?.play()
+    }
+
+    fun stop() {
+        sound?.stop()
     }
 
     fun save() {

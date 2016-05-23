@@ -12,8 +12,9 @@ Materially Designed.
 ### TODO list
 + [X] read mata data.
 + [X] GUI
-+ [X] play the media.
++ [X] play and stop the media.
 + [ ] read the wave.
++ [ ] media format DSL
 
 ### Description
 This project involves two artifacts.<br/>

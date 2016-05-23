@@ -1,8 +1,6 @@
 package data
 
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.util.*
 
 /**
@@ -24,7 +22,14 @@ class DatabaseManager {
         return a.readLines() as ArrayList<String>
     }
 
+    /**
+     * have got a built-in repeat check.
+     */
     fun write(name: String) {
+        var b = read()
+        for(s in b)
+            if(name.equals(s))
+                return
         a.writeText(name + '\n')
     }
 }

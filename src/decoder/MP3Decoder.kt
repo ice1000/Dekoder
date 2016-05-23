@@ -12,7 +12,7 @@ class MP3Decoder: DecoderInterface {
     override var path: String
     override var echoer: Echoer
 
-    constructor(path: String, echoer: Echoer) {
+    constructor(path: String, echoer: Echoer) : super() {
         this.path = path
         this.echoer = echoer
     }

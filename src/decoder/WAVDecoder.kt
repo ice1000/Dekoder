@@ -1,12 +1,9 @@
 package decoder
 
-import com.sun.media.sound.JavaSoundAudioClip
 import data.Fact
 import utils.DSInputStreamReader
-import decoder.DecoderInterface
 import utils.Echoer
 import java.io.File
-import java.io.InputStream
 
 /**
  * @author ice1000
@@ -27,7 +24,7 @@ open class WAVDecoder : DecoderInterface {
     override var path: String
     override var echoer: Echoer
 
-    constructor(fileName: String, echoer: Echoer) {
+    constructor(fileName: String, echoer: Echoer) : super() {
         this.echoer = echoer
         path = fileName
         file = File(fileName)
@@ -93,8 +90,6 @@ open class WAVDecoder : DecoderInterface {
         // ======================================================== end
         // 现在读完了元数据
     }
-
-    constructor(echoer: Echoer) : this("./raw.wav", echoer)
 
     fun echo(msg: String = "") {
         echoer.echo(msg)
