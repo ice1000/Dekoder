@@ -56,7 +56,8 @@ public class MainActivity extends MainActivityFramework {
 	}
 
 	private DecoderInterface choose(String filePath) {
-		String type = filePath.split(File.separator)[filePath.split(File.separator).length - 1];
+		String type = filePath.split(".")[filePath.split(".").length - 1];
+		System.out.println(type);
 		switch (type) {
 			case "wav":
 				return new Dekoder(filePath);

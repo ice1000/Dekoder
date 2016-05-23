@@ -1,5 +1,6 @@
 package data
 
+import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.util.*
@@ -9,18 +10,21 @@ import java.util.*
  * Created by ice1000 on 2016/5/23.
  */
 
-class DatabaseManager() {
+class DatabaseManager {
 
-    val saveFile = "save.db"
-    val out = FileInputStream(saveFile).bufferedReader()
-    val `in` = FileOutputStream(saveFile).bufferedWriter()
+    private val saveFile = "save.db"
+    private val a = File(saveFile)
+
+    constructor() {
+        if(!a.exists())
+            a.createNewFile()
+    }
 
     fun read(): ArrayList<String> {
-        return out.readLines() as ArrayList<String>
+        return a.readLines() as ArrayList<String>
     }
 
     fun write(name: String) {
-        `in`.newLine()
-        `in`.append(name)
+        a.writeText(name + '\n')
     }
 }

@@ -21,7 +21,7 @@ abstract class WAVDecoder : DecoderInterface {
     private var bitPSample: Int = 0
     private var extraData: Int? = null
     private var fact: Fact? = null
-    var name: String
+    override var name: String
 
     constructor(fileName: String) {
         name = fileName
