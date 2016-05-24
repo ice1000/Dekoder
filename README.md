@@ -17,8 +17,11 @@ Materially Designed.
 + [ ] Read the wave.
 + [ ] Media format DSL
 
+### external lib
++ [JFoenix](https://github.com/jfoenixadmin/JFoenix)
+
 ### Description
 This project involves two artifacts.<br/>
-One is with CUI, another is with a GUI based on JavaFX.<br/>
-And that`s why I still use Java in this Kotlin project.<br/>
+One is CUI edition, the other is with a GUI, and the GUI is based on JavaFX.<br/>
+And that`s why I still use Java in this Kotlin project, but java is just a UI interface in this project.<br/>
 The one with GUI is stronger, you only have to choose a file to open.

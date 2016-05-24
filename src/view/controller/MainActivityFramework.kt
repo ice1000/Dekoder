@@ -21,6 +21,12 @@ abstract class MainActivityFramework {
 
     abstract var dekoder: DecoderInterface?
 
+    protected var file: File?
+    protected dekoder: DecoderInterface?
+    protected manager: DatabaseManager by lazy {
+	manager = DatabaseManager()
+    }
+
     val chooser: FileChooser
         get() = FileChooser()
 

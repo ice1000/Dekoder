@@ -10,7 +10,7 @@ import java.io.File
  * Created by asus1 on 2016/5/22.
  */
 
-abstract class DecoderInterface {
+abstract class DecoderInterface(echoer: Echoer): Echoer by echoer {
 
     abstract var path: String
     abstract var echoer: Echoer

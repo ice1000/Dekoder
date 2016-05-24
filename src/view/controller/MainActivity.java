@@ -40,9 +40,6 @@ public class MainActivity extends MainActivityFramework {
     private JFXRadioButton listOption;
     @FXML
     private JFXRadioButton dataOption;
-    private File file;
-    private DecoderInterface dekoder;
-    private DatabaseManager manager;
 
     @FXML
     protected void playMusic(ActionEvent event) {
@@ -101,7 +98,6 @@ public class MainActivity extends MainActivityFramework {
 
     @FXML
     void initialize() {
-        manager = new DatabaseManager();
         ArrayList<String> s = manager.read();
         try {
             openFile(new File(s.get(s.size() - 1)));

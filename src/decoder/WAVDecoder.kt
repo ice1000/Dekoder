@@ -23,7 +23,8 @@ open class WAVDecoder : DecoderInterface {
     private var fact: Fact? = null
     override var path: String
     override var echoer: Echoer
-    constructor(fileName: String, echoer: Echoer) : super() {
+
+    constructor(fileName: String, echoer: Echoer) : super(echoer) {
         this.echoer = echoer
         path = fileName
         file = File(fileName)
@@ -86,10 +87,6 @@ open class WAVDecoder : DecoderInterface {
         }
         // ======================================================== end
         // 现在读完了元数据
-    }
-
-    fun echo(msg: String = "") {
-        echoer.echo(msg)
     }
 
     override fun getTime(): Long {
