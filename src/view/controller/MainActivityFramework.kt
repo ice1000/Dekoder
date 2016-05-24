@@ -2,7 +2,6 @@ package view.controller
 
 import com.jfoenix.controls.JFXButton
 import decoder.DecoderInterface
-import javafx.event.ActionEvent
 import javafx.stage.FileChooser
 
 /**
@@ -15,6 +14,10 @@ abstract class MainActivityFramework {
 
     private val STOP = "Stop"
     private val PLAY = "Play"
+    private var thread: Thread? = null
+    private var startTime: Long = 0
+    protected var nowTime: Long = 0
+    set
 
     abstract var dekoder: DecoderInterface?
 
@@ -29,6 +32,12 @@ abstract class MainActivityFramework {
     }
 
     open protected fun playMusic() {
+        startTime = System.currentTimeMillis()
+        nowTime = startTime
+        if (thread == null) thread = Thread(Runnable {
+            while (true)
+                nowTime = System.currentTimeMillis() - startTime
+        })
         if (PLAY == getPlayButton().text) {
             dekoder?.play()
             getPlayButton().text = STOP

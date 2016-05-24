@@ -28,8 +28,5 @@ abstract class DecoderInterface {
         sound?.stop()
     }
 
-    fun save() {
-        val db = DatabaseManager()
-        db.write(path)
-    }
+    abstract fun getTime(): Long
 }

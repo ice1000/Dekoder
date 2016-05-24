@@ -23,7 +23,6 @@ open class WAVDecoder : DecoderInterface {
     private var fact: Fact? = null
     override var path: String
     override var echoer: Echoer
-
     constructor(fileName: String, echoer: Echoer) : super() {
         this.echoer = echoer
         path = fileName
@@ -91,6 +90,10 @@ open class WAVDecoder : DecoderInterface {
 
     fun echo(msg: String = "") {
         echoer.echo(msg)
+    }
+
+    override fun getTime(): Long {
+        return size / bytePSec
     }
 
 }
