@@ -6,6 +6,6 @@ package utils
  * Created by ice1000 on 2016/5/23.
  */
 
-interface Echoer() {
+interface Echoer {
     fun echo(msg: String)
 }

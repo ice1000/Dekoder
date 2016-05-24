@@ -1,8 +1,12 @@
 package view.controller
 
 import com.jfoenix.controls.JFXButton
+import data.DatabaseManager
 import decoder.DecoderInterface
 import javafx.stage.FileChooser
+import java.io.File
+import kotlin.properties.Delegates
+import kotlin.reflect.KProperty
 
 /**
  * @author ice1000
@@ -21,12 +25,8 @@ abstract class MainActivityFramework {
 
     abstract var dekoder: DecoderInterface?
 
-    protected var file: File?
-    protected dekoder: DecoderInterface?
-    protected manager: DatabaseManager by lazy {
-	manager = DatabaseManager()
-    }
-
+    protected var file: File? = null
+    protected var manager: DatabaseManager by Delegates.notNull<DatabaseManager>()
     val chooser: FileChooser
         get() = FileChooser()
 

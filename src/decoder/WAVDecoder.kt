@@ -22,10 +22,8 @@ open class WAVDecoder : DecoderInterface {
     private var extraData: Int? = null
     private var fact: Fact? = null
     override var path: String
-    override var echoer: Echoer
 
     constructor(fileName: String, echoer: Echoer) : super(echoer) {
-        this.echoer = echoer
         path = fileName
         file = File(fileName)
         reader = DSInputStreamReader(file)
