@@ -27,9 +27,7 @@ class DatabaseManager {
      */
     fun write(name: String) {
         var b = read()
-        for(s in b)
-            if(name.equals(s))
-                return
-        a.writeText(name + '\n')
+        if(name !in b) a.writeText(name + "\n")
+        b.forEach { a.writeText(it + "\n") }
     }
 }

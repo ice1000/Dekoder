@@ -21,9 +21,6 @@ fun main(args: Array<String>) {
 
 class CUIDecoder(fileName: String) : WAVDecoder(fileName, Printer())
 
-class Printer() : Echoer() {
-    override fun echo(msg: String) {
-        println(msg)
-    }
-
+class Printer : Echoer {
+    override fun echo(msg: String) = println(msg)
 }

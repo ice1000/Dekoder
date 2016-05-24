@@ -3,10 +3,7 @@ package view.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXRadioButton;
-import data.DatabaseManager;
 import decoder.DecoderInterface;
-import decoder.MP3Decoder;
-import decoder.WAVDecoder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -40,6 +37,7 @@ public class MainActivity extends MainActivityFramework {
     private JFXRadioButton listOption;
     @FXML
     private JFXRadioButton dataOption;
+    private DecoderInterface dekoder;
 
     @FXML
     protected void playMusic(ActionEvent event) {
@@ -52,10 +50,7 @@ public class MainActivity extends MainActivityFramework {
     }
 
     private void openFile(File file) {
-        manager.write(file.getPath());
-        dekoder = choose(file.getPath());
-        if (dekoder == null) return;
-        dekoder.init();
+        openFile(file.getPath());
         nameLabel.setText(file.getName());
         propertiesList.getItems().removeAll();
     }
@@ -65,12 +60,6 @@ public class MainActivity extends MainActivityFramework {
         openGitHub();
     }
 
-    private DecoderInterface choose(String filePath) {
-        Printer p = new Printer();
-        if (filePath.endsWith("wav")) return new WAVDecoder(filePath, p);
-        else if (filePath.endsWith("mp3")) return new MP3Decoder(filePath, p);
-        else return null;
-    }
 
     @NotNull
     @Override
@@ -79,7 +68,7 @@ public class MainActivity extends MainActivityFramework {
     }
 
     @Override
-    public void setDekoder(DecoderInterface decoderInterface) {
+    public void setDekoder(@NotNull DecoderInterface decoderInterface) {
         dekoder = decoderInterface;
     }
 
@@ -96,9 +85,15 @@ public class MainActivity extends MainActivityFramework {
         }
     }
 
+    @NotNull
+    @Override
+    public Echoer printer() {
+        return new Printer();
+    }
+
     @FXML
     void initialize() {
-        ArrayList<String> s = manager.read();
+        ArrayList<String> s = getManager().read();
         try {
             openFile(new File(s.get(s.size() - 1)));
             s.clear();
