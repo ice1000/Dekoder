@@ -9,7 +9,7 @@ import utils.Echoer
  */
 
 class MP3Decoder: DecoderInterface {
-    override fun getTime(): Long {
+    override fun getTotalTime(): Long {
         return 60
     }
 

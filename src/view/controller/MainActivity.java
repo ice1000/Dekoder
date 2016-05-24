@@ -2,7 +2,7 @@ package view.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXProgressBar;
 import decoder.DecoderInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import utils.Echoer;
 
 import java.io.File;
-import java.util.ArrayList;
 
 /**
  * @author ice1000
@@ -23,10 +22,8 @@ import java.util.ArrayList;
 public class MainActivity extends MainActivityFramework {
     @FXML
     private JFXListView<Object> propertiesList;
-    @FXML
-    private JFXButton fileButton;
-    @FXML
-    private JFXButton helpButton;
+    //    @FXML private JFXButton fileButton;
+//    @FXML private JFXButton helpButton;
     @FXML
     private AnchorPane window;
     @FXML
@@ -34,9 +31,9 @@ public class MainActivity extends MainActivityFramework {
     @FXML
     private Label nameLabel;
     @FXML
-    private JFXRadioButton listOption;
-    @FXML
-    private JFXRadioButton dataOption;
+    private JFXProgressBar progressBar;
+    //    @FXML private JFXRadioButton listOption;
+//    @FXML private JFXRadioButton dataOption;
     private DecoderInterface dekoder;
 
     @FXML
@@ -60,7 +57,6 @@ public class MainActivity extends MainActivityFramework {
         openGitHub();
     }
 
-
     @NotNull
     @Override
     public DecoderInterface getDekoder() {
@@ -78,6 +74,11 @@ public class MainActivity extends MainActivityFramework {
         return playButton;
     }
 
+    @Override
+    protected void setProgress(double i) {
+        progressBar.setProgress(i);
+    }
+
     private class Printer implements Echoer {
         @Override
         public void echo(@NotNull String msg) {
@@ -93,10 +94,8 @@ public class MainActivity extends MainActivityFramework {
 
     @FXML
     void initialize() {
-        ArrayList<String> s = getManager().read();
         try {
-            openFile(new File(s.get(s.size() - 1)));
-            s.clear();
+            openFile(new File(getManager().read().get(0)));
         } catch (IndexOutOfBoundsException ignored) {
         }
     }

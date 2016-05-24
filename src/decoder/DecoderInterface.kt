@@ -28,5 +28,5 @@ abstract class DecoderInterface(echoer: Echoer): Echoer by echoer {
 
     fun stop() = sound?.stop()
 
-    abstract fun getTime(): Long
+    abstract fun getTotalTime(): Long
 }

@@ -87,8 +87,5 @@ open class WAVDecoder : DecoderInterface {
         // 现在读完了元数据
     }
 
-    override fun getTime(): Long {
-        return size / bytePSec
-    }
-
+    override fun getTotalTime(): Long = size / bytePSec
 }

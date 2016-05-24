@@ -26,8 +26,9 @@ class DatabaseManager {
      * have got a built-in repeat check.
      */
     fun write(name: String) {
-        var b = read()
-        if(name !in b) a.writeText(name + "\n")
-        b.forEach { a.writeText(it + "\n") }
+//        var b = read()
+//        if(name !in b)
+            a.writeText(name + "\n")
+//        b.forEach { a.writeText(it + "\n") }
     }
 }

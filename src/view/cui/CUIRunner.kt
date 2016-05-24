@@ -10,6 +10,11 @@ import java.util.*
  */
 
 fun main(args: Array<String>) {
+//    println("start")
+//    var a = System.currentTimeMillis()
+//    Thread.sleep(1000)
+//    println("a = ${System.currentTimeMillis() - a}")
+
     //    val view = View()
     //    view.onCreate()
     println("please input music file path :")

@@ -31,13 +31,14 @@
                 </AnchorPane>
             </left>
         </JFXToolbar>
-        <Label fx:id="nameLabel" contentDisplay="CENTER" layoutX="188.0" layoutY="111.0" prefHeight="43.0" prefWidth="236.0" wrapText="true" />
-        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="187.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+        <Label fx:id="nameLabel" contentDisplay="CENTER" layoutX="119.0" layoutY="188.0" prefHeight="43.0" prefWidth="236.0" wrapText="true" />
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../res/kotlin.png" />
             </image>
         </ImageView>
         <JFXRadioButton fx:id="dataOption" layoutX="516.0" layoutY="23.0" selected="true" text="Data" wrapText="true" />
         <JFXRadioButton fx:id="listOption" layoutX="620.0" layoutY="23.0" text="List" />
+      <JFXProgressBar fx:id="progressBar" layoutX="300.0" layoutY="478.0" scaleX="3.5" />
     </children>
 </AnchorPane>

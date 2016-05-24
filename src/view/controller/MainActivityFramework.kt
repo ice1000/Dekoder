@@ -7,8 +7,6 @@ import decoder.MP3Decoder
 import decoder.WAVDecoder
 import javafx.stage.FileChooser
 import utils.Echoer
-import java.io.File
-import kotlin.properties.Delegates
 
 /**
  * @author ice1000
@@ -20,18 +18,15 @@ abstract class MainActivityFramework {
 
     private val STOP = "Stop"
     private val PLAY = "Play"
-    private var thread: Thread = Thread()
-    private var startTime: Long = 0
-    protected var nowTime: Long = 0
-        set
 
     abstract var dekoder: DecoderInterface
 
-    protected var file: File? = null
+    //    protected var file: File? = null
     protected var manager: DatabaseManager = DatabaseManager()
 
     val chooser: FileChooser
         get() = FileChooser()
+    private var stop = true
 
     open fun openGitHub() {
         Runtime.getRuntime().exec(
@@ -41,26 +36,21 @@ abstract class MainActivityFramework {
     }
 
     open protected fun playMusic() {
-//        if (manager == null)
-//            manager = DatabaseManager()
-        startTime = System.currentTimeMillis()
-        nowTime = startTime
-        thread = Thread(Runnable {
-            while (true)
-                nowTime = System.currentTimeMillis() - startTime
-        })
         if (PLAY == getPlayButton().text) {
-            thread.start()
+            setProgress(0.0)
             dekoder.play()
             getPlayButton().text = STOP
         } else {
-            thread.interrupt()
             dekoder.stop()
             getPlayButton().text = PLAY
+            setProgress(0.0)
         }
     }
+
+    abstract protected fun setProgress(i: Double)
+
     abstract fun getPlayButton(): JFXButton
-    abstract fun printer() : Echoer
+    abstract fun printer(): Echoer
 
     protected fun choose(filePath: String): DecoderInterface? {
         val p = printer()
@@ -74,7 +64,7 @@ abstract class MainActivityFramework {
 
     protected fun openFile(path: String) {
         manager.write(path)
-        dekoder = choose(path)?: WAVDecoder(path, printer())
+        dekoder = choose(path) ?: WAVDecoder(path, printer())
         dekoder.init()
     }
 
