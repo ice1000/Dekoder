@@ -89,7 +89,7 @@ public class MainActivity extends MainActivityFramework {
         return playButton;
     }
 
-    private class Printer extends Echoer {
+    private class Printer implements Echoer {
         @Override
         public void echo(@NotNull String msg) {
             propertiesList.getItems().add(msg);
