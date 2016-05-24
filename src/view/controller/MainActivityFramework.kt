@@ -28,12 +28,9 @@ abstract class MainActivityFramework {
         get() = FileChooser()
     private var stop = true
 
-    open fun openGitHub() {
-        Runtime.getRuntime().exec(
+    open fun openGitHub() = Runtime.getRuntime().exec(
                 "rundll32 url.dll,FileProtocolHandler " +
-                        "https://github.com/ice1000/Dekoder"
-        )
-    }
+                        "https://github.com/ice1000/Dekoder")
 
     open protected fun playMusic() {
         if (PLAY == getPlayButton().text) {

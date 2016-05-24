@@ -31,8 +31,8 @@
                 </AnchorPane>
             </left>
         </JFXToolbar>
-        <Label fx:id="nameLabel" contentDisplay="CENTER" layoutX="119.0" layoutY="188.0" prefHeight="43.0" prefWidth="236.0" wrapText="true" />
-        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+        <Label fx:id="nameLabel" contentDisplay="CENTER" layoutX="183.0" layoutY="188.0" prefHeight="43.0" prefWidth="236.0" wrapText="true" />
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="185.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../res/kotlin.png" />
             </image>

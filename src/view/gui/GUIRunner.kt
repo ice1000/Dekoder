@@ -5,7 +5,4 @@ package view.gui
  * Created by ice1000 on 2016/5/22.
  */
 
-fun main(args: Array<String>) {
-    val a = View()
-    a.onCreate()
-}
+fun main(args: Array<String>) = View().onCreate()
