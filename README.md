@@ -10,11 +10,12 @@ Materially Designed.
 ![0](./art/01.jpg)
 
 ### TODO list
-+ [X] read mata data.
++ [X] Read mata data.
 + [X] GUI
-+ [X] play and stop the media.
-+ [ ] read the wave.
-+ [ ] media format DSL
++ [X] Play and stop the media.
++ [ ] Progress bar
++ [ ] Read the wave.
++ [ ] Media format DSL
 
 ### Description
 This project involves two artifacts.<br/>
