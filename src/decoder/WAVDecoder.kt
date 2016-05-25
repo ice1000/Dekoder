@@ -30,58 +30,58 @@ open class WAVDecoder : DecoderInterface {
         val metaSize: Int
         // ======================================================== 0
         if (!"RIFF".equals(reader.readToString())) {
-            echo("警告：RIFF字段异常")
+            echo("warning: RIFF not found")
             return
         }
         // ======================================================== 4
         size = reader.readToLong()
-        echo("大小 = $size")
+        echo("size = $size")
         // ======================================================== 8
         if (!"WAVE".equals(reader.readToString())) {
-            echo("警告：WAVE字段异常")
+            echo("warning: WAVE not found")
             return
         }
         // ======================================================== 12
         if (!"fmt ".equals(reader.readToString())) {
-            echo("格式数据错误")
+            echo("fmt not found")
             return
         }
         // ======================================================== 16
         metaSize = reader.readToInt(1, 3)
-        echo("元数据： $metaSize bytes")
+        echo("metadata: $metaSize bytes")
         // ======================================================== 20
-        echo("编码方式： ${reader.readToLong(1, 1)}")
+        echo("decoding: ${reader.readToLong(1, 1)}")
         // ======================================================== 22
         channels = reader.readToInt(1, 1)
-        echo(if (channels == 1) "单" else "双" + "声道")
+        echo(if (channels == 1) "single" else "double" + " channel")
         // ======================================================== 24
         samplePSec = reader.readToInt()
-        echo("采样频率：$samplePSec")
+        echo("$samplePSec samples per second")
         // ======================================================== 28
         bytePSec = reader.readToInt()
-        echo("每秒 $bytePSec bytes")
+        echo("$bytePSec bytes per second")
         // ======================================================== 32
         bytePSample = reader.readToInt(2)
-        echo("每个采样 $bytePSample bytes")
+        echo("$bytePSample bytes per sample")
         // ======================================================== 34
         bitPSample = reader.readToInt(2)
-        echo("每秒 $bitPSample bits")
+        echo("$bitPSample bits per second")
         // ======================================================== 36
         extraData = if (metaSize == 18) reader.readToInt(2) else null
-        echo("附加数据：$extraData")
+        echo("extra data: $extraData")
         // ======================================================== 36 or 38
         val s = reader.readToString()
         if ("fact".equals(s)) {
             val a = reader.readToInt()
             val b = reader.readToString(a)
             fact = Fact(a, b)
-            echo("FACT数据存在，值为$b")
+            echo("FACT exists, values $b")
             // 把fact之后的data也读取一次
             reader.read()
         } else {
             // data已经读取过了，直接给fact赋值null
             fact = null
-            echo("FACT数据不存在")
+            echo("FACT does not exist")
         }
         // ======================================================== end
         // 现在读完了元数据
