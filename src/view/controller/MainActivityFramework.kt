@@ -2,6 +2,7 @@ package view.controller
 
 import com.jfoenix.controls.JFXButton
 import data.DatabaseManager
+import decoder.APEDecoder
 import decoder.DecoderInterface
 import decoder.MP3Decoder
 import decoder.WAVDecoder
@@ -80,6 +81,8 @@ abstract class MainActivityFramework {
             return WAVDecoder(filePath, p)
         else if (filePath.endsWith("mp3"))
             return MP3Decoder(filePath, p)
+        else if (filePath.equals("ape"))
+            return APEDecoder(filePath, p)
         else
             return null
     }
