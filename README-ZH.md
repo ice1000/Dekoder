@@ -7,7 +7,7 @@
 ### 语言
 + [English](./README.md)
 
-![0](./art/01.jpg)
+![0](./art/01.PNG)
 
 ### 进度
 + [X] 读取元数据
