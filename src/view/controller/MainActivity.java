@@ -79,17 +79,10 @@ public class MainActivity extends MainActivityFramework {
         progressBar.setProgress(i);
     }
 
-    private class Printer implements Echoer {
-        @Override
-        public void echo(@NotNull String msg) {
-            propertiesList.getItems().add(msg);
-        }
-    }
-
     @NotNull
     @Override
     public Echoer printer() {
-        return new Printer();
+        return msg -> propertiesList.getItems().add(msg);
     }
 
     @FXML
