@@ -7,6 +7,7 @@ import decoder.MP3Decoder
 import decoder.WAVDecoder
 import javafx.stage.FileChooser
 import utils.Echoer
+import utils.ProgressThread
 
 /**
  * @author ice1000
@@ -22,31 +23,48 @@ abstract class MainActivityFramework {
     abstract var dekoder: DecoderInterface
 
     //    protected var file: File? = null
-    protected var manager: DatabaseManager = DatabaseManager()
+    protected var manager = DatabaseManager()
 
     val chooser: FileChooser
         get() = FileChooser()
-    private var stop = true
+
+    private var progressThread = ProgressThread() {
+        setProgress(it)
+    }
 
     open fun openGitHub() = Runtime.getRuntime().exec(
-                "rundll32 url.dll,FileProtocolHandler " +
-                        "https://github.com/ice1000/Dekoder")
+            "rundll32 url.dll,FileProtocolHandler " +
+                    "https://github.com/ice1000/Dekoder")
 
     open protected fun playMusic() {
         if (PLAY == getPlayButton().text) {
-            setProgress(0.0)
+            progressThread.start()
             dekoder.play()
             getPlayButton().text = STOP
         } else {
             dekoder.stop()
+            progressThread.stop = true
+            progressThread.join()
             getPlayButton().text = PLAY
             setProgress(0.0)
         }
     }
 
-    abstract protected fun setProgress(i: Double)
+    /**
+     * @param i now time
+     * this method will automatically divide i by the total time.
+     * so just input the time which is already spent.
+     */
+    abstract fun setProgress(i: Double)
 
     abstract fun getPlayButton(): JFXButton
+
+    /**
+     * get a printer.
+     * in the very beginning I used inner fun in this framework.
+     * but to save code, I chose to implement this in the java interface.
+     * because java8 supports lambda : )
+     */
     abstract fun printer(): Echoer
 
     protected fun choose(filePath: String): DecoderInterface? {

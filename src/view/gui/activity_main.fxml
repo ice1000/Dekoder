@@ -15,8 +15,8 @@
 
 <AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainActivity">
     <children>
-        <JFXButton fx:id="playButton" defaultButton="true" layoutX="350.0" layoutY="524.0" onAction="#playMusic" prefHeight="59.0" prefWidth="101.0" ripplerFill="#ff9800" text="Play" />
-        <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="525.0" layoutY="62.0" prefHeight="366.0" prefWidth="269.0">
+        <JFXButton fx:id="playButton" defaultButton="true" layoutX="350.0" layoutY="524.0" onAction="#playMusic" prefHeight="59.0" prefWidth="181.0" ripplerFill="#9aace1" style="-fx-border-radius: 50px;" styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Play" />
+        <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="525.0" layoutY="62.0" prefHeight="366.0" prefWidth="269.0" stylesheets="@../res/css.css">
             <effect>
                 <Blend />
             </effect>
@@ -25,20 +25,20 @@
             <left>
                 <AnchorPane prefHeight="43.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                     <children>
-                        <JFXButton fx:id="fileButton" layoutY="-6.0" onAction="#openFile" prefHeight="51.0" prefWidth="77.0" ripplerFill="#4d71e7" text="Open" />
-                        <JFXButton fx:id="helpButton" layoutX="77.0" layoutY="-6.0" onAction="#openHelp" prefHeight="51.0" prefWidth="77.0" ripplerFill="#4d71e7" text="GitHub" />
+                        <JFXButton fx:id="fileButton" layoutX="7.0" layoutY="2.0" onAction="#openFile" prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised" stylesheets="@../res/css.css" text="Open" />
+                        <JFXButton fx:id="helpButton" layoutX="121.0" layoutY="2.0" onAction="#openHelp" prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised" stylesheets="@../res/css.css" text="GitHub" />
                     </children>
                 </AnchorPane>
             </left>
         </JFXToolbar>
-        <Label fx:id="nameLabel" contentDisplay="CENTER" layoutX="183.0" layoutY="188.0" prefHeight="43.0" prefWidth="236.0" wrapText="true" />
+        <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="188.0" prefHeight="43.0" prefWidth="151.0" stylesheets="@../res/css.css" textAlignment="CENTER" textFill="#8a8a8a" textOverrun="CENTER_ELLIPSIS" underline="true" wrapText="true" />
         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="185.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../res/kotlin.png" />
             </image>
         </ImageView>
-        <JFXRadioButton fx:id="dataOption" layoutX="516.0" layoutY="23.0" selected="true" text="Data" wrapText="true" />
-        <JFXRadioButton fx:id="listOption" layoutX="620.0" layoutY="23.0" text="List" />
-      <JFXProgressBar fx:id="progressBar" layoutX="300.0" layoutY="478.0" scaleX="3.5" />
+        <JFXRadioButton fx:id="dataOption" layoutX="516.0" layoutY="23.0" selected="true" styleClass="jfx-radio-button" stylesheets="@../res/css.css" text="Data" wrapText="true" />
+        <JFXRadioButton fx:id="listOption" layoutX="620.0" layoutY="23.0" styleClass="jfx-radio-button" stylesheets="@../res/css.css" text="List" />
+      <JFXProgressBar fx:id="progressBar" layoutX="300.0" layoutY="478.0" progress="0.0" scaleX="3.5" />
     </children>
 </AnchorPane>

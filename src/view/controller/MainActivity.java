@@ -76,7 +76,7 @@ public class MainActivity extends MainActivityFramework {
 
     @Override
     protected void setProgress(double i) {
-        progressBar.setProgress(i);
+        progressBar.setProgress(i / dekoder.getTotalTime() * 100);
     }
 
     @NotNull

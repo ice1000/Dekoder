@@ -5,19 +5,18 @@ package utils
  * Created by ice1000 on 2016/5/25.
  */
 
-class ProgressThread : Thread() {
+class ProgressThread(private var setter: (i: Double) -> Unit) : Thread() {
+
+    var stop = true
+
     override fun run() {
+        stop = true
+        setter(0.0)
+        var startTime = System.currentTimeMillis()
+        var nowTime: Long
+        while (stop) {
+            nowTime = System.currentTimeMillis() - startTime
+            setter(nowTime.toDouble())
+        }
     }
 }
-
-//            stop = true
-//            Thread (Runnable {
-//                var startTime = System.currentTimeMillis()
-//                var nowTime: Long
-//                while (stop) {
-//                    nowTime = System.currentTimeMillis() - startTime
-//                    setProgress(nowTime.toDouble() /
-//                            (dekoder.getTotalTime() * 100))
-////                    println("nowTime = $nowTime, total = ${dekoder.getTotalTime()}")
-//                }
-//            }).start()
