@@ -26,7 +26,7 @@
 /* Text */
 .jfx-text-area, .text-area{
 	-fx-font-weight: BOLD;
-	-fx-background-color: rgb(137, 137, 137)
+	-fx-background-color: rgb(137, 137, 137);
 	-fx-border-radius: 20px;
 }
 

@@ -7,14 +7,14 @@ package utils
 
 class ProgressThread(private var setter: (i: Double) -> Unit) : Thread() {
 
-    var stop = true
+    var running = true
 
     override fun run() {
-        stop = true
+        running = true
         setter(0.0)
         var startTime = System.currentTimeMillis()
         var nowTime: Long
-        while (stop) {
+        while (running) {
             nowTime = System.currentTimeMillis() - startTime
             setter(nowTime.toDouble())
         }
