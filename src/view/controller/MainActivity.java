@@ -43,7 +43,10 @@ public class MainActivity extends MainActivityFramework {
 
     @FXML
     void openFile(ActionEvent event) {
-        openFile(getChooser().showOpenDialog(window.getScene().getWindow()));
+        try {
+            openFile(getChooser().showOpenDialog(window.getScene().getWindow()));
+        } catch (Exception ignored) {
+        }
     }
 
     private void openFile(File file) {
@@ -75,8 +78,8 @@ public class MainActivity extends MainActivityFramework {
     }
 
     @Override
-    protected void setProgress(double i) {
-        progressBar.setProgress(i / dekoder.getTotalTime() * 100);
+    public void setProgress(double i) {
+        progressBar.setProgress(i / 1000 / dekoder.getTotalTime());
     }
 
     @NotNull

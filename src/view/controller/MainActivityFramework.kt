@@ -28,9 +28,7 @@ abstract class MainActivityFramework {
     val chooser: FileChooser
         get() = FileChooser()
 
-    private var progressThread = ProgressThread() {
-        setProgress(it)
-    }
+    private var progressThread = ProgressThread { setProgress(it) }
 
     open fun openGitHub() = Runtime.getRuntime().exec(
             "rundll32 url.dll,FileProtocolHandler " +
@@ -38,15 +36,15 @@ abstract class MainActivityFramework {
 
     open protected fun playMusic() {
         if (PLAY == getPlayButton().text) {
+            progressThread = ProgressThread { setProgress(it) }
             progressThread.start()
             dekoder.play()
             getPlayButton().text = STOP
         } else {
             dekoder.stop()
-            progressThread.stop = true
+            progressThread.running = false
             progressThread.join()
             getPlayButton().text = PLAY
-            setProgress(0.0)
         }
     }
 
