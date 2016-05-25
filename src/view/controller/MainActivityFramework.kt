@@ -34,6 +34,11 @@ abstract class MainActivityFramework {
             "rundll32 url.dll,FileProtocolHandler " +
                     "https://github.com/ice1000/Dekoder")
 
+    /**
+     * I think I`d better find a way to use less thread instances
+     * this might take too much memory.
+     * but I can only trust JVM`s GC now. : )
+     */
     open protected fun playMusic() {
         if (PLAY == getPlayButton().text) {
             progressThread = ProgressThread { setProgress(it) }
@@ -65,6 +70,10 @@ abstract class MainActivityFramework {
      */
     abstract fun printer(): Echoer
 
+    /**
+     * select a decoder to decode the music file.
+     * currently only WAVDecoder can work.
+     */
     protected fun choose(filePath: String): DecoderInterface? {
         val p = printer()
         if (filePath.endsWith("wav"))
