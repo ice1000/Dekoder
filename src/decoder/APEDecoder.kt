@@ -8,6 +8,17 @@ import utils.Echoer
  */
 
 class APEDecoder: DecoderInterface {
+    override fun init() {
+        throw UnsupportedOperationException()
+    }
+
+    override fun play(): Unit? {
+        throw UnsupportedOperationException()
+    }
+
+    override fun stop(): Unit? {
+        throw UnsupportedOperationException()
+    }
 
     override fun getTotalTime(): Long {
         return 60

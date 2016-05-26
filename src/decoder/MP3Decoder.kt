@@ -4,11 +4,22 @@ import utils.Echoer
 
 /**
  * @author ice1000
- * TODO: implement mp3 decoding
- * Created by ice1000 on 2016/5/24.
+ * Created by ice1000 on 2016/5/26.
  */
 
-class MP3Decoder: DecoderInterface {
+class MP3Decoder : DecoderInterface {
+    override fun init() {
+        throw UnsupportedOperationException()
+    }
+
+    override fun play(): Unit? {
+        throw UnsupportedOperationException()
+    }
+
+    override fun stop(): Unit? {
+        throw UnsupportedOperationException()
+    }
+
     override fun getTotalTime(): Long {
         return 60
     }
@@ -18,4 +29,5 @@ class MP3Decoder: DecoderInterface {
     constructor(path: String, echoer: Echoer) : super(echoer) {
         this.path = path
     }
+
 }

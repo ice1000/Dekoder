@@ -17,7 +17,7 @@ class ProgressThread(private var setter: (i: Double) -> Unit) : Thread() {
         while (running) {
             nowTime = System.currentTimeMillis() - startTime
             setter(nowTime.toDouble())
-            sleep(500)
+            sleep(100)
         }
     }
 }

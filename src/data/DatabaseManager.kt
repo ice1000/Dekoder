@@ -18,9 +18,7 @@ class DatabaseManager {
             a.createNewFile()
     }
 
-    fun read(): ArrayList<String> {
-        return a.readLines() as ArrayList<String>
-    }
+    fun read(): ArrayList<String> = a.readLines() as ArrayList<String>
 
     /**
      * have got a built-in repeat check.

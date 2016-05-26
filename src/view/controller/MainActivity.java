@@ -15,7 +15,6 @@ import java.io.File;
 
 /**
  * @author ice1000
- *         java interface of javafx
  *         Created by asus1 on 2016/5/21.
  */
 
@@ -23,7 +22,7 @@ public class MainActivity extends MainActivityFramework {
     @FXML
     private JFXListView<Object> propertiesList;
     //    @FXML private JFXButton fileButton;
-//    @FXML private JFXButton helpButton;
+    //    @FXML private JFXButton helpButton;
     @FXML
     private AnchorPane window;
     @FXML
@@ -33,7 +32,7 @@ public class MainActivity extends MainActivityFramework {
     @FXML
     private JFXProgressBar progressBar;
     //    @FXML private JFXRadioButton listOption;
-//    @FXML private JFXRadioButton dataOption;
+    //    @FXML private JFXRadioButton dataOption;
     private DecoderInterface dekoder;
 
     @FXML

@@ -1,5 +1,6 @@
 package decoder
 
+import com.sun.media.sound.JavaSoundAudioClip
 import data.Fact
 import utils.DSInputStreamReader
 import utils.Echoer
@@ -11,6 +12,8 @@ import java.io.File
  */
 
 open class WAVDecoder : DecoderInterface {
+
+    private var sound: JavaSoundAudioClip? = null
     private var file: File
     private var reader: DSInputStreamReader
     private var channels: Int = 0
@@ -22,6 +25,14 @@ open class WAVDecoder : DecoderInterface {
     private var extraData: Int? = null
     private var fact: Fact? = null
     override var path: String
+    override fun getTotalTime(): Long = size / bytePSec
+    override fun init() {
+        sound = JavaSoundAudioClip(File(path).inputStream())
+    }
+
+    override fun stop() = sound?.stop()
+
+    override fun play() = sound?.play()
 
     constructor(fileName: String, echoer: Echoer) : super(echoer) {
         path = fileName
@@ -86,6 +97,4 @@ open class WAVDecoder : DecoderInterface {
         // ======================================================== end
         // 现在读完了元数据
     }
-
-    override fun getTotalTime(): Long = size / bytePSec
 }

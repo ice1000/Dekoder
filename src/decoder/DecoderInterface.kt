@@ -14,19 +14,12 @@ import java.io.IOException
 abstract class DecoderInterface(echoer: Echoer): Echoer by echoer {
 
     abstract var path: String
-    var sound : JavaSoundAudioClip? = null
 
-    fun init() {
-        try {
-            sound = JavaSoundAudioClip(File(path).inputStream())
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
+    abstract fun init()
 
-    fun play() = sound?.play()
+    abstract fun play(): Unit?
 
-    fun stop() = sound?.stop()
+    abstract fun stop(): Unit?
 
     abstract fun getTotalTime(): Long
 }
