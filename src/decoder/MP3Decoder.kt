@@ -39,6 +39,7 @@ open class MP3Decoder : DecoderInterface {
         flag1@ while (true) {
             var flag = reader.readToString()
             // when a information is useless enough, it will be ignored.
+            // ignored information will be println() into console
             when (flag) {
                 "TEXT" -> echo("text author: ${
                 reader.readToStringButSkipFirst(2,
@@ -70,8 +71,9 @@ open class MP3Decoder : DecoderInterface {
                 "TPE1" -> echo("artist: ${
                 reader.readToStringButSkipFirst(2,
                         reader.readToIntFromLast())}")
-            //  "TYER" -> echo("year: ${reader.readToStringButSkipFirst(2, 
-            // reader.readToIntFromLast())}")
+                "TYER" -> println("year: ${
+                reader.readToStringButSkipFirst(2,
+                        reader.readToIntFromLast())}")
                 "TSIZ" -> echo("size: ${
                 reader.readToStringButSkipFirst(2,
                         reader.readToIntFromLast())}")
@@ -93,7 +95,7 @@ open class MP3Decoder : DecoderInterface {
                 "TBPM" -> echo("jiepai per second: ${
                 reader.readToStringButSkipFirst(2,
                         reader.readToIntFromLast())}")
-                "COMM" -> echo("comment: ${
+                "COMM" -> println("comment: ${
                 reader.readToStringButSkipFirst(2,
                         reader.readToIntFromLast())}")
                 "TSSE" -> echo("encoder: ${
