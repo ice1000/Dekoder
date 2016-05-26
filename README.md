@@ -18,6 +18,9 @@ Materially Designed, and written in pure kotlin but with a javaFX GUI.
 + [ ] Read the wave.
 + [ ] Media format DSL
 
+### Supported formats
++ *.wav
+
 ### external lib
 + [JFoenix](https://github.com/jfoenixadmin/JFoenix)
 

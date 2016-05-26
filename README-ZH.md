@@ -21,6 +21,9 @@
 ### 外部库
 + [JFoenix](https://github.com/jfoenixadmin/JFoenix)
 
+### 支持的格式
++ *.wav
+
 ### 说明
 有两个artifact，一个是纯Kotlin的CUI版，一个是GUI版，GUI是基于JavaFX的。<br/>
 这也是我仍然在此项目中使用Java的原因，不过Java在本项目中仅仅是作为一个UI与业务逻辑的接口。<br/>
