@@ -72,7 +72,7 @@ abstract class MainActivityFramework {
      * select a decoder to decode the music file.
      * currently only WAVDecoder can work.
      */
-    protected fun choose(filePath: String): DecoderInterface? {
+    protected fun choose(filePath: String): DecoderInterface {
         val p = printer()
         if (filePath.endsWith("wav"))
             return WAVDecoder(filePath, p)
@@ -83,12 +83,12 @@ abstract class MainActivityFramework {
         else if (filePath.endsWith("ape"))
             return APEDecoder(filePath, p)
         else
-            return null
+            return WAVDecoder(filePath, p)
     }
 
     protected fun openFile(path: String) {
         manager.write(path)
-        dekoder = choose(path) ?: WAVDecoder(path, printer())
+        dekoder = choose(path)
         dekoder.init()
     }
 

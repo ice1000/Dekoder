@@ -49,9 +49,9 @@ public class MainActivity extends MainActivityFramework {
     }
 
     private void openFile(File file) {
+        propertiesList.getItems().remove(0, propertiesList.getItems().size());
         openFile(file.getPath());
         nameLabel.setText(file.getName());
-        propertiesList.getItems().removeAll();
     }
 
     @FXML
