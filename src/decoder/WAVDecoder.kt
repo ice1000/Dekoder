@@ -13,9 +13,8 @@ import java.io.File
 
 open class WAVDecoder : DecoderInterface {
 
+    override var reader: DSInputStreamReader
     private var sound: JavaSoundAudioClip? = null
-    private var file: File
-    private var reader: DSInputStreamReader
     private var channels: Int = 0
     private var size: Long = 0
     private var samplePSec: Int = 0
@@ -36,8 +35,7 @@ open class WAVDecoder : DecoderInterface {
 
     constructor(fileName: String, echoer: Echoer) : super(echoer) {
         path = fileName
-        file = File(fileName)
-        reader = DSInputStreamReader(file)
+        reader = DSInputStreamReader(File(path))
         val metaSize: Int
         // ======================================================== 0
         if (!"RIFF".equals(reader.readToString())) {

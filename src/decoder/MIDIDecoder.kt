@@ -1,5 +1,6 @@
 package decoder
 
+import utils.DSInputStreamReader
 import utils.Echoer
 import java.io.File
 import javax.sound.midi.MidiSystem
@@ -13,6 +14,8 @@ import javax.sound.midi.Sequencer
  */
 
 class MIDIDecoder : DecoderInterface {
+
+    override var reader: DSInputStreamReader
     override var path: String
     private var seq: Sequence? = null
     private var seqr: Sequencer? = null
@@ -21,7 +24,14 @@ class MIDIDecoder : DecoderInterface {
 
     override fun stop(): Unit? = Unit
 
-    override fun init() {
+    override fun init() = Unit
+
+    override fun getTotalTime(): Long = 60L
+
+    constructor(path: String, echoer: Echoer) : super(echoer) {
+        this.path = path
+        reader = DSInputStreamReader(File(path))
+
         seq = MidiSystem.getSequence(File(path))
         seqr = MidiSystem.getSequencer()
         seqr?.open()
@@ -30,11 +40,6 @@ class MIDIDecoder : DecoderInterface {
             if (it.type == 47)
                 println("done playing")
         }
-    }
 
-    override fun getTotalTime(): Long = 60L
-
-    constructor(path: String, echoer: Echoer) : super(echoer) {
-        this.path = path
     }
 }

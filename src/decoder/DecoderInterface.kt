@@ -1,6 +1,7 @@
 package decoder
 
 import com.sun.media.sound.JavaSoundAudioClip
+import utils.DSInputStreamReader
 import utils.Echoer
 import java.io.File
 import java.io.IOException
@@ -12,6 +13,8 @@ import java.io.IOException
  */
 
 abstract class DecoderInterface(echoer: Echoer): Echoer by echoer {
+
+    protected abstract var reader: DSInputStreamReader
 
     abstract var path: String
 

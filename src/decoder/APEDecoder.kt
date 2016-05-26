@@ -1,13 +1,19 @@
 package decoder
 
+import utils.DSInputStreamReader
 import utils.Echoer
+import java.io.File
 
 /**
  * @author ice1000
  * Created by ice1000 on 2016/5/26.
  */
 
-class APEDecoder: DecoderInterface {
+class APEDecoder : DecoderInterface {
+
+    override var reader: DSInputStreamReader
+    override var path: String
+
     override fun init() {
         throw UnsupportedOperationException()
     }
@@ -24,9 +30,8 @@ class APEDecoder: DecoderInterface {
         return 60
     }
 
-    override var path: String
-
     constructor(path: String, echoer: Echoer) : super(echoer) {
         this.path = path
+        reader = DSInputStreamReader(File(path))
     }
 }
