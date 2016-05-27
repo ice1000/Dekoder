@@ -14,7 +14,7 @@ class DatabaseManager {
     private val a = File(saveFile)
 
     constructor() {
-        if(!a.exists())
+        if (!a.exists())
             a.createNewFile()
     }
 
@@ -24,9 +24,8 @@ class DatabaseManager {
      * have got a built-in repeat check.
      */
     fun write(name: String) {
-//        var b = read()
-//        if(name !in b)
-            a.writeText(name + "\n")
-//        b.forEach { a.writeText(it + "\n") }
+        var b = read()
+        if (name !in b)
+            a.bufferedWriter().append("$name\n")
     }
 }

@@ -38,71 +38,32 @@ open class MP3Decoder : DecoderInterface {
         // ======================================================== 10
         flag1@ while (true) {
             var flag = reader.readToString()
-            // when a information is useless enough, it will be ignored.
-            // ignored information will be println() into console
             when (flag) {
-                "TEXT" -> echo("text author: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "URL " -> echo("url: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TCOP" -> echo("copyright: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TOPE" -> echo("original artist: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TCOM" -> echo("music author: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TDAT" -> echo("date: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TPE4" -> echo("translator: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TPE3" -> echo("zhihui: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TPE2" -> echo("band: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TPE1" -> echo("artist: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TYER" -> println("year: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TSIZ" -> echo("size: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TBLE" -> echo("zhuanji: ${
-                reader.readToStringButSkipFirst(
-                        reader.readToIntFromLast())}")
-                "TIT2" -> echo("title: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TIT3" -> echo("sub title: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TCON" -> echo("style: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "AENC" -> echo("encode tech: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TBPM" -> echo("jiepai per second: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "COMM" -> println("comment: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
-                "TSSE" -> echo("encoder: ${
-                reader.readToStringButSkipFirst(2,
-                        reader.readToIntFromLast())}")
+                "TEXT" -> echo("text author:")
+                "URL " -> echo("url:")
+                "TCOP" -> echo("copyright:")
+                "TOPE" -> echo("original artist:")
+                "TCOM" -> echo("music author:")
+                "TDAT" -> echo("date:")
+                "TPE4" -> echo("translator:")
+                "TPE3" -> echo("zhihui:")
+                "TPE2" -> echo("band:")
+                "TPE1" -> echo("artist:")
+                "TSIZ" -> echo("size:")
+                "TBLE" -> echo("zhuanji")
+                "TIT2" -> echo("title:")
+                "TIT3" -> echo("sub title")
+                "TCON" -> echo("style:")
+                "AENC" -> echo("encode tech:")
+                "TBPM" -> echo("jiepai per second:")
+                "TSSE" -> echo("encoder:")
+                "TYER" -> println("year:")
+                "COMM" -> println("comment:")
                 else -> break@flag1
             }
+            // same part: every data is in the same format
+            echo("${reader.readToStringButSkipFirst(2,
+                    reader.readToIntFromLast())}")
         }
     }
 }
