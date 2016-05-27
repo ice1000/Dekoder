@@ -38,32 +38,39 @@ open class MP3Decoder : DecoderInterface {
         // ======================================================== 10
         flag1@ while (true) {
             var flag = reader.readToString()
-            when (flag) {
-                "TEXT" -> echo("text author:")
-                "URL " -> echo("url:")
-                "TCOP" -> echo("copyright:")
-                "TOPE" -> echo("original artist:")
-                "TCOM" -> echo("music author:")
-                "TDAT" -> echo("date:")
-                "TPE4" -> echo("translator:")
-                "TPE3" -> echo("zhihui:")
-                "TPE2" -> echo("band:")
-                "TPE1" -> echo("artist:")
-                "TSIZ" -> echo("size:")
-                "TBLE" -> echo("zhuanji")
-                "TIT2" -> echo("title:")
-                "TIT3" -> echo("sub title")
-                "TCON" -> echo("style:")
-                "AENC" -> echo("encode tech:")
-                "TBPM" -> echo("jiepai per second:")
-                "TSSE" -> echo("encoder:")
-                "TYER" -> println("year:")
-                "COMM" -> println("comment:")
+            var flagString = when (flag) {
+                "TEXT" -> "text author:"
+                "URL " -> "url:"
+                "TCOP" -> "copyright:"
+                "TOPE" -> "original artist:"
+                "TCOM" -> "music author:"
+                "TDAT" -> "date:"
+                "TPE4" -> "translator:"
+                "TPE3" -> "zhihui:"
+                "TPE2" -> "band:"
+                "TPE1" -> "artist:"
+                "TSIZ" -> "size:"
+                "TBLE" -> "zhuanji"
+                "TIT2" -> "title:"
+                "TIT3" -> "sub title"
+                "TCON" -> "style:"
+                "AENC" -> "encode tech:"
+                "TBPM" -> "jiepai per second:"
+                "TSSE" -> "encoder:"
+                "TYER" -> "year:"
+                "COMM" -> "comment:"
                 else -> break@flag1
             }
+            // 我偏要这样换行，你来打我呀
+            var formatString =
+                    "$flagString " +
+                            "${reader.readToStringButSkipFirst(2,
+                                    reader.readToIntFromLast())}"
             // same part: every data is in the same format
-            echo("${reader.readToStringButSkipFirst(2,
-                    reader.readToIntFromLast())}")
+            // if a flag is ignored, it will be println() here
+            if (flag in listOf("TYER", "COMM"))
+                println(formatString)
+            else echo(formatString)
         }
     }
 }
