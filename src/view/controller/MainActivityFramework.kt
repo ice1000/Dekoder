@@ -6,6 +6,7 @@ import decoder.*
 import javafx.stage.FileChooser
 import utils.Echoer
 import utils.ProgressThread
+import java.io.IOException
 
 /**
  * @author ice1000
@@ -74,22 +75,26 @@ abstract class MainActivityFramework {
      */
     protected fun choose(filePath: String): DecoderInterface {
         val p = printer()
-        if (filePath.endsWith("wav"))
-            return WAVDecoder(filePath, p)
+        return if (filePath.endsWith("wav"))
+            WAVDecoder(filePath, p)
         else if (filePath.endsWith("mp3"))
-            return MP3Decoder(filePath, p)
+            MP3Decoder(filePath, p)
         else if (filePath.endsWith("mid"))
-            return MIDIDecoder(filePath, p)
+            MIDIDecoder(filePath, p)
         else if (filePath.endsWith("ape"))
-            return APEDecoder(filePath, p)
+            APEDecoder(filePath, p)
         else
-            return WAVDecoder(filePath, p)
+            WAVDecoder(filePath, p)
     }
 
     protected fun openFile(path: String) {
         manager.write(path)
         dekoder = choose(path)
-        dekoder.init()
+        try {
+            dekoder.init()
+        } catch(e: IOException) {
+            e.printStackTrace()
+        }
     }
 
 }

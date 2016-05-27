@@ -25,6 +25,7 @@ open class WAVDecoder : DecoderInterface {
     private var fact: Fact? = null
     override var path: String
     override fun getTotalTime(): Long = size / bytePSec
+
     override fun init() {
         sound = JavaSoundAudioClip(File(path).inputStream())
     }

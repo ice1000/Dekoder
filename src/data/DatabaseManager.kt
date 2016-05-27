@@ -5,27 +5,31 @@ import java.util.*
 
 /**
  * @author ice1000
+ * d
  * Created by ice1000 on 2016/5/23.
  */
 
 class DatabaseManager {
 
     private val saveFile = "save.db"
-    private val a = File(saveFile)
+    private var file: File = File(saveFile)
 
     constructor() {
-        if (!a.exists())
-            a.createNewFile()
     }
 
-    fun read(): ArrayList<String> = a.readLines() as ArrayList<String>
+    fun read(): ArrayList<String> = file.readLines() as ArrayList<String>
 
     /**
      * have got a built-in repeat check.
      */
-    fun write(name: String) {
+    fun write(path: String) {
+        //        file = File(saveFile)
+        if (!file.exists())
+            file.createNewFile()
         var b = read()
-        if (name !in b)
-            a.bufferedWriter().append("$name\n")
+        if (path !in b)
+            file.writeText(path + "\n")
+        println("path is $path")
+        b.forEach { file.writeText(it + "\n") }
     }
 }

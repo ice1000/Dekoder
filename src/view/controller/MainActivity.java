@@ -13,11 +13,6 @@ import utils.Echoer;
 
 import java.io.File;
 
-/**
- * @author ice1000
- *         Created by asus1 on 2016/5/21.
- */
-
 public class MainActivity extends MainActivityFramework {
     @FXML
     private JFXListView<Object> propertiesList;
