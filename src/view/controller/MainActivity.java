@@ -3,6 +3,7 @@ package view.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXProgressBar;
+import com.jfoenix.controls.JFXRadioButton;
 import decoder.DecoderInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,8 +27,8 @@ public class MainActivity extends MainActivityFramework {
     private Label nameLabel;
     @FXML
     private JFXProgressBar progressBar;
-    //    @FXML private JFXRadioButton listOption;
-    //    @FXML private JFXRadioButton dataOption;
+//        @FXML private JFXRadioButton listOption;
+//        @FXML private JFXRadioButton dataOption;
     private DecoderInterface dekoder;
 
     @FXML
