@@ -1,7 +1,6 @@
 package data
 
 import java.io.File
-import java.util.*
 
 /**
  * @author ice1000
@@ -17,13 +16,13 @@ class DatabaseManager {
     constructor() {
     }
 
-    fun read(): ArrayList<String> = file.readLines() as ArrayList<String>
+    fun read(): List<String> = file.readLines()
 
     /**
      * have got a built-in repeat check.
      */
     fun write(path: String) {
-        //        file = File(saveFile)
+        file = File(saveFile)
         if (!file.exists())
             file.createNewFile()
         var b = read()
