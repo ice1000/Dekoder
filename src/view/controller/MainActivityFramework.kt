@@ -104,9 +104,13 @@ abstract class MainActivityFramework {
 
     open protected fun openFile(file: File) {
         val path = file.path
+        // stop the latest opened file
         dekoder?.stop()
-        setTitleText(file.name)
+        // echo the name of this file
+        printer().echo(file.name)
+        // write this file`s path to the database
         manager.write(path)
+        // give a value to dekoder, to choose a type
         dekoder = choose(path)
         try {
             dekoder?.init()
