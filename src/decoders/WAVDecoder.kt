@@ -35,7 +35,6 @@ open class WAVDecoder : DecoderInterface {
     override fun stop() {
         playThread.playData.threadExit = true
         playThread.playData.isPaused = true
-        playThread.playData.isPlaying = false
 //        playThread.join()
 //        sound?.stop()
     }
@@ -50,7 +49,6 @@ open class WAVDecoder : DecoderInterface {
             return
         if (!playThread.playData.isPaused)
             playThread.start()
-        playThread.playData.isPlaying = true
         playThread.playData.isPaused = false
 //        playThread.join()
 //        sound?.play()
