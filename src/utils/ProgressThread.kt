@@ -12,14 +12,15 @@ class ProgressThread(private var setter: (i: Long) -> Unit) : Thread() {
 
     /**
      * this variable stores the time when the song is stopped
+     * test printing is deleted, because this prints too much information
      */
     var storedTime: Long = 0L
         set(value) {
-            println("storedTime has been set as $value")
+//            println("storedTime has been set as $value")
             field = value
         }
         get() {
-            println("storedTime has been get as ${field + nowTime}")
+//            println("storedTime has been get as ${field + nowTime}")
             return field + nowTime
         }
 

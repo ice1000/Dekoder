@@ -69,10 +69,10 @@ abstract class MainActivityFramework {
 
     open protected fun stopPlaying() {
         progress = 0
-        setProgress(progress)
         dekoder?.stop()
         progressThread.running = false
         progressThread.join()
+        setProgress(progress)
         getPlayButton().text = PLAY
     }
 
@@ -83,6 +83,9 @@ abstract class MainActivityFramework {
      */
     abstract protected fun setProgress(i: Long)
 
+    /**
+     * because I have to set the text on the button
+     */
     abstract protected fun getPlayButton(): JFXButton
 
     /**
@@ -99,6 +102,9 @@ abstract class MainActivityFramework {
      */
     abstract protected fun filesPrinter(): Echoer
 
+    /**
+     * to show a open file dialog
+     */
     abstract protected fun openFile()
 
     /**
