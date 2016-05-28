@@ -3,7 +3,6 @@ package view.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXProgressBar;
-import com.jfoenix.controls.JFXRadioButton;
 import decoder.DecoderInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

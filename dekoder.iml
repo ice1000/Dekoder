@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="kotlin-runtime" level="project" />
     <orderEntry type="library" exported="" name="jfoenix" level="project" />
+    <orderEntry type="library" exported="" name="KotlinJavaRuntime" level="project" />
   </component>
 </module>

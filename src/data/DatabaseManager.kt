@@ -25,7 +25,7 @@ class DatabaseManager {
         file = File(saveFile)
         if (!file.exists())
             file.createNewFile()
-        var b = read()
+        val b = read()
         if (path !in b)
             file.writeText(path + "\n")
         println("path is $path")

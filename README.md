@@ -15,13 +15,13 @@ Materially Designed, and written in pure kotlin but with a javaFX GUI.
 + [X] Play and stop the media.
 + [X] Progress bar
 + [ ] Pause
-+ [ ] Read the wave.
++ [ ] Read the wave
 + [ ] Media format DSL
 
 ### Supported formats
 + *.wav
 
-### external lib
+### used open source projects
 + [JFoenix](https://github.com/jfoenixadmin/JFoenix)
 
 ### Description

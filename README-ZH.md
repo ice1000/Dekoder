@@ -18,7 +18,7 @@
 + [ ] 识别音频
 + [ ] 用于音频格式的DSL
 
-### 外部库
+### 用到的开源项目
 + [JFoenix](https://github.com/jfoenixadmin/JFoenix)
 
 ### 支持的格式

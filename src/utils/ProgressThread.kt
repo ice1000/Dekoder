@@ -12,7 +12,7 @@ class ProgressThread(private var setter: (i: Double) -> Unit) : Thread() {
     override fun run() {
         running = true
         setter(0.0)
-        var startTime = System.currentTimeMillis()
+        val startTime = System.currentTimeMillis()
         var nowTime: Long
         while (running) {
             nowTime = System.currentTimeMillis() - startTime
