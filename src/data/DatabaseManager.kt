@@ -14,6 +14,9 @@ class DatabaseManager {
     private var file: File = File(saveFile)
 
     constructor() {
+        file = File(saveFile)
+        if (!file.exists())
+            file.createNewFile()
     }
 
     fun read(): List<String> = file.readLines()
@@ -22,9 +25,6 @@ class DatabaseManager {
      * have got a built-in repeat check.
      */
     fun write(path: String) {
-        file = File(saveFile)
-        if (!file.exists())
-            file.createNewFile()
         val b = read()
         if (path !in b)
             file.writeText(path + "\n")

@@ -14,79 +14,77 @@ import utils.Echoer;
 import java.io.File;
 
 public class MainActivity extends MainActivityFramework {
-    @FXML
-    private JFXListView<Object> propertiesList;
-    //    @FXML private JFXButton fileButton;
-    //    @FXML private JFXButton helpButton;
-    @FXML
-    private AnchorPane window;
-    @FXML
-    private JFXButton playButton;
-    @FXML
-    private Label nameLabel;
-    @FXML
-    private JFXProgressBar progressBar;
-//        @FXML private JFXRadioButton listOption;
-//        @FXML private JFXRadioButton dataOption;
-    private DecoderInterface dekoder;
+	@FXML
+	private JFXListView<Object> propertiesList;
+	@FXML
+	private AnchorPane window;
+	@FXML
+	private JFXButton playButton;
+	@FXML
+	private Label nameLabel;
+	@FXML
+	private JFXProgressBar progressBar;
+	private DecoderInterface dekoder;
 
-    @FXML
-    protected void playMusic(ActionEvent event) {
-        super.playMusic();
-    }
+	@FXML
+	protected void playMusic(ActionEvent event) {
+		super.playMusic();
+	}
 
-    @FXML
-    void openFile(ActionEvent event) {
-        try {
-            openFile(getChooser().showOpenDialog(window.getScene().getWindow()));
-        } catch (Exception ignored) {
-        }
-    }
+	@FXML
+	void openFile(ActionEvent event) {
+		try {
+			openFile(getChooser().showOpenDialog(window.getScene().getWindow()));
+		} catch (Exception ignored) {
+		}
+	}
 
-    private void openFile(File file) {
-        propertiesList.getItems().remove(0, propertiesList.getItems().size());
-        openFile(file.getPath());
-        nameLabel.setText(file.getName());
-    }
+	@Override
+	protected void openFile(@NotNull File file) {
+		propertiesList.getItems().remove(0, propertiesList.getItems().size());
+		super.openFile(file);
+	}
 
-    @FXML
-    void openHelp(ActionEvent event) {
-        openGitHub();
-    }
+	@FXML
+	void openHelp(ActionEvent event) {
+		openGitHub();
+	}
 
-    @NotNull
-    @Override
-    public DecoderInterface getDekoder() {
-        return dekoder;
-    }
+	@NotNull
+	@Override
+	public DecoderInterface getDekoder() {
+		return dekoder;
+	}
 
-    @Override
-    public void setDekoder(@NotNull DecoderInterface decoderInterface) {
-        dekoder = decoderInterface;
-    }
+	@Override
+	public void setDekoder(@NotNull DecoderInterface decoderInterface) {
+		dekoder = decoderInterface;
+	}
 
-    @NotNull
-    @Override
-    public JFXButton getPlayButton() {
-        return playButton;
-    }
+	@NotNull
+	@Override
+	public JFXButton getPlayButton() {
+		return playButton;
+	}
 
-    @Override
-    public void setProgress(double i) {
-        progressBar.setProgress(i / 1000 / dekoder.getTotalTime());
-    }
+	@Override
+	public void setProgress(double i) {
+		progressBar.setProgress(i / 1000 / dekoder.getTotalTime());
+	}
 
-    @NotNull
-    @Override
-    public Echoer printer() {
-        return msg -> propertiesList.getItems().add(msg);
-    }
+	@NotNull
+	@Override
+	public Echoer printer() {
+		return msg -> propertiesList.getItems().add(msg);
+	}
 
-    @FXML
-    void initialize() {
-        try {
-            openFile(new File(getManager().read().get(0)));
-        } catch (IndexOutOfBoundsException ignored) {
-        }
-    }
+	@FXML
+	void initialize() {
+		init();
+	}
+
+	@Override
+	public void setTitleText(@NotNull String string) {
+		nameLabel.setText(string);
+	}
 }

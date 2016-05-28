@@ -6,6 +6,7 @@ import decoder.*
 import javafx.stage.FileChooser
 import utils.Echoer
 import utils.ProgressThread
+import java.io.File
 import java.io.IOException
 
 /**
@@ -42,7 +43,11 @@ abstract class MainActivityFramework {
         if (PLAY == getPlayButton().text) {
             progressThread = ProgressThread { setProgress(it) }
             progressThread.start()
-            dekoder.play()
+            try {
+                dekoder.play()
+            } catch (e: IllegalStateException) {
+
+            }
             getPlayButton().text = STOP
         } else {
             dekoder.stop()
@@ -57,9 +62,9 @@ abstract class MainActivityFramework {
      * this method will automatically divide i by the total time.
      * so just input the time which is already spent.
      */
-    abstract fun setProgress(i: Double)
+    abstract protected fun setProgress(i: Double)
 
-    abstract fun getPlayButton(): JFXButton
+    abstract protected fun getPlayButton(): JFXButton
 
     /**
      * get a printer.
@@ -67,7 +72,12 @@ abstract class MainActivityFramework {
      * but to save code, I chose to implement this in the java interface.
      * because java8 supports lambda : )
      */
-    abstract fun printer(): Echoer
+    abstract protected fun printer(): Echoer
+
+    /**
+     * set the name of the sound
+     */
+    abstract protected fun setTitleText(string: String)
 
     /**
      * select a decoder to decode the music file.
@@ -87,13 +97,22 @@ abstract class MainActivityFramework {
             WAVDecoder(filePath, p)
     }
 
-    protected fun openFile(path: String) {
+    open protected fun openFile(file: File) {
+        val path = file.path
         manager.write(path)
         dekoder = choose(path)
         try {
             dekoder.init()
         } catch(e: IOException) {
             e.printStackTrace()
+        }
+        setTitleText(file.name)
+    }
+
+    protected fun init() {
+        try {
+            openFile(File(manager.read()[0]))
+        } catch (ignored: IndexOutOfBoundsException) {
         }
     }
 
