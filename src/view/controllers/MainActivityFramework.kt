@@ -1,9 +1,9 @@
-package view.controller
+package view.controllers
 
 import com.jfoenix.controls.JFXButton
 import data.database.DatabaseManager
-import decoder.DecoderInterface
-import decoder.WAVDecoder
+import decoders.DecoderInterface
+import decoders.WAVDecoder
 import javafx.stage.FileChooser
 import utils.Echoer
 import utils.threads.ProgressThread
@@ -108,7 +108,7 @@ abstract class MainActivityFramework {
     abstract protected fun openFile()
 
     /**
-     * select a decoder to decode the music file.
+     * select a decoders to decode the music file.
      * currently only WAVDecoder can work.
      */
     protected fun choose(filePath: String): DecoderInterface {

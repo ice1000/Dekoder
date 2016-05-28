@@ -1,7 +1,6 @@
 package view.cui
 
-import decoder.MP3Decoder
-import decoder.WAVDecoder
+import decoders.WAVDecoder
 import utils.Echoer
 import java.util.*
 

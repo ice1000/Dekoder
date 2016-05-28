@@ -7,9 +7,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.controller.MainActivity">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="view.controllers.MainActivity">
 	<children>
 		<JFXButton fx:id="playButton" defaultButton="true" layoutX="296.0" layoutY="513.0" onAction="#playMusic"
 		           prefHeight="59.0" prefWidth="181.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;"

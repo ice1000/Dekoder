@@ -1,10 +1,9 @@
 package utils.threads
 
 import data.PlayData
+import utils.factories.getLine
 import java.io.File
-import javax.sound.sampled.AudioFormat
 import javax.sound.sampled.AudioSystem
-import javax.sound.sampled.DataLine
 import javax.sound.sampled.SourceDataLine
 
 /**
@@ -14,12 +13,12 @@ import javax.sound.sampled.SourceDataLine
 
 class PlayMusicThread : Thread {
 
+    var line: SourceDataLine? = null
+
     constructor(fileToPlay: String) : super() {
-        var ais = AudioSystem.getAudioInputStream(File(fileToPlay))
-        if (ais != null) {
-            var baseFormat = ais.format
-            var line = getLine(baseFormat)
-        }
+        val ais = AudioSystem.getAudioInputStream(File(fileToPlay))
+        if (ais != null)
+            line = getLine(ais.format)
     }
 
     var playData = PlayData()
@@ -30,17 +29,5 @@ class PlayMusicThread : Thread {
 
             }
         }
-    }
-
-    private fun getLine(audioFormat: AudioFormat): SourceDataLine {
-        var res: SourceDataLine? = null
-        val info = DataLine.Info(SourceDataLine::class.java,
-                audioFormat)
-        try {
-            res = AudioSystem.getLine(info) as SourceDataLine
-            res.open(audioFormat)
-        } catch (e: Exception) {
-        }
-        return res!!
     }
 }
