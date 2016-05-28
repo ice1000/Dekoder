@@ -24,7 +24,7 @@ open class WAVDecoder : DecoderInterface {
     private var fact: Fact? = null
     override var path: String
 
-    private var playThread: PlayMusicThread? = null
+    private var playThread: PlayMusicThread
 
     override fun getTotalTime(): Long = size / bytePSec
 
@@ -33,30 +33,32 @@ open class WAVDecoder : DecoderInterface {
     }
 
     override fun stop() {
-        playThread?.playData!!.isStopped = true
-        playThread?.playData!!.threadExit = true
-        playThread?.join()
+        playThread.playData.threadExit = true
+        playThread.playData.isPaused = true
+        playThread.playData.isPlaying = false
+//        playThread.join()
 //        sound?.stop()
     }
 
     override fun pause() {
-        playThread?.playData!!.isPaused = true
-        playThread?.join()
+        playThread.playData.isPaused = true
+//        playThread.join()
     }
 
     override fun play() {
-        if (playThread?.playData!!.isPaused ||
-                playThread?.playData!!.isStopped)
+        if (playThread.playData.isPaused)
             return
-        if (!playThread?.playData!!.isPaused)
-            playThread?.start()
-        playThread!!.playData.isPlaying = true
-        playThread?.playData!!.isPaused = false
+        if (!playThread.playData.isPaused)
+            playThread.start()
+        playThread.playData.isPlaying = true
+        playThread.playData.isPaused = false
+//        playThread.join()
 //        sound?.play()
     }
 
     constructor(fileName: String, echoer: Echoer) : super(echoer) {
         path = fileName
+        playThread = PlayMusicThread(path)
         reader = DSInputStreamReader(File(path))
         val metaSize: Int
         // ======================================================== 0

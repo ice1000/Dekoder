@@ -17,27 +17,28 @@ class PlayMusicThread : Thread {
     var playData = PlayData()
     private var line: SourceDataLine? = null
     private var ais: AudioInputStream? = null
-    val BUFFER_SIZE = 0xDBE
+    val BUFFER_SIZE = 0xF
 
     constructor(fileToPlay: String) : super() {
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null)
             line = getLine(ais!!.format)
+        line!!.open()
+        line!!.start()
     }
 
     override fun run() {
         while (!playData.threadExit) {
-            if (!playData.isStopped) {
-                var inBytes = 0;
-                while ((inBytes != -1) && (!playData.isStopped) && (!playData.threadExit)) {
-                    if (!playData.isPaused) {
-                        val audioData = ByteArray(BUFFER_SIZE)
-                        inBytes = ais!!.read(audioData, 0, BUFFER_SIZE);
-                        if (inBytes >= 0)
-                            line!!.write(audioData, 0, inBytes);
-                    }
+            var inBytes = 0;
+            while ((inBytes != -1) && (!playData.threadExit))
+                if (!playData.isPaused) {
+                    val audioData = ByteArray(BUFFER_SIZE)
+                    inBytes = ais!!.read(audioData, 0, BUFFER_SIZE);
+                    if (inBytes >= 0)
+                        line!!.write(audioData, 0, inBytes);
                 }
-            }
         }
+        line!!.drain()
+        line!!.close()
     }
 }

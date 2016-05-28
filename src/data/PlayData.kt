@@ -6,7 +6,6 @@ package data
  */
 
 data class PlayData(
-        var isStopped: Boolean = false,
         var isPaused: Boolean = false,
         var isPlaying: Boolean = false,
         var threadExit: Boolean = false

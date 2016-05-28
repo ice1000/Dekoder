@@ -55,8 +55,7 @@ abstract class MainActivityFramework {
             }
             getPlayButton().text = PAUSE
         } else if (PAUSE == getPlayButton().text) {
-            // TODO: implement pausing
-            dekoder?.stop()
+            dekoder?.pause()
             progress = progressThread.storedTime
             progressThread.running = false
             progressThread.join()
