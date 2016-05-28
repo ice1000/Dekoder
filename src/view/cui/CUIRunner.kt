@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
     //    val view = View()
     //    view.onCreate()
     println("please input music file path :")
-    var s = Scanner(System.`in`).nextLine()
+    val s = Scanner(System.`in`).nextLine()
     val decoder = CUIMP3Decoder(s!!)
     println(decoder.path)
     decoder.play()

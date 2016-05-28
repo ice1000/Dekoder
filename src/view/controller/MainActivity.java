@@ -50,14 +50,13 @@ public class MainActivity extends MainActivityFramework {
 		openGitHub();
 	}
 
-	@NotNull
 	@Override
 	public DecoderInterface getDekoder() {
 		return dekoder;
 	}
 
 	@Override
-	public void setDekoder(@NotNull DecoderInterface decoderInterface) {
+	public void setDekoder(DecoderInterface decoderInterface) {
 		dekoder = decoderInterface;
 	}
 

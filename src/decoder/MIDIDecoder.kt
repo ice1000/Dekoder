@@ -17,12 +17,10 @@ class MIDIDecoder : DecoderInterface {
 
     override var reader: DSInputStreamReader
     override var path: String
-    private var seq: Sequence? = null
-    private var seqr: Sequencer? = null
+    private var seq: Sequence
+    private var seqr: Sequencer
 
-    override fun play(): Unit? = seqr?.start()
-
-    override fun stop(): Unit? = Unit
+    override fun play(): Unit = seqr.start()
 
     override fun init() = Unit
 
@@ -34,9 +32,9 @@ class MIDIDecoder : DecoderInterface {
 
         seq = MidiSystem.getSequence(File(path))
         seqr = MidiSystem.getSequencer()
-        seqr?.open()
-        seqr?.sequence = seq
-        seqr?.addMetaEventListener {
+        seqr.open()
+        seqr.sequence = seq
+        seqr.addMetaEventListener {
             if (it.type == 47)
                 println("done playing")
         }

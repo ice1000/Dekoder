@@ -15,11 +15,7 @@ open class MP3Decoder : DecoderInterface {
     override var path: String
     private var size: Long = 0
 
-    override fun init() = Unit
-
-    override fun play() = Unit
-
-    override fun stop() = Unit
+    // use the default initializer
 
     override fun getTotalTime(): Long {
         return 60
@@ -37,8 +33,8 @@ open class MP3Decoder : DecoderInterface {
         echo("size = $size")
         // ======================================================== 10
         flag1@ while (true) {
-            var flag = reader.readToString()
-            var flagString = when (flag) {
+            val flag = reader.readToString()
+            val flagString = when (flag) {
                 "TEXT" -> "text author:"
                 "URL " -> "url:"
                 "TCOP" -> "copyright:"
@@ -62,7 +58,7 @@ open class MP3Decoder : DecoderInterface {
                 else -> break@flag1
             }
             // 我偏要这样换行，你来打我呀
-            var formatString =
+            val formatString =
                     "$flagString " +
                             "${reader.readToStringButSkipFirst(2,
                                     reader.readToIntFromLast())}"

@@ -14,18 +14,6 @@ class APEDecoder : DecoderInterface {
     override var reader: DSInputStreamReader
     override var path: String
 
-    override fun init() {
-        throw UnsupportedOperationException()
-    }
-
-    override fun play(): Unit? {
-        throw UnsupportedOperationException()
-    }
-
-    override fun stop(): Unit? {
-        throw UnsupportedOperationException()
-    }
-
     override fun getTotalTime(): Long {
         return 60
     }

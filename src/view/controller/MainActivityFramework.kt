@@ -20,7 +20,7 @@ abstract class MainActivityFramework {
     private val STOP = "Stop"
     private val PLAY = "Play"
 
-    abstract var dekoder: DecoderInterface
+    abstract var dekoder: DecoderInterface?
 
     //    protected var file: File? = null
     protected var manager = DatabaseManager()
@@ -44,13 +44,13 @@ abstract class MainActivityFramework {
             progressThread = ProgressThread { setProgress(it) }
             progressThread.start()
             try {
-                dekoder.play()
+                dekoder?.play()
             } catch (e: IllegalStateException) {
 
             }
             getPlayButton().text = STOP
         } else {
-            dekoder.stop()
+            dekoder?.stop()
             progressThread.running = false
             progressThread.join()
             getPlayButton().text = PLAY
@@ -94,15 +94,16 @@ abstract class MainActivityFramework {
         else if (filePath.endsWith("ape"))
             APEDecoder(filePath, p)
         else
-            WAVDecoder(filePath, p)
+            MP3Decoder(filePath, p)
     }
 
     open protected fun openFile(file: File) {
         val path = file.path
+        dekoder?.stop()
         manager.write(path)
         dekoder = choose(path)
         try {
-            dekoder.init()
+            dekoder?.init()
         } catch(e: IOException) {
             e.printStackTrace()
         }

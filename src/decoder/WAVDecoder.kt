@@ -30,9 +30,9 @@ open class WAVDecoder : DecoderInterface {
         sound = JavaSoundAudioClip(File(path).inputStream())
     }
 
-    override fun stop() = sound?.stop()
+    override fun stop(): Unit = sound?.stop()!!
 
-    override fun play() = sound?.play()
+    override fun play(): Unit = sound?.play()!!
 
     constructor(fileName: String, echoer: Echoer) : super(echoer) {
         path = fileName
