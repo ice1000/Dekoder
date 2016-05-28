@@ -1,12 +1,12 @@
 package view.controller
 
 import com.jfoenix.controls.JFXButton
-import data.DatabaseManager
+import data.database.DatabaseManager
 import decoder.DecoderInterface
 import decoder.WAVDecoder
 import javafx.stage.FileChooser
 import utils.Echoer
-import utils.ProgressThread
+import utils.threads.ProgressThread
 import java.io.File
 
 /**

@@ -1,4 +1,4 @@
-package utils
+package utils.threads
 
 /**
  * @author ice1000

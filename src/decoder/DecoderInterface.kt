@@ -2,8 +2,6 @@ package decoder
 
 import utils.DSInputStreamReader
 import utils.Echoer
-import java.io.File
-import javax.media.Manager
 import javax.media.Player
 
 /**
@@ -18,16 +16,13 @@ abstract class DecoderInterface(echoer: Echoer) : Echoer by echoer {
     abstract var path: String
     protected var player: Player? = null
 
-    open fun init() {
-        player = Manager.createRealizedPlayer(File(path).toURL())
-    }
+    abstract fun init()
 
-    open fun play() = player?.start()
+    abstract fun play()
 
-    open fun stop() {
-        player?.stop()
-        player?.close()
-    }
+    abstract fun stop()
+
+    abstract fun pause()
 
     abstract fun getTotalTime(): Long
 }
