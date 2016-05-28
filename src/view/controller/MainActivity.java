@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXProgressBar;
 import decoder.DecoderInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import org.jetbrains.annotations.NotNull;
 import utils.Echoer;
@@ -21,11 +20,9 @@ public class MainActivity extends MainActivityFramework {
 	@FXML
 	private JFXButton playButton;
 	@FXML
-	private Label nameLabel;
-	@FXML
 	private JFXProgressBar progressBar;
 	@FXML
-	private JFXListView<Object> playList;
+	private JFXListView<Object> filesList;
 	private DecoderInterface dekoder;
 
 	@FXML
@@ -71,14 +68,20 @@ public class MainActivity extends MainActivityFramework {
 	}
 
 	@Override
-	public void setProgress(double i) {
-		progressBar.setProgress(i / 1000 / dekoder.getTotalTime());
+	public void setProgress(long i) {
+		progressBar.setProgress(i / 1000.0 / dekoder.getTotalTime());
 	}
 
 	@NotNull
 	@Override
-	public Echoer printer() {
+	public Echoer propertiesPrinter() {
 		return msg -> propertiesList.getItems().add(msg);
+	}
+
+	@NotNull
+	@Override
+	public Echoer filesPrinter() {
+		return msg -> filesList.getItems().add(msg);
 	}
 
 	@Override
@@ -87,8 +90,8 @@ public class MainActivity extends MainActivityFramework {
 		super.initialize();
 	}
 
-	@Override
-	public void setTitleText(@NotNull String string) {
-		nameLabel.setText(string);
+	@FXML
+	protected void stopPlaying(ActionEvent event) {
+		super.stopPlaying();
 	}
 }

@@ -5,19 +5,33 @@ package utils
  * Created by ice1000 on 2016/5/25.
  */
 
-class ProgressThread(private var setter: (i: Double) -> Unit) : Thread() {
+class ProgressThread(private var setter: (i: Long) -> Unit) : Thread() {
 
     var running = true
+    var nowTime = 0L
+
+    /**
+     * this variable stores the time when the song is stopped
+     */
+    var storedTime: Long = 0L
+        set(value) {
+            println("storedTime has been set as $value")
+            field = value
+        }
+        get() {
+            println("storedTime has been get as ${field + nowTime}")
+            return field + nowTime
+        }
 
     override fun run() {
         running = true
-        setter(0.0)
+        setter(storedTime)
         val startTime = System.currentTimeMillis()
-        var nowTime: Long
         while (running) {
             nowTime = System.currentTimeMillis() - startTime
-            setter(nowTime.toDouble())
+            setter(storedTime)
             sleep(100)
         }
     }
+
 }

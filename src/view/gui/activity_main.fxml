@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,8 +11,8 @@
             prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="view.controller.MainActivity">
 	<children>
-		<JFXButton fx:id="playButton" defaultButton="true" layoutX="346.0" layoutY="512.0" onAction="#playMusic"
-		           prefHeight="59.0" prefWidth="181.0" ripplerFill="#9aace1" style="-fx-border-radius: 50px;"
+		<JFXButton fx:id="playButton" defaultButton="true" layoutX="296.0" layoutY="513.0" onAction="#playMusic"
+		           prefHeight="59.0" prefWidth="181.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;"
 		           styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Play"/>
 		<JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="513.0" layoutY="61.0" prefHeight="366.0"
 		             prefWidth="269.0" stylesheets="@../res/css.css">
@@ -33,18 +34,22 @@
 				</AnchorPane>
 			</left>
 		</JFXToolbar>
-		<ImageView fitHeight="98.0" fitWidth="79.0" layoutX="694.0" layoutY="493.0" pickOnBounds="true"
+		<ImageView fitHeight="98.0" fitWidth="79.0" layoutX="698.0" layoutY="494.0" pickOnBounds="true"
 		           preserveRatio="true">
 			<image>
 				<Image url="@../res/kotlin.png"/>
 			</image>
 		</ImageView>
 		<JFXProgressBar fx:id="progressBar" layoutX="300.0" layoutY="456.0" progress="0.0" scaleX="3.5"/>
-		<JFXListView fx:id="playList" cellHorizontalMargin="1.0" layoutX="16.0" layoutY="61.0" prefHeight="366.0"
+		<JFXListView fx:id="filesList" cellHorizontalMargin="1.0" layoutX="16.0" layoutY="61.0" prefHeight="366.0"
 		             prefWidth="483.0">
 			<effect>
 				<Blend/>
 			</effect>
 		</JFXListView>
+		<Label layoutX="680.0" layoutY="573.0" text="Author: ice1000"/>
+		<JFXButton buttonType="RAISED" layoutX="413.0" layoutY="513.0" onAction="#stopPlaying" prefHeight="59.0"
+		           prefWidth="100.0" ripplerFill="#fff549" styleClass="button-raised-fab" stylesheets="@../res/css.css"
+		           text="Stop"/>
 	</children>
 </AnchorPane>

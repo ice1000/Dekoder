@@ -17,6 +17,7 @@ import java.io.File
 
 abstract class MainActivityFramework {
 
+    private val PAUSE = "Pause"
     private val STOP = "Stop"
     private val PLAY = "Play"
     private val OPEN = "Open"
@@ -30,6 +31,8 @@ abstract class MainActivityFramework {
 
     private var progressThread = ProgressThread { setProgress(it) }
 
+    private var progress = 0L
+
     open fun openGitHub() = Runtime.getRuntime().exec(
             "rundll32 url.dll,FileProtocolHandler " +
                     "https://github.com/ice1000/Dekoder")
@@ -42,15 +45,19 @@ abstract class MainActivityFramework {
     open protected fun playMusic() {
         if (PLAY == getPlayButton().text) {
             progressThread = ProgressThread { setProgress(it) }
+            if (progress > 0)
+                progressThread.storedTime = progress
             progressThread.start()
             try {
                 dekoder?.play()
             } catch (e: IllegalStateException) {
-
+                return
             }
-            getPlayButton().text = STOP
-        } else if(STOP == getPlayButton().text) {
+            getPlayButton().text = PAUSE
+        } else if (PAUSE == getPlayButton().text) {
+            // TODO: implement pausing
             dekoder?.stop()
+            progress = progressThread.storedTime
             progressThread.running = false
             progressThread.join()
             getPlayButton().text = PLAY
@@ -60,12 +67,20 @@ abstract class MainActivityFramework {
         }
     }
 
+    open protected fun stopPlaying() {
+        progress = 0
+        dekoder?.stop()
+        progressThread.running = false
+        progressThread.join()
+        getPlayButton().text = PLAY
+    }
+
     /**
      * @param i now time
      * this method will automatically divide i by the total time.
      * so just input the time which is already spent.
      */
-    abstract protected fun setProgress(i: Double)
+    abstract protected fun setProgress(i: Long)
 
     abstract protected fun getPlayButton(): JFXButton
 
@@ -75,12 +90,7 @@ abstract class MainActivityFramework {
      * but to save code, I chose to implement this in the java interface.
      * because java8 supports lambda : )
      */
-    abstract protected fun printer(): Echoer
-
-    /**
-     * set the name of the sound
-     */
-    abstract protected fun setTitleText(string: String)
+    abstract protected fun propertiesPrinter(): Echoer
 
     abstract protected fun openFile()
 
@@ -89,7 +99,7 @@ abstract class MainActivityFramework {
      * currently only WAVDecoder can work.
      */
     protected fun choose(filePath: String): DecoderInterface {
-        val p = printer()
+        val p = propertiesPrinter()
         return if (filePath.endsWith("wav"))
             WAVDecoder(filePath, p)
 //        else if (filePath.endsWith("mp3"))
@@ -107,7 +117,7 @@ abstract class MainActivityFramework {
         // stop the latest opened file
         dekoder?.stop()
         // echo the name of this file
-        printer().echo(file.name)
+        propertiesPrinter().echo(file.name)
         // write this file`s path to the database
         manager.write(path)
         // give a value to dekoder, to choose a type
@@ -126,5 +136,7 @@ abstract class MainActivityFramework {
             getPlayButton().text = OPEN
         }
     }
+
+    abstract fun filesPrinter(): Echoer
 
 }
