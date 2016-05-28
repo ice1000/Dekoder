@@ -24,6 +24,8 @@ public class MainActivity extends MainActivityFramework {
 	private Label nameLabel;
 	@FXML
 	private JFXProgressBar progressBar;
+	@FXML
+	private JFXListView<Object> playList;
 	private DecoderInterface dekoder;
 
 	@FXML
@@ -33,10 +35,12 @@ public class MainActivity extends MainActivityFramework {
 
 	@FXML
 	void openFile(ActionEvent event) {
-		try {
-			openFile(getChooser().showOpenDialog(window.getScene().getWindow()));
-		} catch (Exception ignored) {
-		}
+		openFile();
+	}
+
+	@Override
+	protected void openFile() {
+		openFile(getChooser().showOpenDialog(window.getScene().getWindow()));
 	}
 
 	@Override
@@ -77,9 +81,10 @@ public class MainActivity extends MainActivityFramework {
 		return msg -> propertiesList.getItems().add(msg);
 	}
 
+	@Override
 	@FXML
-	void initialize() {
-		init();
+	protected void initialize() {
+		super.initialize();
 	}
 
 	@Override

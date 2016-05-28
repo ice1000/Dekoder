@@ -2,12 +2,12 @@ package view.controller
 
 import com.jfoenix.controls.JFXButton
 import data.DatabaseManager
-import decoder.*
+import decoder.DecoderInterface
+import decoder.WAVDecoder
 import javafx.stage.FileChooser
 import utils.Echoer
 import utils.ProgressThread
 import java.io.File
-import java.io.IOException
 
 /**
  * @author ice1000
@@ -19,10 +19,10 @@ abstract class MainActivityFramework {
 
     private val STOP = "Stop"
     private val PLAY = "Play"
+    private val OPEN = "Open"
 
     abstract var dekoder: DecoderInterface?
 
-    //    protected var file: File? = null
     protected var manager = DatabaseManager()
 
     val chooser: FileChooser
@@ -49,11 +49,14 @@ abstract class MainActivityFramework {
 
             }
             getPlayButton().text = STOP
-        } else {
+        } else if(STOP == getPlayButton().text) {
             dekoder?.stop()
             progressThread.running = false
             progressThread.join()
             getPlayButton().text = PLAY
+        } else {
+            // OPEN
+            openFile()
         }
     }
 
@@ -79,6 +82,8 @@ abstract class MainActivityFramework {
      */
     abstract protected fun setTitleText(string: String)
 
+    abstract protected fun openFile()
+
     /**
      * select a decoder to decode the music file.
      * currently only WAVDecoder can work.
@@ -87,33 +92,34 @@ abstract class MainActivityFramework {
         val p = printer()
         return if (filePath.endsWith("wav"))
             WAVDecoder(filePath, p)
-        else if (filePath.endsWith("mp3"))
-            MP3Decoder(filePath, p)
-        else if (filePath.endsWith("mid"))
-            MIDIDecoder(filePath, p)
-        else if (filePath.endsWith("ape"))
-            APEDecoder(filePath, p)
+//        else if (filePath.endsWith("mp3"))
+//            MP3Decoder(filePath, p)
+//        else if (filePath.endsWith("mid"))
+//            MIDIDecoder(filePath, p)
+//        else if (filePath.endsWith("ape"))
+//            APEDecoder(filePath, p)
         else
-            MP3Decoder(filePath, p)
+            WAVDecoder(filePath, p)
     }
 
     open protected fun openFile(file: File) {
         val path = file.path
         dekoder?.stop()
+        setTitleText(file.name)
         manager.write(path)
         dekoder = choose(path)
         try {
             dekoder?.init()
-        } catch(e: IOException) {
+        } catch(e: Exception) {
             e.printStackTrace()
         }
-        setTitleText(file.name)
     }
 
-    protected fun init() {
+    open protected fun initialize() {
         try {
             openFile(File(manager.read()[0]))
         } catch (ignored: IndexOutOfBoundsException) {
+            getPlayButton().text = OPEN
         }
     }
 
