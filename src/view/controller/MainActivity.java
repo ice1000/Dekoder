@@ -14,6 +14,8 @@ import java.io.File;
 
 public class MainActivity extends MainActivityFramework {
 	@FXML
+	private JFXListView<Object> filesList;
+	@FXML
 	private JFXListView<Object> propertiesList;
 	@FXML
 	private AnchorPane window;
@@ -21,8 +23,6 @@ public class MainActivity extends MainActivityFramework {
 	private JFXButton playButton;
 	@FXML
 	private JFXProgressBar progressBar;
-	@FXML
-	private JFXListView<Object> filesList;
 	private DecoderInterface dekoder;
 
 	@FXML
@@ -31,7 +31,7 @@ public class MainActivity extends MainActivityFramework {
 	}
 
 	@FXML
-	void openFile(ActionEvent event) {
+	protected void openFile(ActionEvent event) {
 		openFile();
 	}
 
@@ -47,7 +47,7 @@ public class MainActivity extends MainActivityFramework {
 	}
 
 	@FXML
-	void openHelp(ActionEvent event) {
+	protected void openHelp(ActionEvent event) {
 		openGitHub();
 	}
 
@@ -63,7 +63,7 @@ public class MainActivity extends MainActivityFramework {
 
 	@NotNull
 	@Override
-	public JFXButton getPlayButton() {
+	protected JFXButton getPlayButton() {
 		return playButton;
 	}
 
@@ -74,13 +74,13 @@ public class MainActivity extends MainActivityFramework {
 
 	@NotNull
 	@Override
-	public Echoer propertiesPrinter() {
+	protected Echoer propertiesPrinter() {
 		return msg -> propertiesList.getItems().add(msg);
 	}
 
 	@NotNull
 	@Override
-	public Echoer filesPrinter() {
+	protected Echoer filesPrinter() {
 		return msg -> filesList.getItems().add(msg);
 	}
 
