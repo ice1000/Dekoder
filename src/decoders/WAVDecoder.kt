@@ -29,23 +29,29 @@ open class WAVDecoder : DecoderInterface {
     override fun getTotalTime(): Long = size / bytePSec
 
     override fun init() {
-        if (playThread?.playData!!.isPaused ||
-                playThread?.playData!!.isStopped)
-            return
-        playThread?.start()
-        playThread?.playData!!.isPaused = false
 //        sound = JavaSoundAudioClip(File(path).inputStream())
     }
 
     override fun stop() {
+        playThread?.playData!!.isStopped = true
+        playThread?.playData!!.threadExit = true
+        playThread?.join()
 //        sound?.stop()
     }
 
     override fun pause() {
-
+        playThread?.playData!!.isPaused = true
+        playThread?.join()
     }
 
     override fun play() {
+        if (playThread?.playData!!.isPaused ||
+                playThread?.playData!!.isStopped)
+            return
+        if (!playThread?.playData!!.isPaused)
+            playThread?.start()
+        playThread!!.playData.isPlaying = true
+        playThread?.playData!!.isPaused = false
 //        sound?.play()
     }
 
