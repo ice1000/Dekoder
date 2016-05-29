@@ -17,7 +17,7 @@ Materially Designed, and written in pure kotlin but with a javaFX GUI.
 + [X] Pause
 + [X] Refresh list
 + [X] Next and previous song
-+ [X] List looping
++ [ ] List looping
 + [ ] Play list
 + [ ] Read the wave
 + [ ] Media format DSL
