@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Blend?>
@@ -7,61 +12,42 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity"
-			minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="796.0"
-			xmlns="http://javafx.com/javafx/8" fx:controller="view.controllers.MainActivity">
+
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controllers.MainActivity">
 	<children>
-		<JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="519.0" layoutY="54.0" prefHeight="415.0"
-					 prefWidth="273.0" stylesheets="@../res/css.css">
+		<JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="519.0" layoutY="54.0" prefHeight="415.0" prefWidth="273.0" stylesheets="@../res/css.css">
 			<effect>
-				<Blend/>
+				<Blend />
 			</effect>
 		</JFXListView>
 		<JFXToolbar layoutX="-1.0" prefHeight="428.0" prefWidth="114.0">
 			<center>
 				<AnchorPane prefHeight="428.0" prefWidth="144.0" BorderPane.alignment="CENTER">
 					<children>
-						<JFXButton fx:id="fileButton" layoutX="8.0" layoutY="110.0" onAction="#openFile"
-								   prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised"
-								   stylesheets="@../res/css.css" text="Open"/>
-						<JFXButton fx:id="helpButton" layoutX="7.0" layoutY="184.0" onAction="#openHelp"
-								   prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised"
-								   stylesheets="@../res/css.css" text="GitHub"/>
-						<JFXButton layoutX="7.0" layoutY="257.0" onAction="#refreshList" prefHeight="51.0"
-								   prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised"
-								   stylesheets="@../res/css.css" text="Refresh"/>
-						<ImageView fitHeight="98.0" fitWidth="79.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true"
-								   preserveRatio="true">
+						<JFXButton fx:id="fileButton" layoutX="8.0" layoutY="110.0" onAction="#openFile" prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised" stylesheets="@../res/css.css" text="Open" />
+						<JFXButton fx:id="helpButton" layoutX="7.0" layoutY="184.0" onAction="#openHelp" prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised" stylesheets="@../res/css.css" text="GitHub" />
+						<JFXButton layoutX="7.0" layoutY="257.0" onAction="#refreshList" prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised" stylesheets="@../res/css.css" text="Refresh" />
+						<ImageView fitHeight="98.0" fitWidth="79.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../res/kotlin.png"/>
+								<Image url="@../res/kotlin.png" />
 							</image>
 						</ImageView>
 					</children>
 				</AnchorPane>
 			</center>
 		</JFXToolbar>
-		<JFXProgressBar fx:id="progressBar" layoutX="292.0" layoutY="491.0" progress="0.0" scaleX="3.5"/>
-		<JFXListView fx:id="filesList" cellHorizontalMargin="1.0" layoutX="134.0" layoutY="54.0" prefHeight="415.0"
-					 prefWidth="375.0">
+		<JFXProgressBar fx:id="progressBar" layoutX="292.0" layoutY="491.0" progress="0.0" scaleX="3.5" />
+		<JFXListView fx:id="filesList" cellHorizontalMargin="1.0" layoutX="134.0" layoutY="54.0" prefHeight="415.0" prefWidth="375.0">
 			<effect>
-				<Blend/>
+				<Blend />
 			</effect>
 		</JFXListView>
-		<Label layoutX="678.0" layoutY="573.0" text="Author: ice1000"/>
-		<JFXButton buttonType="RAISED" layoutX="350.0" layoutY="520.0" onAction="#stopPlaying" prefHeight="41.0"
-				   prefWidth="224.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;"
-				   styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Stop"/>
-		<Label layoutX="288.0" layoutY="28.0" text="Music list"/>
-		<Label layoutX="595.0" layoutY="28.0" text="Music properties"/>
-		<JFXButton fx:id="playButton" buttonType="RAISED" defaultButton="true" layoutX="231.0" layoutY="520.0"
-				   onAction="#playMusic" prefHeight="41.0" prefWidth="68.0" ripplerFill="#fff549"
-				   style="-fx-border-radius: 50px;" styleClass="button-raised-fab" stylesheets="@../res/css.css"
-				   text="Play"/>
-		<JFXButton buttonType="RAISED" layoutX="469.0" layoutY="520.0" onAction="#nextSong" prefHeight="41.0"
-				   prefWidth="68.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;"
-				   styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Next"/>
-		<JFXButton buttonType="RAISED" layoutX="113.0" layoutY="520.0" onAction="#prevSong" prefHeight="41.0"
-				   prefWidth="68.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;"
-				   styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Previous"/>
+		<Label layoutX="678.0" layoutY="573.0" text="Author: ice1000" />
+		<JFXButton buttonType="RAISED" layoutX="350.0" layoutY="520.0" onAction="#stopPlaying" prefHeight="41.0" prefWidth="224.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;" styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Stop" />
+		<Label layoutX="288.0" layoutY="28.0" text="Music list" />
+		<Label layoutX="595.0" layoutY="28.0" text="Music properties" />
+		<JFXButton fx:id="playButton" buttonType="RAISED" defaultButton="true" layoutX="231.0" layoutY="520.0" onAction="#playMusic" prefHeight="41.0" prefWidth="68.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;" styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Play" />
+		<JFXButton buttonType="RAISED" layoutX="469.0" layoutY="520.0" onAction="#nextSong" prefHeight="41.0" prefWidth="68.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;" styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Next" />
+		<JFXButton buttonType="RAISED" layoutX="113.0" layoutY="520.0" onAction="#prevSong" prefHeight="41.0" prefWidth="68.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;" styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Previous" />
 	</children>
 </AnchorPane>
