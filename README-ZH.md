@@ -33,7 +33,7 @@
 基于JavaSound实现音乐播放功能。<br/>
 
 ### 运行
-将[这个jar包](out/artifact/dekoder/dekoder.jar)拷贝至lib目录下即可运行。
+将[这个jar包](out/artifacts/dekoder/dekoder.jar)拷贝至lib目录下即可运行。
 
 ### 版本
 + [v0.1 预览版](https://github.com/ice1000/Dekoder/releases/tag/v0.1)是最早的版本，也是最简陋的版本。
