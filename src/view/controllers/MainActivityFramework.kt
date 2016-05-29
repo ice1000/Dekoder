@@ -128,11 +128,18 @@ abstract class MainActivityFramework {
             WAVDecoder(filePath, p)
     }
 
+    /**
+     * this will stop playing
+     */
     open protected fun openFile(file: File) {
         val path = file.path
         // stop the latest opened file
-        dekoder?.onStop()
+        try {
+            stopPlaying()
+        } catch(e: NullPointerException) {
+        }
         // echo the name of this file
+        clearPropertiesShown()
         propertiesPrinter().echo(file.name)
         showFilesInTheSamePath(file.path)
         // write this file`s path to the database
@@ -144,7 +151,6 @@ abstract class MainActivityFramework {
         } catch(e: Exception) {
             e.printStackTrace()
         }
-        getPlayButton().text = PLAY
     }
 
     open protected fun initialize() {
@@ -155,6 +161,11 @@ abstract class MainActivityFramework {
         }
     }
 
+    /**
+     * @param path is the path of current file, not parent file
+     * this will call the parent file automatically
+     * and will clear the files which are already shown
+     */
     protected fun showFilesInTheSamePath(path: String) {
         clearFilesShown()
         fileList.removeAll(fileList)
@@ -166,6 +177,10 @@ abstract class MainActivityFramework {
         }
     }
 
+    /**
+     * change the current playing song
+     * @param next true means go next, false means go previous
+     */
     protected fun changeSong(next: Boolean) {
         val path = File(dekoder?.path)
         val currentFileIndex = fileList.indexOf(path.name)
@@ -174,7 +189,18 @@ abstract class MainActivityFramework {
                         fileList[(currentFileIndex + if (next) 1 else -1)
                                 % fileList.size]
         ))
+        playMusic()
     }
 
+    /**
+     * clear the files section which are shown
+     * !!!attention!!! this is not properties section
+     * this is files section!!!!
+     */
     protected abstract fun clearFilesShown()
+
+    /**
+     * clear the properties shown
+     */
+    protected abstract fun clearPropertiesShown()
 }

@@ -45,7 +45,7 @@ public class MainActivity extends MainActivityFramework {
 	protected void refreshList(ActionEvent event) {showFilesInTheSamePath(dekoder.getPath());}
 
 	@Override
-	protected void clearFilesShown() { filesList.getItems().remove(0, filesList.getItems().size());}
+	protected void clearFilesShown() {filesList.getItems().remove(0, filesList.getItems().size());}
 
 	@Override
 	public DecoderInterface getDekoder() {return dekoder;}
@@ -82,4 +82,7 @@ public class MainActivity extends MainActivityFramework {
 	@Override
 	@FXML
 	protected void initialize() {super.initialize();}
+
+	@Override
+	protected void clearPropertiesShown() {propertiesList.getItems().remove(0, propertiesList.getItems().size());}
 }
