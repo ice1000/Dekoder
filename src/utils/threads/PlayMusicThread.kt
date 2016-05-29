@@ -33,16 +33,14 @@ open class PlayMusicThread : Thread {
     override fun run() {
         line!!.open()
         line!!.start()
-        while (!playData.threadExit) {
-            var inBytes = 0;
-            while ((inBytes != -1) && (!playData.threadExit))
-                if (!playData.isPaused) {
-                    val audioData = ByteArray(BUFFER_SIZE)
-                    inBytes = ais!!.read(audioData, 0, BUFFER_SIZE);
-                    if (inBytes >= 0)
-                        line!!.write(audioData, 0, inBytes);
-                }
-        }
+        var inBytes = 0;
+        while (inBytes != -1 && !playData.threadExit)
+            if (!playData.isPaused) {
+                val audioData = ByteArray(BUFFER_SIZE)
+                inBytes = ais!!.read(audioData, 0, BUFFER_SIZE);
+                if (inBytes >= 0)
+                    line!!.write(audioData, 0, inBytes);
+            }
         line!!.drain()
         line!!.close()
     }

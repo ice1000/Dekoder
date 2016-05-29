@@ -34,9 +34,12 @@ open class WAVDecoder : DecoderInterface {
     }
 
     override fun onStop() {
-        playThread.playData.threadExit = true
-        playThread.playData.isPaused = true
-//        playThread.join()
+        try {
+            playThread.playData.threadExit = true
+            playThread.playData.isPaused = true
+            playThread.join()
+        } catch(e: Exception) {
+        }
 //        sound?.stop()
     }
 
@@ -46,9 +49,15 @@ open class WAVDecoder : DecoderInterface {
     }
 
     override fun onStart() {
-        if (!playThread.playData.isPaused)
+        try {
             playThread.start()
-        playThread.playData.isPaused = false
+        } catch(e: NullPointerException) {
+            playThread = PlayMusicThread(path)
+            playThread.start()
+        } catch(e: IllegalThreadStateException) {
+            // 妈蛋线程异常抓错了
+            playThread.playData.isPaused = false
+        }
 //        playThread.join()
 //        sound?.play()
     }

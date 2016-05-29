@@ -69,10 +69,10 @@ abstract class MainActivityFramework {
     open protected fun stopPlaying() {
         progress = 0
         dekoder?.onStop()
+        getPlayButton().text = PLAY
         progressThread.running = false
         progressThread.join()
         setProgress(progress)
-        getPlayButton().text = PLAY
     }
 
     /**
@@ -127,7 +127,7 @@ abstract class MainActivityFramework {
     open protected fun openFile(file: File) {
         val path = file.path
         file.parentFile.list().forEach {
-            if(it.endsWith("wav"))
+            if (it.endsWith("wav"))
                 filesPrinter().echo(it)
         }
         // stop the latest opened file
