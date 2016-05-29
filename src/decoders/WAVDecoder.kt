@@ -74,6 +74,7 @@ open class WAVDecoder : DecoderInterface {
         // ======================================================== 12
         if (!"fmt ".equals(reader.readToString())) {
             echo("fmt not found")
+            echo("progress bar will not appear")
             return
         }
         // ======================================================== 16

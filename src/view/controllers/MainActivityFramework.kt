@@ -143,12 +143,13 @@ abstract class MainActivityFramework {
         } catch(e: Exception) {
             e.printStackTrace()
         }
+        getPlayButton().text = PLAY
     }
 
     open protected fun initialize() {
         try {
             openFile(File(manager.read()[0]))
-        } catch (ignored: IndexOutOfBoundsException) {
+        } catch (ignored: Exception) {
             getPlayButton().text = OPEN
         }
     }

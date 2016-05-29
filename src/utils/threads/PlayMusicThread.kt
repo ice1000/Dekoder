@@ -3,6 +3,7 @@ package utils.threads
 import data.PlayData
 import utils.factories.getLine
 import java.io.File
+import javax.sound.sampled.AudioFormat
 import javax.sound.sampled.AudioInputStream
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.SourceDataLine
@@ -12,22 +13,26 @@ import javax.sound.sampled.SourceDataLine
  * Created by asus1 on 2016/5/28.
  */
 
-class PlayMusicThread : Thread {
+open class PlayMusicThread : Thread {
+
+    protected var ais: AudioInputStream? = null
+    protected var line: SourceDataLine? = null
+    protected var format: AudioFormat? = null
 
     var playData = PlayData()
-    private var line: SourceDataLine? = null
-    private var ais: AudioInputStream? = null
     val BUFFER_SIZE = 0xF
 
     constructor(fileToPlay: String) : super() {
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
-        if (ais != null)
-            line = getLine(ais!!.format)
-        line!!.open()
-        line!!.start()
+        if (ais != null) {
+            format = ais!!.format
+            line = getLine(format!!)
+        }
     }
 
     override fun run() {
+        line!!.open()
+        line!!.start()
         while (!playData.threadExit) {
             var inBytes = 0;
             while ((inBytes != -1) && (!playData.threadExit))
@@ -41,4 +46,6 @@ class PlayMusicThread : Thread {
         line!!.drain()
         line!!.close()
     }
+
+    constructor()
 }
