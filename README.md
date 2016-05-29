@@ -34,7 +34,7 @@ Dekoder is a desktop music player powered by JavaSound.<br/>
 Written in pure Kotlin but with a JavaFX GUI interface written in Java.<br/>
 
 ### build
-Copy [this jar](out/artifact/dekoder/dekoder.jar) to the lib directory, and you can run it.
+Copy [this jar](out/artifacts/dekoder/dekoder.jar) to the lib directory, and you can run it.
 
 ### releases
 + [v0.1 preview](https://github.com/ice1000/Dekoder/releases/tag/v0.1) is the earliest but simplest version.
