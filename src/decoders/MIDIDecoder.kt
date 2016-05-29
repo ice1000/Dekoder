@@ -1,4 +1,4 @@
-//package decoder
+//package decoders
 //
 //import utils.DSInputStreamReader
 //import utils.Echoer

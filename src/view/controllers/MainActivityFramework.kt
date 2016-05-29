@@ -3,6 +3,7 @@ package view.controllers
 import com.jfoenix.controls.JFXButton
 import data.database.DatabaseManager
 import decoders.DecoderInterface
+import decoders.MP3Decoder
 import decoders.WAVDecoder
 import javafx.stage.FileChooser
 import utils.Echoer
@@ -112,10 +113,11 @@ abstract class MainActivityFramework {
      */
     protected fun choose(filePath: String): DecoderInterface {
         val p = propertiesPrinter()
+        println(filePath)
         return if (filePath.endsWith("wav"))
             WAVDecoder(filePath, p)
-//        else if (filePath.endsWith("mp3"))
-//            MP3Decoder(filePath, p)
+        else if (filePath.endsWith("mp3"))
+            MP3Decoder(filePath, p)
 //        else if (filePath.endsWith("mid"))
 //            MIDIDecoder(filePath, p)
 //        else if (filePath.endsWith("ape"))
@@ -126,10 +128,6 @@ abstract class MainActivityFramework {
 
     open protected fun openFile(file: File) {
         val path = file.path
-        file.parentFile.list().forEach {
-            if (it.endsWith("wav"))
-                filesPrinter().echo(it)
-        }
         // stop the latest opened file
         dekoder?.onStop()
         // echo the name of this file
@@ -151,6 +149,13 @@ abstract class MainActivityFramework {
             openFile(File(manager.read()[0]))
         } catch (ignored: Exception) {
             getPlayButton().text = OPEN
+        }
+    }
+
+    protected fun showFilesInTheSamePath(path: String) {
+        File(path).parentFile.list().forEach {
+            if (it.endsWith("wav"))
+                filesPrinter().echo(it)
         }
     }
 

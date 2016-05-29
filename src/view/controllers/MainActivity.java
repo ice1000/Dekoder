@@ -15,9 +15,9 @@ import java.io.File;
 
 public class MainActivity extends MainActivityFramework {
 	@FXML
-	private JFXListView<Object> filesList;
+	private JFXListView<String> filesList;
 	@FXML
-	private JFXListView<Object> propertiesList;
+	private JFXListView<String> propertiesList;
 	@FXML
 	private AnchorPane window;
 	@FXML
@@ -27,75 +27,58 @@ public class MainActivity extends MainActivityFramework {
 	private DecoderInterface dekoder;
 
 	@FXML
-	protected void playMusic(ActionEvent event) {
-		super.playMusic();
-	}
+	protected void playMusic(ActionEvent event) {super.playMusic();}
 
 	@FXML
-	protected void openFile(ActionEvent event) {
-		openFile();
-	}
+	protected void openFile(ActionEvent event) {openFile();}
 
 	@Override
-	protected void openFile() {
-		openFile(getChooser().showOpenDialog(window.getScene().getWindow()));
-	}
+	protected void openFile() {openFile(getChooser().showOpenDialog(window.getScene().getWindow()));}
 
 	@Override
-	protected void openFile(@NotNull File file) {
-		propertiesList.getItems().remove(0, propertiesList.getItems().size());
-		super.openFile(file);
-	}
+	protected void openFile(@NotNull File file) {clearFilesShown(); super.openFile(file);}
 
 	@FXML
-	protected void openHelp(ActionEvent event) {
-		openGitHub();
-	}
+	protected void openHelp(ActionEvent event) {openGitHub();}
+
+	@FXML
+	protected void refreshList(ActionEvent event) {clearFilesShown(); showFilesInTheSamePath(dekoder.getPath());}
+
+	private void clearFilesShown() { filesList.getItems().remove(0, filesList.getItems().size());}
 
 	@Override
-	public DecoderInterface getDekoder() {
-		return dekoder;
-	}
+	public DecoderInterface getDekoder() {return dekoder;}
 
 	@Override
-	public void setDekoder(DecoderInterface decoderInterface) {
-		dekoder = decoderInterface;
-	}
+	public void setDekoder(DecoderInterface decoderInterface) {dekoder = decoderInterface;}
 
 	@NotNull
 	@Override
-	protected JFXButton getPlayButton() {
-		return playButton;
-	}
+	protected JFXButton getPlayButton() {return playButton;}
 
 	@Override
-	public void setProgress(long i) {
-		progressBar.setProgress(i / 1000.0 / dekoder.getTotalTime());
-	}
+	public void setProgress(long i) {progressBar.setProgress(i / 1000.0 / dekoder.getTotalTime());}
+
+	@FXML
+	protected void stopPlaying(ActionEvent event) {super.stopPlaying();}
+
+	@FXML
+	protected void prevSong(ActionEvent event) {}
+
+	@FXML
+	protected void nextSong(ActionEvent event) {}
 
 	@NotNull
 	@Override
-	protected Echoer propertiesPrinter() {
-		return msg -> propertiesList.getItems().add(msg);
-	}
+	protected Echoer propertiesPrinter() {return msg -> propertiesList.getItems().add(msg);}
 
 	@NotNull
 	@Override
 	protected Echoer filesPrinter() {
-		return msg -> {
-			ObservableList list = filesList.getItems();
-			if (!list.contains(msg)) list.add(msg);
-		};
+		return msg -> {ObservableList list = filesList.getItems(); if (!list.contains(msg)) list.add(msg);};
 	}
 
 	@Override
 	@FXML
-	protected void initialize() {
-		super.initialize();
-	}
-
-	@FXML
-	protected void stopPlaying(ActionEvent event) {
-		super.stopPlaying();
-	}
+	protected void initialize() {super.initialize();}
 }

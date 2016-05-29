@@ -11,7 +11,6 @@ import utils.Echoer
 abstract class DecoderInterface(echoer: Echoer) : Echoer by echoer {
 
     protected abstract var reader: DSInputStreamReader
-
     abstract var path: String
 
     abstract fun onCreate()

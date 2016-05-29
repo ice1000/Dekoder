@@ -1,8 +1,8 @@
-package decoder
+package decoders
 
-import decoders.DecoderInterface
 import utils.DSInputStreamReader
 import utils.Echoer
+import utils.threads.MPEGPlayThread
 import java.io.File
 
 /**
@@ -11,20 +11,37 @@ import java.io.File
  */
 
 open class MP3Decoder : DecoderInterface {
-    override fun onCreate() {
 
+    private var playThread: MPEGPlayThread
+
+    override fun onCreate() {
     }
 
     override fun onStart() {
-        throw UnsupportedOperationException()
+        try {
+            playThread.start()
+        } catch(e: NullPointerException) {
+            playThread = MPEGPlayThread(path)
+            playThread.start()
+        } catch(e: IllegalThreadStateException) {
+            // 妈蛋线程异常抓错了
+            playThread.playData.isPaused = false
+        }
+//        playThread.join()
     }
 
     override fun onStop() {
-        throw UnsupportedOperationException()
+        try {
+            playThread.playData.threadExit = true
+            playThread.playData.isPaused = true
+            playThread.join()
+        } catch(e: Exception) {
+        }
     }
 
     override fun onPause() {
-        throw UnsupportedOperationException()
+        playThread.playData.isPaused = true
+//        playThread.join()
     }
 
     override var reader: DSInputStreamReader
@@ -39,6 +56,7 @@ open class MP3Decoder : DecoderInterface {
 
     constructor(path: String, echoer: Echoer) : super(echoer) {
         this.path = path
+        playThread = MPEGPlayThread(path)
         reader = DSInputStreamReader(File(path))
         if ("ID3".equals(reader.read(3, 3))) {
             echo("ID3 not found")
