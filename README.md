@@ -32,3 +32,7 @@ Written in pure Kotlin but with a JavaFX GUI interface written in Java.<br/>
 
 ### build
 Copy [this jar](out/artifact/dekoder/dekoder.jar) to the lib directory, and you can run it.
+
+### releases
++ [v0.1 preview](https://github.com/ice1000/Dekoder/releases/tag/v0.1) is the earliest but simplest version.
++ [v1.0 stable](https://github.com/ice1000/Dekoder/releases/tag/v1.0) is the earliest stable version. This supports playing wav files, listing files, and playing and stop.

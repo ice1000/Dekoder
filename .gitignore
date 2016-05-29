@@ -5,3 +5,7 @@ out/production
 save.db
 .idea/workspace.xml
 .idea/libraries
+/out/artifacts/dekoder/jfoenix.jar
+/out/artifacts/dekoder/kotlin-runtime.jar
+/out/artifacts/dekoder/dekoder.html
+/out/artifacts/dekoder/dekoder.jnlp

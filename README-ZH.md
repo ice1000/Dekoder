@@ -31,3 +31,7 @@
 
 ### 运行
 将[这个jar包](out/artifact/dekoder/dekoder.jar)拷贝至lib目录下即可运行。
+
+### 版本
++ [v0.1 预览版](https://github.com/ice1000/Dekoder/releases/tag/v0.1)是最早的版本，也是最简陋的版本。
++ [v1.0 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.0)是最早发布的稳定版，支持wav格式的音频播放，列出音乐，以及播放暂停功能。
