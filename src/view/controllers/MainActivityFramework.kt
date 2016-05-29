@@ -32,7 +32,10 @@ abstract class MainActivityFramework {
     val chooser: FileChooser
         get() = FileChooser()
 
-    private var progressThread = ProgressThread { setProgress(it) }
+    private var progressThread = ProgressThread (
+            { setProgress(it) },
+            { changeSong(true) }
+    )
 
     private var progress = 0L
 
@@ -47,7 +50,10 @@ abstract class MainActivityFramework {
      */
     open protected fun playMusic() {
         if (PLAY == getPlayButton().text) {
-            progressThread = ProgressThread { setProgress(it) }
+            progressThread = ProgressThread (
+                    { setProgress(it) },
+                    { changeSong(true) }
+            )
             if (progress > 0)
                 progressThread.storedTime = progress
             progressThread.start()
