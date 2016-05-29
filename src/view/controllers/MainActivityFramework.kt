@@ -9,6 +9,7 @@ import javafx.stage.FileChooser
 import utils.Echoer
 import utils.threads.ProgressThread
 import java.io.File
+import java.util.*
 
 /**
  * @author ice1000
@@ -22,6 +23,7 @@ abstract class MainActivityFramework {
     private val STOP = "Stop"
     private val PLAY = "Play"
     private val OPEN = "Open"
+    private var fileList: ArrayList<String> = ArrayList()
 
     abstract var dekoder: DecoderInterface?
 
@@ -63,7 +65,7 @@ abstract class MainActivityFramework {
             getPlayButton().text = PLAY
         } else {
             // OPEN
-            openFile()
+            showOpenFileDialog()
         }
     }
 
@@ -105,7 +107,7 @@ abstract class MainActivityFramework {
     /**
      * to show a open file dialog
      */
-    abstract protected fun openFile()
+    abstract protected fun showOpenFileDialog()
 
     /**
      * select a decoders to decode the music file.
@@ -132,6 +134,7 @@ abstract class MainActivityFramework {
         dekoder?.onStop()
         // echo the name of this file
         propertiesPrinter().echo(file.name)
+        showFilesInTheSamePath(file.path)
         // write this file`s path to the database
         manager.write(path)
         // give a value to dekoder, to choose a type
@@ -153,10 +156,25 @@ abstract class MainActivityFramework {
     }
 
     protected fun showFilesInTheSamePath(path: String) {
+        clearFilesShown()
+        fileList.removeAll(fileList)
         File(path).parentFile.list().forEach {
-            if (it.endsWith("wav"))
+            if (it.endsWith("wav")) {
                 filesPrinter().echo(it)
+                fileList.add(it)
+            }
         }
     }
 
+    protected fun changeSong(next: Boolean) {
+        val path = File(dekoder?.path)
+        val currentFileIndex = fileList.indexOf(path.name)
+        openFile(File(
+                path.parent + File.separator +
+                        fileList[(currentFileIndex + if (next) 1 else -1)
+                                % fileList.size]
+        ))
+    }
+
+    protected abstract fun clearFilesShown()
 }

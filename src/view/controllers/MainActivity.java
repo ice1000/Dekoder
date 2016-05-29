@@ -30,21 +30,22 @@ public class MainActivity extends MainActivityFramework {
 	protected void playMusic(ActionEvent event) {super.playMusic();}
 
 	@FXML
-	protected void openFile(ActionEvent event) {openFile();}
+	protected void openFile(ActionEvent event) {showOpenFileDialog();}
 
 	@Override
-	protected void openFile() {openFile(getChooser().showOpenDialog(window.getScene().getWindow()));}
+	protected void showOpenFileDialog() {openFile(getChooser().showOpenDialog(window.getScene().getWindow()));}
 
 	@Override
-	protected void openFile(@NotNull File file) {clearFilesShown(); super.openFile(file);}
+	protected void openFile(@NotNull File file) {super.openFile(file);}
 
 	@FXML
 	protected void openHelp(ActionEvent event) {openGitHub();}
 
 	@FXML
-	protected void refreshList(ActionEvent event) {clearFilesShown(); showFilesInTheSamePath(dekoder.getPath());}
+	protected void refreshList(ActionEvent event) {showFilesInTheSamePath(dekoder.getPath());}
 
-	private void clearFilesShown() { filesList.getItems().remove(0, filesList.getItems().size());}
+	@Override
+	protected void clearFilesShown() { filesList.getItems().remove(0, filesList.getItems().size());}
 
 	@Override
 	public DecoderInterface getDekoder() {return dekoder;}
@@ -63,10 +64,10 @@ public class MainActivity extends MainActivityFramework {
 	protected void stopPlaying(ActionEvent event) {super.stopPlaying();}
 
 	@FXML
-	protected void prevSong(ActionEvent event) {}
+	protected void prevSong(ActionEvent event) {super.changeSong(false);}
 
 	@FXML
-	protected void nextSong(ActionEvent event) {}
+	protected void nextSong(ActionEvent event) {super.changeSong(true);}
 
 	@NotNull
 	@Override
