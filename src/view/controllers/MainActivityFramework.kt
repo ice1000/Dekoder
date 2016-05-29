@@ -49,13 +49,13 @@ abstract class MainActivityFramework {
                 progressThread.storedTime = progress
             progressThread.start()
             try {
-                dekoder?.play()
+                dekoder?.onStart()
             } catch (e: IllegalStateException) {
                 return
             }
             getPlayButton().text = PAUSE
         } else if (PAUSE == getPlayButton().text) {
-            dekoder?.pause()
+            dekoder?.onPause()
             progress = progressThread.storedTime
             progressThread.running = false
             progressThread.join()
@@ -68,7 +68,7 @@ abstract class MainActivityFramework {
 
     open protected fun stopPlaying() {
         progress = 0
-        dekoder?.stop()
+        dekoder?.onStop()
         progressThread.running = false
         progressThread.join()
         setProgress(progress)
@@ -131,7 +131,7 @@ abstract class MainActivityFramework {
                 filesPrinter().echo(it)
         }
         // stop the latest opened file
-        dekoder?.stop()
+        dekoder?.onStop()
         // echo the name of this file
         propertiesPrinter().echo(file.name)
         // write this file`s path to the database
@@ -139,7 +139,7 @@ abstract class MainActivityFramework {
         // give a value to dekoder, to choose a type
         dekoder = choose(path)
         try {
-            dekoder?.init()
+            dekoder?.onCreate()
         } catch(e: Exception) {
             e.printStackTrace()
         }

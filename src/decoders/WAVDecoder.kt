@@ -8,6 +8,7 @@ import java.io.File
 
 /**
  * @author ice1000
+ * decoder for wave files
  * Created by asus1 on 2016/5/22.
  */
 
@@ -28,25 +29,23 @@ open class WAVDecoder : DecoderInterface {
 
     override fun getTotalTime(): Long = size / bytePSec
 
-    override fun init() {
+    override fun onCreate() {
 //        sound = JavaSoundAudioClip(File(path).inputStream())
     }
 
-    override fun stop() {
+    override fun onStop() {
         playThread.playData.threadExit = true
         playThread.playData.isPaused = true
 //        playThread.join()
 //        sound?.stop()
     }
 
-    override fun pause() {
+    override fun onPause() {
         playThread.playData.isPaused = true
 //        playThread.join()
     }
 
-    override fun play() {
-        if (playThread.playData.isPaused)
-            return
+    override fun onStart() {
         if (!playThread.playData.isPaused)
             playThread.start()
         playThread.playData.isPaused = false
