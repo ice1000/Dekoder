@@ -29,3 +29,6 @@ Materially Designed, and written in pure kotlin but with a javaFX GUI.
 A kotlin music player.<br/>
 Dekoder is a desktop music player powered by JavaSound.<br/>
 Written in pure Kotlin but with a JavaFX GUI interface written in Java.<br/>
+
+### build
+Copy [this jar](out/artifact/dekoder/dekoder.jar) to the lib directory, and you can run it.

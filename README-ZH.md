@@ -28,3 +28,6 @@
 ### 说明
 一个Kotlin音乐播放器。使用纯Kotlin实现，不过和JavaFX的GUI接口是Java写的。<br/>
 基于JavaSound实现音乐播放功能。<br/>
+
+### 运行
+将[这个jar包](out/artifact/dekoder/dekoder.jar)拷贝至lib目录下即可运行。
