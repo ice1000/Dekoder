@@ -12,7 +12,7 @@ import javafx.stage.StageStyle
  * Created by ice1000 on 2016/5/21.
  */
 
-class View: Application() {
+class View : Application() {
     override fun start(primaryStage: Stage?) {
 //        Thread(Runnable {
 //            SVGGlyphLoader.loadGlyphsFont(View::class.java.getResourceAsStream("/src/view/res/kotlin.png"),"kotlin.png");
@@ -28,7 +28,5 @@ class View: Application() {
 
     }
 
-    fun onCreate() {
-        launch(View::class.java)
-    }
+    fun onCreate() = launch(View::class.java)
 }

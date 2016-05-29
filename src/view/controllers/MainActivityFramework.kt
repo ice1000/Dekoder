@@ -20,7 +20,6 @@ import java.util.*
 abstract class MainActivityFramework {
 
     private val PAUSE = "Pause"
-    private val STOP = "Stop"
     private val PLAY = "Play"
     private val OPEN = "Open"
     private var fileList: ArrayList<String> = ArrayList()
@@ -33,8 +32,7 @@ abstract class MainActivityFramework {
         get() = FileChooser()
 
     private var progressThread = ProgressThread (
-            { setProgress(it) },
-            { changeSong(true) }
+            { setProgress(it) }
     )
 
     private var progress = 0L
@@ -51,8 +49,7 @@ abstract class MainActivityFramework {
     open protected fun playMusic() {
         if (PLAY == getPlayButton().text) {
             progressThread = ProgressThread (
-                    { setProgress(it) },
-                    { changeSong(true) }
+                    { setProgress(it) }
             )
             if (progress > 0)
                 progressThread.storedTime = progress

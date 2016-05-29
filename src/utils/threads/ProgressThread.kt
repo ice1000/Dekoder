@@ -5,7 +5,7 @@ package utils.threads
  * Created by ice1000 on 2016/5/25.
  */
 
-class ProgressThread(private var setter: (i: Long) -> Unit, private var ender: () -> Unit) : Thread() {
+class ProgressThread(private var setter: (i: Long) -> Unit) : Thread() {
 
     var running = true
     var nowTime = 0L
@@ -37,8 +37,6 @@ class ProgressThread(private var setter: (i: Long) -> Unit, private var ender: (
             setter(storedTime)
             sleep(100)
         }
-        sleep(500)
-        ender
     }
 
 }
