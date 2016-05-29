@@ -7,7 +7,7 @@ Materially Designed, and written in pure kotlin but with a javaFX GUI.
 ### Language
 + [简体中文](./README-ZH.md)
 
-![0](./art/02.PNG)
+![0](./art/03.PNG)
 
 ### TODO list
 + [X] Read mata data.
