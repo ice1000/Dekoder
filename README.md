@@ -7,14 +7,15 @@ Materially Designed, and written in pure kotlin but with a javaFX GUI.
 ### Language
 + [简体中文](./README-ZH.md)
 
-![0](./art/01.PNG)
+![0](./art/02.PNG)
 
 ### TODO list
 + [X] Read mata data.
 + [X] GUI
 + [X] Play and stop the media.
 + [X] Progress bar
-+ [ ] Pause
++ [X] Pause
++ [ ] Play list
 + [ ] Read the wave
 + [ ] Media format DSL
 
@@ -25,7 +26,6 @@ Materially Designed, and written in pure kotlin but with a javaFX GUI.
 + [JFoenix](https://github.com/jfoenixadmin/JFoenix)
 
 ### Description
-This project involves two artifacts.<br/>
-One is CUI edition, the other is with a GUI, and the GUI is based on JavaFX.<br/>
-And that`s why I still use Java in this Kotlin project, but java is just a UI interface in this project.<br/>
-The one with GUI is stronger, you only have to choose a file to open, and you can play it.
+A kotlin music player.<br/>
+Dekoder is a desktop music player powered by JavaSound.<br/>
+Written in pure Kotlin but with a JavaFX GUI interface written in Java.<br/>

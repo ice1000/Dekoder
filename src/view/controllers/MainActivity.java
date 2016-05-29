@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXProgressBar;
 import decoders.DecoderInterface;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -81,7 +82,10 @@ public class MainActivity extends MainActivityFramework {
 	@NotNull
 	@Override
 	protected Echoer filesPrinter() {
-		return msg -> filesList.getItems().add(msg);
+		return msg -> {
+			ObservableList list = filesList.getItems();
+			if (!list.contains(msg)) list.add(msg);
+		};
 	}
 
 	@Override
