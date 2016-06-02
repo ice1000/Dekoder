@@ -46,3 +46,5 @@ is the earliest but simplest version.
 is the earliest stable version. This supports playing wav files, listing files, and playing and stop.
 + [v1.1 stable](https://github.com/ice1000/Dekoder/releases/tag/v1.1) 
 has implement the 'next' 'previous' and 'refresh' button.
++ [v1.2 stable](https://github.com/ice1000/Dekoder/releases/tag/v1.2) 
+new 'Exit' button to close this software without leaving any running thread, and various bugs fixed.
