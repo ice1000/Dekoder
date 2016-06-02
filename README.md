@@ -2,7 +2,10 @@
 
 ### What this is
 This is a cross-platform music player.<br/>
-Materially Designed, and written in pure kotlin but with a javaFX GUI.
+Materially Designed, and written in pure kotlin but with a javaFX GUI.<br/>
+You can see this repo on [KotlinBy awesome-kotlin](https://github.com/KotlinBy/awesome-kotlin)
+or [KotlinCN awesome-kotlin](https://github.com/KotlinCN/awesome-kotlin).
+
 
 ### Language
 + [简体中文](./README-ZH.md)
@@ -37,6 +40,9 @@ Written in pure Kotlin but with a JavaFX GUI interface written in Java.<br/>
 Copy [this jar](out/artifacts/dekoder/dekoder.jar) to the lib directory, and you can run it.
 
 ### releases
-+ [v0.1 preview](https://github.com/ice1000/Dekoder/releases/tag/v0.1) is the earliest but simplest version.
-+ [v1.0 stable](https://github.com/ice1000/Dekoder/releases/tag/v1.0) is the earliest stable version. This supports playing wav files, listing files, and playing and stop.
-+ [v1.1 stable](https://github.com/ice1000/Dekoder/releases/tag/v1.1) has implement the 'next' 'previous' and 'refresh' button.
++ [v0.1 preview](https://github.com/ice1000/Dekoder/releases/tag/v0.1) 
+is the earliest but simplest version.
++ [v1.0 stable](https://github.com/ice1000/Dekoder/releases/tag/v1.0) 
+is the earliest stable version. This supports playing wav files, listing files, and playing and stop.
++ [v1.1 stable](https://github.com/ice1000/Dekoder/releases/tag/v1.1) 
+has implement the 'next' 'previous' and 'refresh' button.

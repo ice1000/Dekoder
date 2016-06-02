@@ -2,7 +2,9 @@
 
 ### 这是什么
 这是一个音乐播放器。<br/>
-使用Material Design的规范进行UI设计，使用纯Kotlin实现，不过GUI使用JavaFX。
+使用Material Design的规范进行UI设计，使用纯Kotlin实现，不过GUI使用JavaFX。<br/>
+可以在[白俄罗斯的awesome-kotlin](https://github.com/KotlinBy/awesome-kotlin)和
+[中国的awesome-kotlin](https://github.com/KotlinCN/awesome-kotlin)里面看到本项目英俊的身影。
 
 ### 语言
 + [English](./README.md)
@@ -36,6 +38,9 @@
 将[这个jar包](out/artifacts/dekoder/dekoder.jar)拷贝至lib目录下即可运行。
 
 ### 版本
-+ [v0.1 预览版](https://github.com/ice1000/Dekoder/releases/tag/v0.1)是最早的版本，也是最简陋的版本。
-+ [v1.0 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.0)是最早发布的稳定版，支持wav格式的音频播放，列出音乐，以及播放暂停功能。
-+ [v1.1 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.1)实现了上一首、下一首、刷新列表功能。
++ [v0.1 预览版](https://github.com/ice1000/Dekoder/releases/tag/v0.1)
+是最早的版本，也是最简陋的版本。
++ [v1.0 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.0)
+是最早发布的稳定版，支持wav格式的音频播放，列出音乐，以及播放暂停功能。
++ [v1.1 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.1)
+实现了上一首、下一首、刷新列表功能。
