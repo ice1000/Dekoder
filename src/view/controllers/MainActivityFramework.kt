@@ -14,6 +14,7 @@ import java.util.*
 /**
  * @author ice1000
  * the framework of MainActivity
+ * MainActivity is actually
  * Created by asus1 on 2016/5/22.
  */
 
@@ -37,6 +38,8 @@ abstract class MainActivityFramework {
 
     private var progress = 0L
 
+    private var stopped: Boolean = false
+
     open fun openGitHub() = Runtime.getRuntime().exec(
             "rundll32 url.dll,FileProtocolHandler " +
                     "https://github.com/ice1000/Dekoder")
@@ -51,14 +54,21 @@ abstract class MainActivityFramework {
             progressThread = ProgressThread (
                     { setProgress(it) }
             )
-            if (progress > 0)
-                progressThread.storedTime = progress
-            progressThread.start()
             try {
+                if (stopped) {
+                    clearPropertiesShown()
+                    propertiesPrinter().echo(
+                            File(dekoder!!.path).name)
+                    dekoder = choose(dekoder!!.path)
+                    stopped = false
+                }
                 dekoder?.onStart()
             } catch (e: IllegalStateException) {
                 return
             }
+            if (progress > 0)
+                progressThread.storedTime = progress
+            progressThread.start()
             getPlayButton().text = PAUSE
         } else if (PAUSE == getPlayButton().text) {
             dekoder?.onPause()
@@ -74,11 +84,16 @@ abstract class MainActivityFramework {
 
     open protected fun stopPlaying() {
         progress = 0
+        stopped = true
         dekoder?.onStop()
         getPlayButton().text = PLAY
         progressThread.running = false
         progressThread.join()
-        setProgress(progress)
+        try {
+            setProgress(progress)
+        }catch(e: ArithmeticException) {
+            setProgress(1)
+        }
     }
 
     /**
@@ -123,10 +138,10 @@ abstract class MainActivityFramework {
             WAVDecoder(filePath, p)
         else if (filePath.endsWith("mp3"))
             MP3Decoder(filePath, p)
-//        else if (filePath.endsWith("mid"))
-//            MIDIDecoder(filePath, p)
-//        else if (filePath.endsWith("ape"))
-//            APEDecoder(filePath, p)
+        //        else if (filePath.endsWith("mid"))
+        //            MIDIDecoder(filePath, p)
+        //        else if (filePath.endsWith("ape"))
+        //            APEDecoder(filePath, p)
         else
             WAVDecoder(filePath, p)
     }
@@ -139,11 +154,12 @@ abstract class MainActivityFramework {
         // stop the latest opened file
         try {
             stopPlaying()
-        } catch(e: NullPointerException) {
+        } catch (e: NullPointerException) {
         }
         // echo the name of this file
         clearPropertiesShown()
-        propertiesPrinter().echo(file.name)
+        propertiesPrinter()
+                .echo(file.name)
         showFilesInTheSamePath(file.path)
         // write this file`s path to the database
         manager.write(path)
@@ -188,9 +204,11 @@ abstract class MainActivityFramework {
         val path = File(dekoder?.path)
         val currentFileIndex = fileList.indexOf(path.name)
         openFile(File(
-                path.parent + File.separator +
-                        fileList[(currentFileIndex + if (next) 1 else -1)
-                                % fileList.size]
+                path.parent + File.separator + fileList[
+                        (currentFileIndex
+                                + if (next) 1 else -1)
+                                % fileList.size
+                        ]
         ))
         playMusic()
     }
@@ -206,4 +224,13 @@ abstract class MainActivityFramework {
      * clear the properties shown
      */
     protected abstract fun clearPropertiesShown()
+
+    /**
+     * exit
+     */
+    protected fun onDestroyed() {
+        stopPlaying()
+        dekoder = null
+        System.exit(0)
+    }
 }

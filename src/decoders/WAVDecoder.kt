@@ -38,7 +38,7 @@ open class WAVDecoder : DecoderInterface {
             playThread.playData.threadExit = true
             playThread.playData.isPaused = true
             playThread.join()
-        } catch(e: Exception) {
+        } catch (e: Exception) {
         }
 //        sound?.stop()
     }
@@ -51,10 +51,10 @@ open class WAVDecoder : DecoderInterface {
     override fun onStart() {
         try {
             playThread.start()
-        } catch(e: NullPointerException) {
+        } catch (e: NullPointerException) {
             playThread = PlayMusicThread(path)
             playThread.start()
-        } catch(e: IllegalThreadStateException) {
+        } catch (e: IllegalThreadStateException) {
             // 妈蛋线程异常抓错了
             playThread.playData.isPaused = false
         }
@@ -62,7 +62,7 @@ open class WAVDecoder : DecoderInterface {
 //        sound?.play()
     }
 
-    constructor(fileName: String, echoer: Echoer) : super(echoer) {
+    constructor (fileName: String, echoer: Echoer) : super (echoer) {
         path = fileName
         playThread = PlayMusicThread(path)
         reader = DSInputStreamReader(File(path))
@@ -93,7 +93,7 @@ open class WAVDecoder : DecoderInterface {
         echo("decoding: ${reader.readToLong(1, 1)}")
         // ======================================================== 22
         channels = reader.readToInt(1, 1)
-        echo(if (channels == 1) "single" else "double" + " channel")
+        echo( if (channels == 1) "single" else "double" + " channel")
         // ======================================================== 24
         samplePSec = reader.readToInt()
         echo("$samplePSec samples per second")

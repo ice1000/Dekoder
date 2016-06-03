@@ -69,6 +69,9 @@ public class MainActivity extends MainActivityFramework {
 	@FXML
 	protected void nextSong(ActionEvent event) {super.changeSong(true);}
 
+	@FXML
+	protected void onDestroyed(ActionEvent event) {super.onDestroyed();}
+
 	@NotNull
 	@Override
 	protected Echoer propertiesPrinter() {return msg -> propertiesList.getItems().add(msg);}

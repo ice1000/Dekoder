@@ -21,5 +21,5 @@ abstract class DecoderInterface(echoer: Echoer) : Echoer by echoer {
 
     abstract fun onPause()
 
-    abstract fun getTotalTime(): Long
+    open fun getTotalTime(): Long = 60
 }

@@ -27,8 +27,10 @@ class DatabaseManager {
     fun write(path: String) {
         val b = read()
         if (path !in b)
-            file.writeText(path + "\n")
+            file.appendText(
+                    path + "\n",
+                    Charsets.UTF_8
+            )
         println("path is $path")
-        b.forEach { file.writeText(it + "\n") }
     }
 }

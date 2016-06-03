@@ -22,7 +22,7 @@ open class PlayMusicThread : Thread {
     var playData = PlayData()
     val BUFFER_SIZE = 0xF
 
-    constructor(fileToPlay: String) : super() {
+    constructor (fileToPlay: String) : super () {
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null) {
             format = ais!!.format
@@ -33,13 +33,13 @@ open class PlayMusicThread : Thread {
     override fun run() {
         line!!.open()
         line!!.start()
-        var inBytes = 0;
+        var inBytes = 0
         while (inBytes != -1 && !playData.threadExit)
             if (!playData.isPaused) {
                 val audioData = ByteArray(BUFFER_SIZE)
-                inBytes = ais!!.read(audioData, 0, BUFFER_SIZE);
+                inBytes = ais!!.read(audioData, 0, BUFFER_SIZE)
                 if (inBytes >= 0)
-                    line!!.write(audioData, 0, inBytes);
+                    line!!.write(audioData, 0, inBytes)
             }
         line!!.drain()
         line!!.close()
