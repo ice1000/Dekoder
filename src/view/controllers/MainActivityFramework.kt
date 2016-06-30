@@ -49,9 +49,13 @@ abstract class MainActivityFramework {
             }
         }
 
-    open fun openGitHub() = Runtime.getRuntime().exec(
-            "rundll32 url.dll,FileProtocolHandler " +
-                    "https://github.com/ice1000/Dekoder")
+    open fun openGitHub() {
+        Thread({
+            Runtime.getRuntime().exec(
+                    "rundll32 url.dll,FileProtocolHandler " +
+                            "https://github.com/ice1000/Dekoder")
+        }).start()
+    }
 
     /**
      * I think I`d better find a way to use less thread instances

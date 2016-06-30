@@ -21,7 +21,7 @@ open class MP3Decoder : DecoderInterface {
         try {
             playThread.start()
         } catch(e: NullPointerException) {
-            playThread = MPEGPlayThread(path, next)
+            playThread = MPEGPlayThread(path)
             playThread.start()
         } catch(e: IllegalThreadStateException) {
             // 妈蛋线程异常抓错了
@@ -56,7 +56,7 @@ open class MP3Decoder : DecoderInterface {
 
     constructor(path: String, echoer: Echoer, next: (Boolean) -> Unit) : super(echoer, next) {
         this.path = path
-        playThread = MPEGPlayThread(path, next)
+        playThread = MPEGPlayThread(path)
         reader = DSInputStreamReader(File(path))
         if ("ID3".equals(reader.read(3, 3))) {
             echo("ID3 not found")

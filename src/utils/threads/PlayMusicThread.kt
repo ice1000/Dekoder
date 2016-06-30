@@ -13,7 +13,7 @@ import javax.sound.sampled.SourceDataLine
  * Created by asus1 on 2016/5/28.
  */
 
-open class PlayMusicThread(var next: (Boolean) -> Unit) : Thread() {
+open class PlayMusicThread() : Thread() {
 
     protected var ais: AudioInputStream? = null
     protected var line: SourceDataLine? = null
@@ -21,7 +21,7 @@ open class PlayMusicThread(var next: (Boolean) -> Unit) : Thread() {
 
     var playData = PlayData()
 
-    constructor (fileToPlay: String, nextMover: (Boolean) -> Unit) : this(nextMover) {
+    constructor (fileToPlay: String) : this() {
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null) {
             format = ais!!.format
@@ -31,6 +31,5 @@ open class PlayMusicThread(var next: (Boolean) -> Unit) : Thread() {
 
     override fun run() {
         PlayerRunSupporter().run(playData, ais, line)
-//        next(true)
     }
 }

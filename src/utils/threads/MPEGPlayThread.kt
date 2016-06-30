@@ -20,7 +20,7 @@ class MPEGPlayThread : Thread {
 
     var playData = PlayData()
 
-    constructor (fileToPlay: String, next: (Boolean) -> Unit) {
+    constructor (fileToPlay: String) {
         // MPEG1L3转PCM_SIGNED
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null) {

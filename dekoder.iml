@@ -10,5 +10,6 @@
     <orderEntry type="library" exported="" name="jfoenix" level="project" />
     <orderEntry type="library" exported="" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" name="kotlin-runtime" level="project" />
+    <orderEntry type="library" name="mp3Support" level="project" />
   </component>
 </module>

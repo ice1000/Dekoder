@@ -58,7 +58,7 @@ open class WAVDecoder : DecoderInterface {
         try {
             playThread.start()
         } catch (e: NullPointerException) {
-            playThread = PlayMusicThread(path, next)
+            playThread = PlayMusicThread(path)
             playThread.start()
         } catch (e: IllegalThreadStateException) {
             // 妈蛋线程异常抓错了
@@ -70,7 +70,7 @@ open class WAVDecoder : DecoderInterface {
 
     constructor (fileName: String, echoer: Echoer, next: (Boolean) -> Unit) : super(echoer, next) {
         path = fileName
-        playThread = PlayMusicThread(path, next)
+        playThread = PlayMusicThread(path)
         reader = DSInputStreamReader(File(path))
         val metaSize: Int
         // ======================================================== 0
