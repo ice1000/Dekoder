@@ -25,7 +25,6 @@ class MPEGPlayThread : Thread {
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null) {
             format = ais!!.format
-            line = getLine(format!!)
         }
         if (format!!.encoding != AudioFormat.Encoding.PCM_SIGNED) {
             format = AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
@@ -41,6 +40,7 @@ class MPEGPlayThread : Thread {
                     ais
             );
         }
+        line = getLine(format!!)
     }
 
     override fun run() {

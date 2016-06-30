@@ -27,6 +27,7 @@ or [KotlinCN awesome-kotlin](https://github.com/KotlinCN/awesome-kotlin).
 
 ### Supported formats
 + *.wav
++ *.mp3-low-quality (this was so f#cking exciting!!!!)
 
 ### used open source projects
 + [JFoenix](https://github.com/jfoenixadmin/JFoenix)

@@ -68,7 +68,7 @@ open class WAVDecoder : DecoderInterface {
 //        sound?.play()
     }
 
-    constructor (fileName: String, echoer: Echoer, next: (Boolean) -> Unit) : super(echoer, next) {
+    constructor (fileName: String, echoer: Echoer) : super(echoer) {
         path = fileName
         playThread = PlayMusicThread(path)
         reader = DSInputStreamReader(File(path))

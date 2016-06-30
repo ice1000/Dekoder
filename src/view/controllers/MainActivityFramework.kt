@@ -161,15 +161,15 @@ abstract class MainActivityFramework {
         }
         println(filePath)
         return if (filePath.endsWith("wav"))
-            WAVDecoder(filePath, p, call)
+            WAVDecoder(filePath, p)
         else if (filePath.endsWith("mp3"))
-            MP3Decoder(filePath, p, call)
+            MP3Decoder(filePath, p)
         //        else if (filePath.endsWith("mid"))
         //            MIDIDecoder(filePath, p)
         //        else if (filePath.endsWith("ape"))
         //            APEDecoder(filePath, p)
         else
-            WAVDecoder(filePath, p, call)
+            WAVDecoder(filePath, p)
     }
 
     /**

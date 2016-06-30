@@ -8,7 +8,7 @@ import utils.Echoer
  * Created by asus1 on 2016/5/22.
  */
 
-abstract class DecoderInterface(echoer: Echoer, var next: (Boolean) -> Unit) : Echoer by echoer {
+abstract class DecoderInterface(echoer: Echoer) : Echoer by echoer {
 
     protected abstract var reader: DSInputStreamReader
     abstract var path: String

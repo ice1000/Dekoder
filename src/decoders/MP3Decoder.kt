@@ -51,10 +51,10 @@ open class MP3Decoder : DecoderInterface {
     // use the default initializer
 
     override fun getTotalTime(): Long {
-        return 60
+        return 180
     }
 
-    constructor(path: String, echoer: Echoer, next: (Boolean) -> Unit) : super(echoer, next) {
+    constructor(path: String, echoer: Echoer) : super(echoer) {
         this.path = path
         playThread = MPEGPlayThread(path)
         reader = DSInputStreamReader(File(path))
