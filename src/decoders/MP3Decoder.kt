@@ -51,7 +51,7 @@ open class MP3Decoder : DecoderInterface {
     // use the default initializer
 
     override fun getTotalTime(): Long {
-        return 180
+        return playThread.getDuration()
     }
 
     constructor(path: String, echoer: Echoer) : super(echoer) {

@@ -43,6 +43,13 @@ class MPEGPlayThread : Thread {
         line = getLine(format!!)
     }
 
+    /**
+     * I cannot get duration from properties so~
+     */
+    fun getDuration(): Long {
+        return format!!.properties()["duration"] as Long
+    }
+
     override fun run() {
         PlayerRunSupporter().run(playData, ais, line)
     }
