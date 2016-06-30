@@ -5,6 +5,7 @@ import javax.sound.sampled.AudioInputStream
 import javax.sound.sampled.SourceDataLine
 
 /**
+ * @author ice1000
  * Created by asus1 on 2016/7/1.
  */
 
