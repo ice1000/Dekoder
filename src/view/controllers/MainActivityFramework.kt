@@ -38,7 +38,16 @@ abstract class MainActivityFramework {
 
     private var progress = 0L
 
-    private var stopped: Boolean = false
+    private var stopped = false
+
+    private var waiting = true
+        set(value) {
+            field = value
+            if (!value) {
+                println("waiting is set to be false")
+                changeSong(true)
+            }
+        }
 
     open fun openGitHub() = Runtime.getRuntime().exec(
             "rundll32 url.dll,FileProtocolHandler " +
@@ -50,6 +59,8 @@ abstract class MainActivityFramework {
      * but I can only trust JVM`s GC now. : )
      */
     open protected fun playMusic() {
+        println("playMusic in MainActivity called.")
+        waiting = true
         if (PLAY == getPlayButton().text) {
             progressThread = ProgressThread (
                     { setProgress(it) }
@@ -83,15 +94,22 @@ abstract class MainActivityFramework {
     }
 
     open protected fun stopPlaying() {
+        println("stopPlaying in MainActivity called.")
         progress = 0
-        stopped = true
-        dekoder?.onStop()
+        if (!stopped) {
+            stopped = true
+            dekoder?.onStop()
+        }
         getPlayButton().text = PLAY
+        stop()
+    }
+
+    private fun stop() {
         progressThread.running = false
         progressThread.join()
         try {
             setProgress(progress)
-        }catch(e: ArithmeticException) {
+        } catch(e: ArithmeticException) {
             setProgress(1)
         }
     }
@@ -105,6 +123,7 @@ abstract class MainActivityFramework {
 
     /**
      * because I have to set the text on the button
+     * so MainActivity must provide this
      */
     abstract protected fun getPlayButton(): JFXButton
 
@@ -133,38 +152,46 @@ abstract class MainActivityFramework {
      */
     protected fun choose(filePath: String): DecoderInterface {
         val p = propertiesPrinter()
+        val call: (Boolean) -> Unit = {
+            waiting = false
+        }
         println(filePath)
         return if (filePath.endsWith("wav"))
-            WAVDecoder(filePath, p, { changeSong(it) })
+            WAVDecoder(filePath, p, call)
         else if (filePath.endsWith("mp3"))
-            MP3Decoder(filePath, p, { changeSong(it) })
+            MP3Decoder(filePath, p, call)
         //        else if (filePath.endsWith("mid"))
         //            MIDIDecoder(filePath, p)
         //        else if (filePath.endsWith("ape"))
         //            APEDecoder(filePath, p)
         else
-            WAVDecoder(filePath, p, { changeSong(it) })
+            WAVDecoder(filePath, p, call)
     }
 
     /**
      * this will stop playing
      */
     open protected fun openFile(file: File) {
+        println("openFile in MainActivity called.")
         val path = file.path
         // stop the latest opened file
         try {
             stopPlaying()
         } catch (e: NullPointerException) {
+            e.printStackTrace()
         }
         // echo the name of this file
+        println("stopped.")
         clearPropertiesShown()
         propertiesPrinter()
                 .echo(file.name)
         showFilesInTheSamePath(file.path)
         // write this file`s path to the database
         manager.write(path)
+        println("written.")
         // give a value to dekoder, to choose a type
         dekoder = choose(path)
+        println("written.")
         try {
             dekoder?.onCreate()
         } catch(e: Exception) {
@@ -173,6 +200,7 @@ abstract class MainActivityFramework {
     }
 
     open protected fun initialize() {
+        println("initialize in MainActivity called.")
         try {
             openFile(File(manager.read()[0]))
         } catch (ignored: Exception) {
@@ -186,6 +214,7 @@ abstract class MainActivityFramework {
      * and will clear the files which are already shown
      */
     protected fun showFilesInTheSamePath(path: String) {
+        println("showFilesInTheSamePath in MainActivity called.")
         clearFilesShown()
         fileList.removeAll(fileList)
         File(path).parentFile.list().forEach {
@@ -201,6 +230,7 @@ abstract class MainActivityFramework {
      * @param next true means go next, false means go previous
      */
     protected fun changeSong(next: Boolean) {
+        println("changeSong in MainActivity called.")
         val path = File(dekoder?.path)
         val currentFileIndex = fileList.indexOf(path.name)
         openFile(File(
@@ -229,8 +259,11 @@ abstract class MainActivityFramework {
      * exit
      */
     protected fun onDestroyed() {
-        stopPlaying()
-        dekoder = null
+        try {
+            stopPlaying()
+            dekoder = null
+        } catch(e: Exception) {
+        }
         System.exit(0)
     }
 }

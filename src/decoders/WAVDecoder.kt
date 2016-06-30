@@ -27,7 +27,13 @@ open class WAVDecoder : DecoderInterface {
 
     private var playThread: PlayMusicThread
 
-    override fun getTotalTime(): Long = size / bytePSec
+    override fun getTotalTime(): Long {
+        try {
+            return size / bytePSec
+        } catch (e: Exception) {
+            return 0;
+        }
+    }
 
     override fun onCreate() {
 //        sound = JavaSoundAudioClip(File(path).inputStream())

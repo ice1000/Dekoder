@@ -13,7 +13,7 @@ import javax.sound.sampled.SourceDataLine
  * Created by asus1 on 2016/5/28.
  */
 
-open class PlayMusicThread(var nextMover: (Boolean) -> Unit) : Thread() {
+open class PlayMusicThread(var next: (Boolean) -> Unit) : Thread() {
 
     protected var ais: AudioInputStream? = null
     protected var line: SourceDataLine? = null
@@ -43,6 +43,7 @@ open class PlayMusicThread(var nextMover: (Boolean) -> Unit) : Thread() {
             }
         line!!.drain()
         line!!.close()
-        nextMover(true)
+        println("Ended playing")
+//        next(true)
     }
 }
