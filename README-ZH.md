@@ -47,3 +47,5 @@
 实现了上一首、下一首、刷新列表功能。
 + [v1.2 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.2)
 新增退出按钮，可以安全退出（退出时杀死播放进程），修复大量历史遗留bug。
++ [v1.3 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.3)
+支持MP3了，足够令人兴奋。
