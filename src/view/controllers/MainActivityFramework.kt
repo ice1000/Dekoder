@@ -260,11 +260,13 @@ abstract class MainActivityFramework {
      * exit
      */
     protected fun onDestroyed() {
-        try {
-            stopPlaying()
-            dekoder = null
-        } catch(e: Exception) {
-        }
-        System.exit(0)
+        Thread({
+            try {
+                stopPlaying()
+                dekoder = null
+            } catch(e: Exception) {
+            }
+            System.exit(0)
+        }).start()
     }
 }

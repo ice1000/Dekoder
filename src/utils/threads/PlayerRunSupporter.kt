@@ -10,14 +10,16 @@ import javax.sound.sampled.SourceDataLine
 
 class PlayerRunSupporter() {
 
-    val BUFFER_SIZE = 0x100
+    val BUFFER_SIZE = 0x10000
 
     fun run(playData: PlayData, ais: AudioInputStream?, line: SourceDataLine?) {
         line!!.open()
         line.start()
         var inBytes = 0
+        var cnt = 0
         while (inBytes != -1 && !playData.threadExit)
             if (!playData.isPaused) {
+                println("loop ${cnt++}")
                 val audioData = ByteArray(BUFFER_SIZE)
                 inBytes = ais!!.read(audioData, 0, BUFFER_SIZE)
                 if (inBytes >= 0)
