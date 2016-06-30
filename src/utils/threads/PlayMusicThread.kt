@@ -13,7 +13,7 @@ import javax.sound.sampled.SourceDataLine
  * Created by asus1 on 2016/5/28.
  */
 
-open class PlayMusicThread : Thread {
+open class PlayMusicThread(var nextMover: (Boolean) -> Unit) : Thread() {
 
     protected var ais: AudioInputStream? = null
     protected var line: SourceDataLine? = null
@@ -22,7 +22,7 @@ open class PlayMusicThread : Thread {
     var playData = PlayData()
     val BUFFER_SIZE = 0xF
 
-    constructor (fileToPlay: String) : super () {
+    constructor (fileToPlay: String, nextMover: (Boolean) -> Unit) : this(nextMover) {
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null) {
             format = ais!!.format
@@ -43,7 +43,6 @@ open class PlayMusicThread : Thread {
             }
         line!!.drain()
         line!!.close()
+        nextMover(true)
     }
-
-    constructor()
 }

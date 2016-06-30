@@ -54,7 +54,7 @@ open class MP3Decoder : DecoderInterface {
         return 60
     }
 
-    constructor(path: String, echoer: Echoer) : super(echoer) {
+    constructor(path: String, echoer: Echoer, next: (Boolean) -> Unit) : super(echoer, next) {
         this.path = path
         playThread = MPEGPlayThread(path)
         reader = DSInputStreamReader(File(path))

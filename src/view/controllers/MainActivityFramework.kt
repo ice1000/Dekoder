@@ -135,15 +135,15 @@ abstract class MainActivityFramework {
         val p = propertiesPrinter()
         println(filePath)
         return if (filePath.endsWith("wav"))
-            WAVDecoder(filePath, p)
+            WAVDecoder(filePath, p, { changeSong(it) })
         else if (filePath.endsWith("mp3"))
-            MP3Decoder(filePath, p)
+            MP3Decoder(filePath, p, { changeSong(it) })
         //        else if (filePath.endsWith("mid"))
         //            MIDIDecoder(filePath, p)
         //        else if (filePath.endsWith("ape"))
         //            APEDecoder(filePath, p)
         else
-            WAVDecoder(filePath, p)
+            WAVDecoder(filePath, p, { changeSong(it) })
     }
 
     /**
