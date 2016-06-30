@@ -11,7 +11,7 @@ import javax.sound.sampled.AudioSystem
  */
 class MPEGPlayThread : PlayMusicThread {
 
-    constructor (fileToPlay: String) : super () {
+    constructor (fileToPlay: String, next: (Boolean) -> Unit) : super(next) {
         // MPEG1L3转PCM_SIGNED
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null) {
