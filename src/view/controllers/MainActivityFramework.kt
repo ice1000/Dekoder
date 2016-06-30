@@ -218,7 +218,7 @@ abstract class MainActivityFramework {
         clearFilesShown()
         fileList.removeAll(fileList)
         File(path).parentFile.list().forEach {
-            if (it.endsWith("wav")) {
+            if (it.endsWith("wav") || it.endsWith("mp3")) {
                 filesPrinter().echo(it)
                 fileList.add(it)
             }

@@ -1,17 +1,26 @@
 package utils.threads
 
+import data.PlayData
 import utils.factories.getLine
 import java.io.File
 import javax.sound.sampled.AudioFormat
+import javax.sound.sampled.AudioInputStream
 import javax.sound.sampled.AudioSystem
+import javax.sound.sampled.SourceDataLine
 
 /**
  * @author ice1000
  * Created by asus1 on 2016/5/29.
  */
-class MPEGPlayThread : PlayMusicThread {
+class MPEGPlayThread : Thread {
 
-    constructor (fileToPlay: String, next: (Boolean) -> Unit) : super(next) {
+    private var ais: AudioInputStream? = null
+    private var line: SourceDataLine? = null
+    private var format: AudioFormat? = null
+
+    var playData = PlayData()
+
+    constructor (fileToPlay: String, next: (Boolean) -> Unit) {
         // MPEG1L3转PCM_SIGNED
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null) {
@@ -32,5 +41,9 @@ class MPEGPlayThread : PlayMusicThread {
                     ais
             );
         }
+    }
+
+    override fun run() {
+        PlayerRunSupporter().run(playData, ais, line)
     }
 }
