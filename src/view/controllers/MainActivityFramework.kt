@@ -156,9 +156,6 @@ abstract class MainActivityFramework {
      */
     protected fun choose(filePath: String): DecoderInterface {
         val p = propertiesPrinter()
-        val call: (Boolean) -> Unit = {
-            waiting = false
-        }
         println(filePath)
         return if (filePath.endsWith("wav"))
             WAVDecoder(filePath, p)

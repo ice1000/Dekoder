@@ -10,7 +10,7 @@ import javax.sound.sampled.SourceDataLine
 
 class PlayerRunSupporter() {
 
-    val BUFFER_SIZE = 0x4
+    val BUFFER_SIZE = 0x100
 
     fun run(playData: PlayData, ais: AudioInputStream?, line: SourceDataLine?) {
         line!!.open()

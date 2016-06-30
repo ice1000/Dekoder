@@ -1,6 +1,7 @@
 package utils.threads
 
 import data.PlayData
+import org.tritonus.share.sampled.file.TAudioFileFormat
 import utils.factories.getLine
 import java.io.File
 import javax.sound.sampled.AudioFormat
@@ -17,12 +18,14 @@ class MPEGPlayThread : Thread {
     private var ais: AudioInputStream? = null
     private var line: SourceDataLine? = null
     private var format: AudioFormat? = null
+    private var file: File? = null
 
     var playData = PlayData()
 
     constructor (fileToPlay: String) {
         // MPEG1L3转PCM_SIGNED
-        ais = AudioSystem.getAudioInputStream(File(fileToPlay))
+        file = File(fileToPlay)
+        ais = AudioSystem.getAudioInputStream(file)
         if (ais != null) {
             format = ais!!.format
         }
@@ -47,7 +50,7 @@ class MPEGPlayThread : Thread {
      * I cannot get duration from properties so~
      */
     fun getDuration(): Long {
-        return format!!.properties()["duration"] as Long
+        return (AudioSystem.getAudioFileFormat(file) as TAudioFileFormat).properties()["duration"] as Long
     }
 
     override fun run() {
