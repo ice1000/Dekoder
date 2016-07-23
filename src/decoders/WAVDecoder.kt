@@ -31,7 +31,7 @@ open class WAVDecoder : DecoderInterface {
         try {
             return size / bytePSec
         } catch (e: Exception) {
-            return 0;
+            return 0
         }
     }
 
@@ -99,7 +99,7 @@ open class WAVDecoder : DecoderInterface {
         echo("decoding: ${reader.readToLong(1, 1)}")
         // ======================================================== 22
         channels = reader.readToInt(1, 1)
-        echo( if (channels == 1) "single" else "double" + " channel")
+        echo(if (channels == 1) "single" else "double" + " channel")
         // ======================================================== 24
         samplePSec = reader.readToInt()
         echo("$samplePSec samples per second")

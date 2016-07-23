@@ -11,12 +11,14 @@ import javax.sound.sampled.SourceDataLine
  * Created by asus1 on 2016/5/29.
  */
 
-fun getLine(audioFormat: AudioFormat): SourceDataLine {
-    val info = DataLine.Info(
-            SourceDataLine::class.java,
-            audioFormat
-    )
-    val res = AudioSystem.getLine(info) as SourceDataLine
-    res.open(audioFormat)
-    return res
+object SourceDataLineFactory {
+    fun getLine(audioFormat: AudioFormat): SourceDataLine {
+        val info = DataLine.Info(
+                SourceDataLine::class.java,
+                audioFormat
+        )
+        val res = AudioSystem.getLine(info) as SourceDataLine
+        res.open(audioFormat)
+        return res
+    }
 }

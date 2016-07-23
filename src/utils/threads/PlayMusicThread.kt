@@ -1,7 +1,7 @@
 package utils.threads
 
 import data.PlayData
-import utils.factories.getLine
+import utils.factories.SourceDataLineFactory
 import java.io.File
 import javax.sound.sampled.AudioFormat
 import javax.sound.sampled.AudioInputStream
@@ -25,7 +25,7 @@ open class PlayMusicThread() : Thread() {
         ais = AudioSystem.getAudioInputStream(File(fileToPlay))
         if (ais != null) {
             format = ais!!.format
-            line = getLine(format!!)
+            line = SourceDataLineFactory.getLine(format!!)
         }
     }
 

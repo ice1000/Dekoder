@@ -2,7 +2,7 @@ package utils.threads
 
 import data.PlayData
 import org.tritonus.share.sampled.file.TAudioFileFormat
-import utils.factories.getLine
+import utils.factories.SourceDataLineFactory
 import java.io.File
 import javax.sound.sampled.AudioFormat
 import javax.sound.sampled.AudioInputStream
@@ -41,9 +41,9 @@ class MPEGPlayThread : Thread {
             ais = AudioSystem.getAudioInputStream(
                     format,
                     ais
-            );
+            )
         }
-        line = getLine(format!!)
+        line = SourceDataLineFactory.getLine(format!!)
     }
 
     /**
