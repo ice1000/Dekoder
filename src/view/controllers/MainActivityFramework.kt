@@ -10,6 +10,7 @@ import utils.Echoer
 import utils.threads.ProgressThread
 import java.io.File
 import java.util.*
+import kotlin.concurrent.thread
 
 /**
  * @author ice1000
@@ -32,9 +33,7 @@ abstract class MainActivityFramework {
     val chooser: FileChooser
         get() = FileChooser()
 
-    private var progressThread = ProgressThread (
-            { setProgress(it) }
-    )
+    private var progressThread = ProgressThread { setProgress(it) }
 
     private var progress = 0L
 
@@ -66,7 +65,7 @@ abstract class MainActivityFramework {
         println("playMusic in MainActivity called.")
         waiting = true
         if (PLAY == getPlayButton().text) {
-            progressThread = ProgressThread (
+            progressThread = ProgressThread(
                     { setProgress(it) }
             )
             try {
@@ -259,14 +258,12 @@ abstract class MainActivityFramework {
     /**
      * exit
      */
-    protected fun onDestroyed() {
-        Thread({
-            try {
-                stopPlaying()
-                dekoder = null
-            } catch(e: Exception) {
-            }
-            System.exit(0)
-        }).start()
+    protected fun onDestroyed() = thread {
+        try {
+            stopPlaying()
+            dekoder = null
+        } catch(e: Exception) {
+        }
+        System.exit(0)
     }
 }

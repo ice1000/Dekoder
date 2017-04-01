@@ -4,8 +4,9 @@ import utils.DSInputStreamReader
 import utils.Echoer
 
 /**
+ * Created by ice1000 on 2016/5/22.
+ *
  * @author ice1000
- * Created by asus1 on 2016/5/22.
  */
 
 abstract class DecoderInterface(echoer: Echoer) : Echoer by echoer {

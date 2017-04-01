@@ -72,9 +72,9 @@ open class WAVDecoder : DecoderInterface {
         path = fileName
         playThread = PlayMusicThread(path)
         reader = DSInputStreamReader(File(path))
-        val metaSize: Int
+        val metaSize = reader.readToInt(1, 3)
         // ======================================================== 0
-        if (!"RIFF".equals(reader.readToString())) {
+        if ("RIFF" != reader.readToString()) {
             echo("warning: RIFF not found")
             return
         }
@@ -82,18 +82,17 @@ open class WAVDecoder : DecoderInterface {
         size = reader.readToLong()
         echo("size = $size")
         // ======================================================== 8
-        if (!"WAVE".equals(reader.readToString())) {
+        if ("WAVE" != reader.readToString()) {
             echo("warning: WAVE not found")
             return
         }
         // ======================================================== 12
-        if (!"fmt ".equals(reader.readToString())) {
+        if ("fmt " != reader.readToString()) {
             echo("fmt not found")
             echo("progress bar will not appear")
             return
         }
         // ======================================================== 16
-        metaSize = reader.readToInt(1, 3)
         echo("metadata: $metaSize bytes")
         // ======================================================== 20
         echo("decoding: ${reader.readToLong(1, 1)}")

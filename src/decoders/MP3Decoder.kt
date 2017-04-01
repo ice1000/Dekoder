@@ -58,7 +58,7 @@ open class MP3Decoder : DecoderInterface {
         this.path = path
         playThread = MPEGPlayThread(path)
         reader = DSInputStreamReader(File(path))
-        if ("ID3".equals(reader.read(3, 3))) {
+        if ("ID3" == String(reader.read(3, 3))) {
             echo("ID3 not found")
             return
         }
@@ -92,10 +92,9 @@ open class MP3Decoder : DecoderInterface {
                 else -> break@flag1
             }
             // 我偏要这样换行，你来打我呀
-            val formatString =
-                    "$flagString " +
-                            "${reader.readToStringButSkipFirst(2,
-                                    reader.readToIntFromLast())}"
+            val formatString = "$flagString " +
+                    reader.readToStringButSkipFirst(2,
+                            reader.readToIntFromLast())
             // same part: every data is in the same format
             // if a flag is ignored, it will be println() here
             if (flag in listOf("TYER", "COMM"))

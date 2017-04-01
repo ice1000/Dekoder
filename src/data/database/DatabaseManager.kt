@@ -13,12 +13,6 @@ class DatabaseManager {
     private val saveFile = "save.db"
     private var file: File = File(saveFile)
 
-    constructor() {
-        file = File(saveFile)
-        if (!file.exists())
-            file.createNewFile()
-    }
-
     fun read(): List<String> = file.readLines()
 
     /**
@@ -32,5 +26,11 @@ class DatabaseManager {
                     Charsets.UTF_8
             )
         println("path is $path")
+    }
+
+    init {
+        file = File(saveFile)
+        if (!file.exists())
+            file.createNewFile()
     }
 }

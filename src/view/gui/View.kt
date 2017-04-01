@@ -20,11 +20,13 @@ class View : Application() {
         val parent = FXMLLoader.load<Parent>(View::class.java.getResource("activity_main.fxml"))
 
         val scene = Scene(parent, 800.0, 600.0)
-        primaryStage?.initStyle(StageStyle.DECORATED)
-        primaryStage?.scene = scene
-        primaryStage?.title = "Dekoder by ice1000"
-        primaryStage?.isResizable = false
-        primaryStage?.show()
+        primaryStage?.let {
+            it.initStyle(StageStyle.DECORATED)
+            it.scene = scene
+            it.title = "Dekoder by ice1000"
+            it.isResizable = false
+            it.show()
+        }
 
     }
 
