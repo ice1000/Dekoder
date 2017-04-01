@@ -13,38 +13,15 @@ import javax.sound.sampled.SourceDataLine
  * @author ice1000
  * Created by asus1 on 2016/5/29.
  */
-class MPEGPlayThread : Thread {
+class MPEGPlayThread// MPEG1L3转PCM_SIGNED
+(fileToPlay: String) : Thread() {
 
-    private var ais: AudioInputStream? = null
-    private var line: SourceDataLine? = null
-    private var format: AudioFormat? = null
-    private var file: File? = null
+    private var ais: AudioInputStream
+    private var format: AudioFormat
+    private var line: SourceDataLine
+    private var file: File
 
     var playData = PlayData()
-
-    constructor (fileToPlay: String) {
-        // MPEG1L3转PCM_SIGNED
-        file = File(fileToPlay)
-        ais = AudioSystem.getAudioInputStream(file)
-        if (ais != null) {
-            format = ais!!.format
-        }
-        if (format!!.encoding != AudioFormat.Encoding.PCM_SIGNED) {
-            format = AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
-                    format!!.sampleRate,
-                    16 ,
-                    format!!.channels,
-                    format!!.channels * 2,
-                    format!!.sampleRate,
-                    false
-            )
-            ais = AudioSystem.getAudioInputStream(
-                    format,
-                    ais
-            )
-        }
-        line = SourceDataLineFactory.getLine(format!!)
-    }
 
     /**
      * I cannot get duration from properties so~
@@ -55,5 +32,26 @@ class MPEGPlayThread : Thread {
 
     override fun run() {
         PlayerRunSupporter().run(playData, ais, line)
+    }
+
+    init {
+        file = File(fileToPlay)
+        ais = AudioSystem.getAudioInputStream(file)
+        format = ais.format
+        if (format.encoding != AudioFormat.Encoding.PCM_SIGNED) {
+            format = AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
+                    format.sampleRate,
+                    16,
+                    format.channels,
+                    format.channels * 2,
+                    format.sampleRate,
+                    false
+            )
+            ais = AudioSystem.getAudioInputStream(
+                    format,
+                    ais
+            )
+        }
+        line = SourceDataLineFactory.getLine(format)
     }
 }

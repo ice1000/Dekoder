@@ -13,23 +13,19 @@ import javax.sound.sampled.SourceDataLine
  * Created by asus1 on 2016/5/28.
  */
 
-open class PlayMusicThread() : Thread() {
+open class PlayMusicThread(fileToPlay: String) : Thread() {
 
-    protected var ais: AudioInputStream? = null
-    protected var line: SourceDataLine? = null
-    protected var format: AudioFormat? = null
+    protected var ais: AudioInputStream
+    protected var line: SourceDataLine
+    protected var format: AudioFormat
 
     var playData = PlayData()
 
-    constructor (fileToPlay: String) : this() {
-        ais = AudioSystem.getAudioInputStream(File(fileToPlay))
-        if (ais != null) {
-            format = ais!!.format
-            line = SourceDataLineFactory.getLine(format!!)
-        }
-    }
+    override fun run() = PlayerRunSupporter().run(playData, ais, line)
 
-    override fun run() {
-        PlayerRunSupporter().run(playData, ais, line)
+    init {
+        ais = AudioSystem.getAudioInputStream(File(fileToPlay))
+        format = ais.format
+        line = SourceDataLineFactory.getLine(format)
     }
 }

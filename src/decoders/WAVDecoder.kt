@@ -12,7 +12,7 @@ import java.io.File
  * Created by asus1 on 2016/5/22.
  */
 
-open class WAVDecoder : DecoderInterface {
+class WAVDecoder : DecoderInterface {
 
     override var reader: DSInputStreamReader
     private var channels: Int = 0
@@ -116,7 +116,7 @@ open class WAVDecoder : DecoderInterface {
         echo("extra data: $extraData")
         // ======================================================== 36 or 38
         val s = reader.readToString()
-        if ("fact".equals(s)) {
+        if ("fact" == s) {
             val a = reader.readToInt()
             val b = reader.readToString(a)
             fact = Fact(a, b)

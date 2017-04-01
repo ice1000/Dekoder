@@ -9,7 +9,7 @@ import javax.sound.sampled.SourceDataLine
  * Created by asus1 on 2016/7/1.
  */
 
-class PlayerRunSupporter() {
+class PlayerRunSupporter {
 
     val BUFFER_SIZE = 0x10000
 

@@ -10,7 +10,7 @@ import java.io.File
  * Created by ice1000 on 2016/5/26.
  */
 
-open class MP3Decoder : DecoderInterface {
+class MP3Decoder : DecoderInterface {
 
     private var playThread: MPEGPlayThread
 
