@@ -5,7 +5,7 @@ package utils.threads
  * Created by ice1000 on 2016/5/25.
  */
 
-class ProgressThread(private var setter: (i: Long) -> Unit) : Thread() {
+class ProgressThread(private var setter: (Long) -> Unit) : Thread() {
 
     var running = true
     var nowTime = 0L
@@ -15,12 +15,7 @@ class ProgressThread(private var setter: (i: Long) -> Unit) : Thread() {
      * test printing is deleted, because this prints too much information
      */
     var storedTime: Long = 0L
-        set(value) {
-//            println("storedTime has been set as $value")
-            field = value
-        }
         get() {
-//            println("storedTime has been get as ${field + nowTime}")
             return field + nowTime
         }
 
