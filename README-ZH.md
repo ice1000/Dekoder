@@ -1,10 +1,10 @@
 # Dekoder
 
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+
 ### 这是什么
 这是一个音乐播放器。<br/>
 使用Material Design的规范进行UI设计，使用纯Kotlin实现，不过GUI使用JavaFX。<br/>
-可以在[白俄罗斯的awesome-kotlin](https://github.com/KotlinBy/awesome-kotlin)和
-[中国的awesome-kotlin](https://github.com/KotlinCN/awesome-kotlin)里面看到本项目英俊的身影。
 
 ### 语言
 + [English](./README.md)

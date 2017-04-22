@@ -1,10 +1,10 @@
 # Dekoder
 
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+
 ### What this is
 This is a cross-platform music player.<br/>
 Materially Designed, and written in pure kotlin but with a javaFX GUI.<br/>
-You can see this repo on [KotlinBy awesome-kotlin](https://github.com/KotlinBy/awesome-kotlin)
-or [KotlinCN awesome-kotlin](https://github.com/KotlinCN/awesome-kotlin).
 
 
 ### Language
