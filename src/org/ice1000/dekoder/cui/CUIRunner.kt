@@ -3,6 +3,7 @@ package org.ice1000.dekoder.cui
 import org.ice1000.dekoder.decoders.MP3Decoder
 import org.ice1000.dekoder.decoders.WAVDecoder
 import org.ice1000.dekoder.utils.Echoer
+import java.io.File
 import java.util.*
 
 /**
@@ -18,11 +19,17 @@ fun main(args: Array<String>) {
 
 //	val view = View()
 //	view.onCreate()
-	println("please input music file path :")
-	val s = Scanner(System.`in`)
-	val decoder = CUIMP3Decoder(s.nextLine())
+	val path = File("save.db").run {
+		try {
+			readLines().first()
+		} catch (e: Exception) {
+			println("please input music file path :")
+			val s = Scanner(System.`in`)
+			s.nextLine()
+		}
+	}
+	val decoder = CUIMP3Decoder(path)
 	println(decoder.path)
-	s.close()
 	decoder.onStart()
 }
 
