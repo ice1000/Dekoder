@@ -9,6 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="jfoenix" level="project" />
     <orderEntry type="library" exported="" name="KotlinJavaRuntime" level="project" />
-    <orderEntry type="library" name="jl1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="jl1.0.1" level="project" />
   </component>
 </module>

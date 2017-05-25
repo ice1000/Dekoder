@@ -1,9 +1,11 @@
 package view.controllers
 
+import com.jfoenix.controls.JFXButton
 import data.database.DatabaseManager
 import decoders.DecoderInterface
 import decoders.MP3Decoder
 import decoders.WAVDecoder
+import javafx.stage.FileChooser
 import utils.Echoer
 import utils.threads.ProgressThread
 import java.io.File
