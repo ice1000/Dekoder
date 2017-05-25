@@ -15,17 +15,17 @@ import javax.sound.sampled.SourceDataLine
 
 open class PlayMusicThread(fileToPlay: String) : Thread() {
 
-    protected var ais: AudioInputStream
-    protected var line: SourceDataLine
-    protected var format: AudioFormat
+	protected var ais: AudioInputStream
+	protected var line: SourceDataLine
+	protected var format: AudioFormat
 
-    var playData = PlayData()
+	var playData = PlayData()
 
-    override fun run() = PlayerRunSupporter().run(playData, ais, line)
+	override fun run() = PlayerRunSupporter().run(playData, ais, line)
 
-    init {
-        ais = AudioSystem.getAudioInputStream(File(fileToPlay))
-        format = ais.format
-        line = SourceDataLineFactory.getLine(format)
-    }
+	init {
+		ais = AudioSystem.getAudioInputStream(File(fileToPlay))
+		format = ais.format
+		line = SourceDataLineFactory.getLine(format)
+	}
 }

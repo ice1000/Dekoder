@@ -13,13 +13,13 @@ import javax.sound.sampled.SourceDataLine
  */
 
 object SourceDataLineFactory {
-    fun getLine(audioFormat: AudioFormat): SourceDataLine {
-        val info = DataLine.Info(
-                SourceDataLine::class.java,
-                audioFormat
-        )
-        val res = AudioSystem.getLine(info) as SourceDataLine
-        res.open(audioFormat)
-        return res
-    }
+	fun getLine(audioFormat: AudioFormat): SourceDataLine {
+		val info = DataLine.Info(
+				SourceDataLine::class.java,
+				audioFormat
+		)
+		val res = AudioSystem.getLine(info) as SourceDataLine
+		res.open(audioFormat)
+		return res
+	}
 }

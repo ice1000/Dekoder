@@ -10,27 +10,27 @@ import java.io.File
 
 class DatabaseManager {
 
-    private val saveFile = "save.db"
-    private var file: File = File(saveFile)
+	private val saveFile = "save.db"
+	private var file: File = File(saveFile)
 
-    fun read(): List<String> = file.readLines()
+	fun read(): List<String> = file.readLines()
 
-    /**
-     * have got a built-in repeat check.
-     */
-    fun write(path: String) {
-        val b = read()
-        if (path !in b)
-            file.appendText(
-                    path + "\n",
-                    Charsets.UTF_8
-            )
-        println("path is $path")
-    }
+	/**
+	 * have got a built-in repeat check.
+	 */
+	fun write(path: String) {
+		val b = read()
+		if (path !in b)
+			file.appendText(
+					path + "\n",
+					Charsets.UTF_8
+			)
+		println("path is $path")
+	}
 
-    init {
-        file = File(saveFile)
-        if (!file.exists())
-            file.createNewFile()
-    }
+	init {
+		file = File(saveFile)
+		if (!file.exists())
+			file.createNewFile()
+	}
 }

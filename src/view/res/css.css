@@ -1,14 +1,13 @@
-
 /* Button */
-.button{
-	-fx-padding: 0.7em 0.57em;
+.button {
+    -fx-padding: 0.7em 0.57em;
     -fx-font-size: 14px;
 }
 
-.button-raised, .button-raised-fab{
-	-fx-padding: 0.7em 0.57em;
+.button-raised, .button-raised-fab {
+    -fx-padding: 0.7em 0.57em;
     -fx-font-size: 14px;
-    -fx-background-color: rgb(77,102,204);
+    -fx-background-color: rgb(77, 102, 204);
     -fx-pref-width: 100;
     -fx-text-fill: WHITE;
 }
@@ -19,22 +18,22 @@
 
 .button-raised-fab {
     -fx-button-type: RAISED;
-    -fx-background-color: rgb(255,192,63);
+    -fx-background-color: rgb(255, 192, 63);
     -fx-border-radius: 50px;
 }
 
 /* Text */
-.jfx-text-area, .text-area{
-	-fx-font-weight: BOLD;
-	-fx-background-color: rgb(137, 137, 137);
-	-fx-border-radius: 20px;
+.jfx-text-area, .text-area {
+    -fx-font-weight: BOLD;
+    -fx-background-color: rgb(137, 137, 137);
+    -fx-border-radius: 20px;
 }
 
 .jfx-radio-button {
-	-fx-stroke-width: 2px;
-	-fx-fill: transparent;
+    -fx-stroke-width: 2px;
+    -fx-fill: transparent;
 }
 
 .jfx-radio-button {
-	-fx-fill: #0F9D58;
+    -fx-fill: #0F9D58;
 }
