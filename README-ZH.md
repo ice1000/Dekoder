@@ -35,17 +35,6 @@
 一个Kotlin音乐播放器。使用纯Kotlin实现，不过和JavaFX的GUI接口是Java写的。<br/>
 基于JavaSound实现音乐播放功能。<br/>
 
-### 运行
-将[这个jar包](out/artifacts/dekoder/dekoder.jar)拷贝至lib目录下即可运行。
+### 下载 运行
 
-### 版本
-+ [v0.1 预览版](https://github.com/ice1000/Dekoder/releases/tag/v0.1)
-是最早的版本，也是最简陋的版本。
-+ [v1.0 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.0)
-是最早发布的稳定版，支持wav格式的音频播放，列出音乐，以及播放暂停功能。
-+ [v1.1 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.1)
-实现了上一首、下一首、刷新列表功能。
-+ [v1.2 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.2)
-新增退出按钮，可以安全退出（退出时杀死播放进程），修复大量历史遗留bug。
-+ [v1.3 稳定版](https://github.com/ice1000/Dekoder/releases/tag/v1.3)
-支持MP3了，足够令人兴奋。
+见 [release](https://github.com/ice1000/Dekoder/releases)

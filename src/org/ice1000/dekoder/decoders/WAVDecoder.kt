@@ -12,7 +12,7 @@ import java.io.File
  * Created by asus1 on 2016/5/22.
  */
 
-class WAVDecoder : DecoderInterface {
+open class WAVDecoder : DecoderInterface {
 
 	override var reader: DSInputStreamReader
 	private var channels: Int = 0
@@ -51,7 +51,7 @@ class WAVDecoder : DecoderInterface {
 
 	override fun onPause() {
 		playThread.playData.isPaused = true
-//        playThread.join()
+//		playThread.join()
 	}
 
 	override fun onStart() {
@@ -68,6 +68,7 @@ class WAVDecoder : DecoderInterface {
 //		sound?.play()
 	}
 
+	@Suppress("ConvertSecondaryConstructorToPrimary")
 	constructor (fileName: String, echoer: Echoer) : super(echoer) {
 		path = fileName
 		playThread = PlayMusicThread(path)

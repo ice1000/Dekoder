@@ -10,7 +10,7 @@ import java.io.File
  *
  * @author ice1000
  */
-class MP3Decoder : DecoderInterface {
+open class MP3Decoder : DecoderInterface {
 
 	private var playThread: MPEGPlayThread
 
@@ -27,7 +27,7 @@ class MP3Decoder : DecoderInterface {
 			// 妈蛋线程异常抓错了
 			playThread.playData.isPaused = false
 		}
-//        playThread.join()
+//		playThread.join()
 	}
 
 	override fun onStop() {
@@ -41,7 +41,7 @@ class MP3Decoder : DecoderInterface {
 
 	override fun onPause() {
 		playThread.playData.isPaused = true
-//        playThread.join()
+//		playThread.join()
 	}
 
 	override var reader: DSInputStreamReader
@@ -54,6 +54,7 @@ class MP3Decoder : DecoderInterface {
 		return playThread.getDuration()
 	}
 
+	@Suppress("ConvertSecondaryConstructorToPrimary")
 	constructor(path: String, echoer: Echoer) : super(echoer) {
 		this.path = path
 		playThread = MPEGPlayThread(path)

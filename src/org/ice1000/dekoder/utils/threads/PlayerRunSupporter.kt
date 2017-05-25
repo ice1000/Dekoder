@@ -11,10 +11,15 @@ import javax.sound.sampled.SourceDataLine
 
 class PlayerRunSupporter {
 
-	val BUFFER_SIZE = 0x10000
+	companion object CONSTANTS {
+		const val BUFFER_SIZE = 0x10000
+	}
 
 	fun run(playData: PlayData, ais: AudioInputStream, line: SourceDataLine) {
-//		line.open()
+		try {
+			line.open()
+		} catch (e: Exception) {
+		}
 		line.start()
 		var inBytes = 0
 		var cnt = 0

@@ -44,7 +44,8 @@ class MPEGPlayThread(fileToPlay: String) : Thread() {
 					format.channels,
 					format.channels * 2,
 					format.sampleRate,
-					false)
+					false
+			)
 			ais = AudioSystem.getAudioInputStream(format, ais)
 		}
 		line = SourceDataLineFactory.getLine(format)
