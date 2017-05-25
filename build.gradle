@@ -1,0 +1,66 @@
+group 'org.ice1000'
+version '1.1'
+
+buildscript {
+	ext.kotlin_version = '1.1.2-3'
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+	}
+
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+	mavenCentral()
+	repositories {
+		flatDir {
+			dirs 'lib'
+		}
+	}
+}
+
+sourceSets {
+	main.kotlin.srcDirs += 'src'
+	main.java.srcDirs += 'src'
+	test.kotlin.srcDirs += 'test'
+	test.java.srcDirs += 'test'
+}
+
+configurations {
+	artifact
+}
+
+dependencies {
+	artifact "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+	artifact group: 'org.jetbrains', name: 'annotations', version: '15.0'
+	artifact name: 'jfoenix.jar'
+	artifact name: 'jl1.0.1.jar'
+	artifact name: 'mp3spi1.9.5.jar'
+	artifact name: 'tritonus_share.jar'
+
+	configurations.compile.extendsFrom(configurations.artifact)
+}
+
+
+jar {
+	manifest {
+	}
+	from {
+		configurations
+				.artifact
+				.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
+
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}

@@ -20,7 +20,7 @@ class PlayerRunSupporter {
 		var cnt = 0
 		while (inBytes != -1 && !playData.threadExit)
 			if (!playData.isPaused) {
-				println("loop ${cnt++}")
+				if (0 == cnt % 100) println("loop ${cnt++}")
 				val audioData = ByteArray(BUFFER_SIZE)
 				inBytes = ais.read(audioData, 0, BUFFER_SIZE)
 				if (inBytes >= 0)
