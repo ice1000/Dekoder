@@ -18,7 +18,7 @@
             fx:controller="org.ice1000.dekoder.controllers.MainActivity">
     <children>
         <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="539.0" layoutY="54.0" prefHeight="415.0"
-                     prefWidth="252.0" stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css">
+                     prefWidth="252.0" stylesheets="@../res/css.css">
             <effect>
                 <Blend/>
             </effect>
@@ -29,22 +29,22 @@
                     <children>
                         <JFXButton fx:id="fileButton" layoutX="8.0" layoutY="110.0" onAction="#openFile"
                                    prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised"
-                                   stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css" text="Open"/>
+                                   stylesheets="@../res/css.css" text="Open"/>
                         <JFXButton fx:id="helpButton" layoutX="7.0" layoutY="172.0" onAction="#openHelp"
                                    prefHeight="51.0" prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised"
-                                   stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css" text="GitHub"/>
+                                   stylesheets="@../res/css.css" text="GitHub"/>
                         <JFXButton layoutX="7.0" layoutY="235.0" onAction="#refreshList" prefHeight="51.0"
                                    prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised"
-                                   stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css" text="Refresh"/>
+                                   stylesheets="@../res/css.css" text="Refresh"/>
                         <ImageView fitHeight="98.0" fitWidth="79.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../res/org/ice1000/dekoder/res/kotlin.png"/>
+                                <Image url="@../res/kotlin.png"/>
                             </image>
                         </ImageView>
                         <JFXButton layoutX="7.0" layoutY="298.0" onAction="#onDestroyed" prefHeight="51.0"
                                    prefWidth="77.0" ripplerFill="#9aace1" styleClass="button-raised"
-                                   stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css" text="Exit"/>
+                                   stylesheets="@../res/css.css" text="Exit"/>
                     </children>
                 </AnchorPane>
             </center>
@@ -65,19 +65,19 @@
                     <children>
                         <JFXButton buttonType="RAISED" layoutY="13.0" onAction="#prevSong" prefHeight="41.0"
                                    prefWidth="68.0" ripplerFill="#fff549" style="-fx-border-radius: 50px;"
-                                   styleClass="button-raised-fab" stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css" text="Previous"/>
+                                   styleClass="button-raised-fab" stylesheets="@../res/css.css" text="Previous"/>
                         <JFXButton fx:id="playButton" buttonType="RAISED" defaultButton="true" layoutX="113.0"
                                    layoutY="13.0" onAction="#playMusic" prefHeight="41.0" prefWidth="68.0"
                                    ripplerFill="#fff549" style="-fx-border-radius: 50px;" styleClass="button-raised-fab"
-                                   stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css" text="Play"/>
+                                   stylesheets="@../res/css.css" text="Play"/>
                         <JFXButton buttonType="RAISED" layoutX="225.0" layoutY="13.0" onAction="#stopPlaying"
                                    prefHeight="41.0" prefWidth="224.0" ripplerFill="#fff549"
                                    style="-fx-border-radius: 50px;" styleClass="button-raised-fab"
-                                   stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css" text="Stop"/>
+                                   stylesheets="@../res/css.css" text="Stop"/>
                         <JFXButton buttonType="RAISED" layoutX="338.0" layoutY="13.0" onAction="#nextSong"
                                    prefHeight="41.0" prefWidth="68.0" ripplerFill="#fff549"
                                    style="-fx-border-radius: 50px;" styleClass="button-raised-fab"
-                                   stylesheets="@../../../../../res/org/ice1000/dekoder/res/css.css" text="Next"/>
+                                   stylesheets="@../res/css.css" text="Next"/>
                     </children>
                 </AnchorPane>
             </left>

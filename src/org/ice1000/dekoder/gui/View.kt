@@ -17,7 +17,7 @@ class View : Application() {
 //		Thread(Runnable {
 //			SVGGlyphLoader.loadGlyphsFont(View::class.java.getResourceAsStream("/src/view/res/kotlin.png"), "kotlin.png");
 //		})
-		val parent = FXMLLoader.load<Parent>(View::class.java.getResource("./activity_main.fxml"))
+		val parent = FXMLLoader.load<Parent>(View::class.java.getResource("activity_main.fxml"))
 
 		val theScene = Scene(parent, 800.0, 600.0)
 		primaryStage?.run {
