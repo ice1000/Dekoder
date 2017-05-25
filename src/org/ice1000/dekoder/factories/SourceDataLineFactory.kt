@@ -1,4 +1,4 @@
-package utils.factories
+package org.ice1000.dekoder.factories
 
 import javax.sound.sampled.AudioFormat
 import javax.sound.sampled.AudioSystem
@@ -14,10 +14,7 @@ import javax.sound.sampled.SourceDataLine
 
 object SourceDataLineFactory {
 	fun getLine(audioFormat: AudioFormat): SourceDataLine {
-		val info = DataLine.Info(
-				SourceDataLine::class.java,
-				audioFormat
-		)
+		val info = DataLine.Info(SourceDataLine::class.java, audioFormat)
 		val res = AudioSystem.getLine(info) as SourceDataLine
 		res.open(audioFormat)
 		return res

@@ -1,4 +1,4 @@
-package data
+package org.ice1000.dekoder.data
 
 /**
  * stores the fact data.

@@ -1,15 +1,15 @@
-package decoders
+package org.ice1000.dekoder.decoders
 
-import utils.DSInputStreamReader
-import utils.Echoer
-import utils.threads.MPEGPlayThread
+import org.ice1000.dekoder.utils.DSInputStreamReader
+import org.ice1000.dekoder.utils.Echoer
+import org.ice1000.dekoder.utils.threads.MPEGPlayThread
 import java.io.File
 
 /**
- * @author ice1000
  * Created by ice1000 on 2016/5/26.
+ *
+ * @author ice1000
  */
-
 class MP3Decoder : DecoderInterface {
 
 	private var playThread: MPEGPlayThread

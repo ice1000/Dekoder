@@ -1,4 +1,4 @@
-package utils.threads
+package org.ice1000.dekoder.utils.threads
 
 /**
  * @author ice1000

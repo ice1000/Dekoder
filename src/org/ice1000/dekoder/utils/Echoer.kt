@@ -1,4 +1,4 @@
-package utils
+package org.ice1000.dekoder.utils
 
 /**
  * @author ice1000

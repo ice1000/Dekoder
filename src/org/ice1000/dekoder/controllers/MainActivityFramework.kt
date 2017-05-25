@@ -1,13 +1,13 @@
-package view.controllers
+package org.ice1000.dekoder.controllers
 
 import com.jfoenix.controls.JFXButton
-import data.database.DatabaseManager
-import decoders.DecoderInterface
-import decoders.MP3Decoder
-import decoders.WAVDecoder
 import javafx.stage.FileChooser
-import utils.Echoer
-import utils.threads.ProgressThread
+import org.ice1000.dekoder.database.DatabaseManager
+import org.ice1000.dekoder.decoders.DecoderInterface
+import org.ice1000.dekoder.decoders.MP3Decoder
+import org.ice1000.dekoder.decoders.WAVDecoder
+import org.ice1000.dekoder.utils.Echoer
+import org.ice1000.dekoder.utils.threads.ProgressThread
 import java.io.File
 import java.util.*
 import kotlin.concurrent.thread
@@ -71,8 +71,7 @@ abstract class MainActivityFramework {
 			try {
 				if (stopped) {
 					clearPropertiesShown()
-					propertiesPrinter().echo(
-							File(dekoder!!.path).name)
+					propertiesPrinter().echo(File(dekoder!!.path).name)
 					dekoder = choose(dekoder!!.path)
 					stopped = false
 				}

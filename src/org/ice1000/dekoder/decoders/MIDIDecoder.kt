@@ -1,7 +1,7 @@
 //package decoders
 //
-//import utils.DSInputStreamReader
-//import utils.Echoer
+//import org.ice1000.dekoder.utils.DSInputStreamReader
+//import org.ice1000.dekoder.utils.Echoer
 //import java.io.File
 //import javax.sound.midi.MidiSystem
 //import javax.sound.midi.Sequence

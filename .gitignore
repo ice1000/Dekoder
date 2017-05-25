@@ -10,3 +10,6 @@ save.db
 /out/artifacts/dekoder/dekoder.html
 *.jar
 *.jnlp
+.gradle/
+build/
+out/

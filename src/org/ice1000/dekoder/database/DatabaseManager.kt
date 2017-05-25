@@ -1,4 +1,4 @@
-package data.database
+package org.ice1000.dekoder.database
 
 import java.io.File
 

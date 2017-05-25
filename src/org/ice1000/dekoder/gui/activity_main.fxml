@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="597.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.controllers.MainActivity">
+            fx:controller="org.ice1000.dekoder.controllers.MainActivity">
     <children>
         <JFXListView fx:id="propertiesList" cellHorizontalMargin="1.0" layoutX="539.0" layoutY="54.0" prefHeight="415.0"
                      prefWidth="252.0" stylesheets="@../res/css.css">

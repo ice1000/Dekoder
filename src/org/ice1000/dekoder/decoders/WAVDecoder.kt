@@ -1,9 +1,9 @@
-package decoders
+package org.ice1000.dekoder.decoders
 
-import data.Fact
-import utils.DSInputStreamReader
-import utils.Echoer
-import utils.threads.PlayMusicThread
+import org.ice1000.dekoder.data.Fact
+import org.ice1000.dekoder.utils.DSInputStreamReader
+import org.ice1000.dekoder.utils.Echoer
+import org.ice1000.dekoder.utils.threads.PlayMusicThread
 import java.io.File
 
 /**
@@ -36,7 +36,7 @@ class WAVDecoder : DecoderInterface {
 	}
 
 	override fun onCreate() {
-//        sound = JavaSoundAudioClip(File(path).inputStream())
+//		sound = JavaSoundAudioClip(File(path).inputStream())
 	}
 
 	override fun onStop() {
@@ -46,7 +46,7 @@ class WAVDecoder : DecoderInterface {
 			playThread.join()
 		} catch (e: Exception) {
 		}
-//        sound?.stop()
+//		sound?.stop()
 	}
 
 	override fun onPause() {
@@ -64,8 +64,8 @@ class WAVDecoder : DecoderInterface {
 			// 妈蛋线程异常抓错了
 			playThread.playData.isPaused = false
 		}
-//        playThread.join()
-//        sound?.play()
+//		playThread.join()
+//		sound?.play()
 	}
 
 	constructor (fileName: String, echoer: Echoer) : super(echoer) {

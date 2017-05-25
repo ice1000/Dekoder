@@ -1,6 +1,6 @@
-package utils.threads
+package org.ice1000.dekoder.utils.threads
 
-import data.PlayData
+import org.ice1000.dekoder.data.PlayData
 import javax.sound.sampled.AudioInputStream
 import javax.sound.sampled.SourceDataLine
 

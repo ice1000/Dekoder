@@ -1,15 +1,15 @@
-package view.controllers;
+package org.ice1000.dekoder.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXProgressBar;
-import decoders.DecoderInterface;
+import org.ice1000.dekoder.decoders.DecoderInterface;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import org.jetbrains.annotations.NotNull;
-import utils.Echoer;
+import org.ice1000.dekoder.utils.Echoer;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package utils
+package org.ice1000.dekoder.utils
 
 import java.io.File
 import java.io.FileInputStream

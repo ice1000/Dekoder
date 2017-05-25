@@ -1,7 +1,7 @@
-package view.cui
+package org.ice1000.dekoder.cui
 
-//import decoders.WAVDecoder
-//import utils.Echoer
+//import org.ice1000.dekoder.decoders.WAVDecoder
+//import org.ice1000.dekoder.utils.Echoer
 import java.util.*
 
 /**
