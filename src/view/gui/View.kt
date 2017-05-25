@@ -7,9 +7,9 @@ package view.gui
 
 class View : Application() {
 	override fun start(primaryStage: Stage?) {
-//        Thread(Runnable {
-//            SVGGlyphLoader.loadGlyphsFont(View::class.java.getResourceAsStream("/src/view/res/kotlin.png"),"kotlin.png");
-//        })
+//		Thread(Runnable {
+//			SVGGlyphLoader.loadGlyphsFont(View::class.java.getResourceAsStream("/src/view/res/kotlin.png"), "kotlin.png");
+//		})
 		val parent = FXMLLoader.load<Parent>(View::class.java.getResource("activity_main.fxml"))
 
 		val scene = Scene(parent, 800.0, 600.0)
@@ -20,7 +20,6 @@ class View : Application() {
 			it.isResizable = false
 			it.show()
 		}
-
 	}
 
 	fun onCreate() = launch(View::class.java)
