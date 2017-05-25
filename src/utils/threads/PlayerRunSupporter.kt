@@ -13,8 +13,8 @@ class PlayerRunSupporter {
 
 	val BUFFER_SIZE = 0x10000
 
-	fun run(playData: PlayData, ais: AudioInputStream?, line: SourceDataLine?) {
-		line!!.open()
+	fun run(playData: PlayData, ais: AudioInputStream, line: SourceDataLine) {
+//		line.open()
 		line.start()
 		var inBytes = 0
 		var cnt = 0
@@ -22,7 +22,7 @@ class PlayerRunSupporter {
 			if (!playData.isPaused) {
 				println("loop ${cnt++}")
 				val audioData = ByteArray(BUFFER_SIZE)
-				inBytes = ais!!.read(audioData, 0, BUFFER_SIZE)
+				inBytes = ais.read(audioData, 0, BUFFER_SIZE)
 				if (inBytes >= 0)
 					line.write(audioData, 0, inBytes)
 			}
