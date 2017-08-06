@@ -12,3 +12,5 @@ save.db
 .gradle/
 build/
 out/
+.idea/
+b.jar
