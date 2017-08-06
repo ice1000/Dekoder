@@ -1,5 +1,7 @@
 # Dekoder
 
+[![Build status](https://ci.appveyor.com/api/projects/status/e1oo252bbps4ffs2/branch/master?svg=true)](https://ci.appveyor.com/project/ice1000/dekoder/branch/master)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)   
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
 ### 这是什么
