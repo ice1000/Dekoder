@@ -5,7 +5,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
-### What this is
+### What is it
 This is a cross-platform music player.<br/>
 Materially Designed, and written in pure kotlin but with a javaFX GUI.<br/>
 
